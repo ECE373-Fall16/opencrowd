@@ -16,7 +16,7 @@ $uname=$_GET["name_ID"];
 $pass=$_GET["password"];
 
  $sql =<<<EOF
-      INSERT INTO clients (ID,PASSWORD,CURRENTLIST)
+      INSERT INTO drivers (ID,PASSWORD,CURRENTLIST)
       VALUES ($uname, $pass, NULL);
 EOF;
 

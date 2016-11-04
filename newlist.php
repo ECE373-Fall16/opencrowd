@@ -34,8 +34,9 @@ EOF;
 //================================end check
 
  $sql =<<<EOF
-      INSERT INTO list (listID,items,status)
-      VALUES (2, "$items", "incomplete");
+      INSERT INTO list (items,status)
+      VALUES ('$items', 'incomplete');
+      
 EOF;
 
    $ret = $db->exec($sql);
@@ -44,6 +45,19 @@ EOF;
    } else {
       echo "items added\n";
    }
+  //$roll=$db->query('SELECT ID from list WHERE items="$items"');
+  $rollid = $db->lastInsertRowID();
+  echo $rollid;
+  $sql =<<<EOF
+      UPDATE clients SET CURRENTLIST = $rollid WHERE USERNAME = "$uname"
+EOF;
+   $ret = $db->exec($sql);
+   if(!$ret){
+      echo $db->lastErrorMsg();
+   } else {
+      echo "clients updated\n";
+   }
+   
    $db->close();
 
 

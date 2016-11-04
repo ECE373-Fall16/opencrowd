@@ -16,8 +16,8 @@ $uname=$_GET["name_ID"];
 $pass=$_GET["password"];
 
  $sql =<<<EOF
-      INSERT INTO clients (ID,PASSWORD,CURRENTLIST)
-      VALUES ($uname, $pass, NULL);
+      INSERT INTO clients (USERNAME,PASSWORD,CURRENTLIST)
+      VALUES ("$uname", "$pass", -1);
 EOF;
 
    $ret = $db->exec($sql);

@@ -5,13 +5,13 @@
    {
       function __construct()
       {
-         $this->open('databases/lettucebuy.db');
+         $this->open('/databases/lettucebuy.db');
       }
    }
    //===============open db
    $db = new MyDB();
 
-int x=1; //flag
+$x=1; //flag
 
 //======================add user to db
 

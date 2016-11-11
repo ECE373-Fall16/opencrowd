@@ -12,8 +12,7 @@
    $db = new MyDB();
 
 $x=1; //flag
-$count=0; //counting number of repeated usernames
-$debug = "I AM HERE\n";
+$debug = "I AM HERE<br>";
 //checking if the username exists already in the db
 
 //======================add user to db
@@ -27,21 +26,21 @@ while ($x<6){
 EOF;
 
  // $ret = $db->exec($sql); //we will search here to see if username exists
-  echo $debug;
-  $ret = $db->query("SELECT * FROM clients WHERE USERNAME=$uname;");
-  echo $debug;
-  while($repeat = $ret->fetchArray()){
-        echo $debug;
-	if($repeat != NULL){
-	$count++;}
-	else{break;}
-  } 
+  $ret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME=$uname;");
+ 
+  //$ret has number of occurrences in database, either 0 or 1
 
-  echo $debug;
+//  $row = $ret->fetchArray();
+//  while($repeat = $ret->fetchArray()){
+//	echo $repeat;
+//	if($repeat != false){
+//	$count++;}
+//	else{break;}
+//  } 
 
- if ($count > 0){ //found it in the db 
-    echo "Username: $uname already exists, retry with new username";
-    $x++; //increment counter 
+ if ($ret > 0){ //found it in the db 
+    echo "Username: $uname already exists, retry with new username<br>";
+    $x++; //increment counter to give user another try --> ASK HTML STUFF FOR THIS 
    }	
  else{ //can insert into the db
    $db->exec($sqlinsert);

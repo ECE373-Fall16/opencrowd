@@ -37,10 +37,18 @@ $debug="I AM HERE<br>";
    }
    elseif ($ret>0){ //assuming only one username exists with that username
       echo "Welcome client $uname!<br>";
-      header("Location:../Clien_main.php?name_ID=$uname");
+      header("Location:../Client_main.php?name_ID=$uname");
       //break; //logged in
    }
 	//!!!!!!SHOULD BE REDIRECTED TO AN AFTER LOGIN PAGE OF RESPECTIVE LOGIN?
 //} //end while 
 
 ?>
+
+
+
+
+
+
+
+

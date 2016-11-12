@@ -1,29 +1,12 @@
 <html>
-<head>
-<title> Creating a New List </title>
-</head>
 <body>
-<h3> Creating a New List</h3>
 
-<p>Please provide username before creating the list</p>
-
-<form action="newList.php" method="POST">
-Username:<input type="text" name="name_ID"/><br>
-You can insert up to 10 items below<br>
-<input type="text" name="item1"><br>
-<input type="text" name="item2"><br>
-<input type="text" name="item3"><br>
-<input type="text" name="item4"><br>
-<input type="text" name="item5"><br>
-<input type="text" name="item6"><br>
-<input type="text" name="item7"><br>
-<input type="text" name="item8"><br>
-<input type="text" name="item9"><br>
-<input type="text" name="item10"><br>
-
-<input type="submit" value="Create new list" name="submit">
-
+<form action="newlist.php" method="get">
+Name: <input type="text" name="name_ID"><br>
+Password: <input type="text" name="password"><br>
+items <input type="text" name="items"><br>
+<input type="submit">
 </form>
 
 </body>
-</html>
+</html> 

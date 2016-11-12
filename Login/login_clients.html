@@ -1,9 +1,9 @@
-<!DOCTYPE   html>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>LettuceBuy Home</title>
+        <title>Log in</title>
         <link rel = "stylesheet" type = "text/css" href="index_style.css"/>
-        <link rel = "stylesheet" type = "text/css" href="navigation-style.css"/>
+        <link rel = "stylesheet" type = "text/css" href="input_style.css"/>
     </head>
     
     <body>
@@ -15,17 +15,22 @@
             </ul>
             
             <ul id="menu2">
-                <li><a href = "/Login/login.html">Log In</a></li>
+                <li><a href = "client_register.html">Log in for Customer</a></li>
+                <li><a href = "driver_register.html">Log in for Driver</a></li>
             </ul>
         </div>
         <div class ="header1"> 
             <h1> Welcome to LettuceBuy</h1>
             <h4> The most convenient way to do grocery or make money in free time!</h4>
         </div>
-        <div class = "signup">
-            <h3> Sign up for this great service!</h3>
-            <button><a href = "/Register/client_register.html"> Sign up as Customer</a></button>
-            <button><a href = "/Register/driver_register.html"> Sign up as Driver service</a></button>
+        <div class = "bodyformat">
+            <h2> Log-in to LettuceBuy</h2>
+            <form action="/Login/login_clients.php" method="get">
+                Name: <input type="text" name="name_ID"><br>
+                Password: <input type="text" name="password"><br>
+                <input type="submit">
+            </form>
         </div>
     </body>
 </html>
+

@@ -32,23 +32,15 @@ $debug="I AM HERE<br>";
 	}
        elseif ($drivret>0){
 	//	echo "Welcome driver $uname!<br>";
-                header ('Location: ../index.html');
+                header("Location:../Driver_main.php?name_ID=$uname");
 		}
    }
    elseif ($ret>0){ //assuming only one username exists with that username
       echo "Welcome client $uname!<br>";
-      header ('Location: ../index.html');
+      header("Location:../Clien_main.php?name_ID=$uname");
       //break; //logged in
    }
 	//!!!!!!SHOULD BE REDIRECTED TO AN AFTER LOGIN PAGE OF RESPECTIVE LOGIN?
 //} //end while 
 
 ?>
-
-
-
-
-
-
-
-

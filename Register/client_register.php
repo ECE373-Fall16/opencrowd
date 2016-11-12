@@ -9,7 +9,9 @@
       }
    }
    //===============open db
+
    $db = new MyDB();
+
 
 $debug = "I AM HERE<br>";
 //checking if the username exists already in the db
@@ -28,12 +30,15 @@ EOF;
  
  if ($ret > 0){ //found it in the db 
     echo "Username: $uname already exists, retry with new username<br>";
-    header ('Location: client_register_redirect.html'); 
+    header ('Location: client_register_redirect.html');
    }	
  else{ //can insert into the db
-   $db->exec($sqlinsert);
-   echo "User added successfully\n";
-   break;
+    $ret = $db->exec($sqlinsert);
+       if(!$ret){
+          echo $db->lastErrorMsg();
+       } else {
+          echo "user added successfully\n";
+       }
  }
    $db->close();
 

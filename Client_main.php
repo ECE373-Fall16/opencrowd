@@ -8,7 +8,7 @@
     <body>
         <div class= "nav">
             <ul id="menu1">
-                <li><a href = "Client_main.html">Home</a></li>
+                <li><a href = "Client_main.php">Home</a></li>
                 <li><a href = "about.html">About</a></li>
                 <li><a href = "contact.html">Contact</a></li>
             </ul>
@@ -21,6 +21,16 @@
             <?php  $uname=$_GET["name_ID"]; ?>
         <div>
             <h3> Welcome: <?php echo "$uname"; ?></h3> 
+            <html>
+<br>
+<br>
+<h3> Submit new List</h3> 
+<form action="newlist.php" method="get">
+<input type="hidden" name="name_ID" value="$uname">
+items <input type="text" name="items"><br>
+<input type="submit">
+</form>
+ 
         
         </div>
     </body>

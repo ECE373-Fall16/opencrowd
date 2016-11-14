@@ -41,7 +41,7 @@
             }
             ?>
             </h3> 
-            <h6>Enter the ID of the order </h6>
+            <h4>Enter the ID of the order </h4>
             <form action="driver_fetch.php" method="get">
                 <input type="hidden" name="name_ID" value="$uname">
                 ID <input type="text" name="listID"><br>

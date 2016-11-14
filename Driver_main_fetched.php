@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <title>Driver Home Page</title>
@@ -29,13 +28,15 @@
             </ul> 
             <!some how we need to add the the function that click on log out will actually log out of the system not only go to the index page>
         </div>
-        <?php  $uname=$_GET["name_ID"]; ?>
         <div class = "bodyformat">
-            <h3> Welcome: <?php echo "$uname"; ?></h3> <br/>
         
         <h4><?php
-	echo "Please select an ID from below:<br>";
-        $returned_set = $db->query("SELECT * FROM list WHERE status='incomplete';");
+	$uname=$_POST("name_ID");
+	echo "You fetched a list!<br>";
+        $returned_set = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME="$uname";");
+	$returned_num = (int) $returned_set;
+	
+        $returned_set = $db->query("SELECT * FROM list WHERE ID=$returned_num;");
         while ($entry = $returned_set->fetcharray()) {
             echo 'ID: ' . $entry['ID']; 
             echo '<html><br></html>';
@@ -43,16 +44,9 @@
             echo '<html><br></html>';
 	    echo 'Address of Store: ' . $entry['address'];
             echo '<html><br></html>';
-            echo '<html><br></html>';
         }
         ?>
         </h4> 
-        <form action="driver_fetch.php" method="POST">
-        <input type="hidden" name="name_ID" value="$uname">
-        ID <input type="text" name="listID"><br>
-        <input type="submit" value="Pick List">
-        </form>
-        
         </div>
     </body>
 </html>

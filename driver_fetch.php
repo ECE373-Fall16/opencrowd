@@ -15,15 +15,18 @@
 $uname=$_POST["name_ID"];
 $pass=$_POST["password"];
 $listID=$_POST["listID"];
-$flag = 0;
+$flag = 1;
 
-  $returned_set = $db->query("SELECT ID FROM list WHERE status='incomplete';");
-  while ($entry = $returned_set->fetcharray()) {
-	  if($entry!==$listID){;}
-	  else{ 
-		$flag =1; //found ID in list
-	} 
-   }
+ // $intID = (int) $listID;
+ // $returned_set = $db->query("SELECT ID FROM list WHERE status='incomplete';");
+ // while ($entry = $returned_set->fetcharray()) {
+ //         $result = (int) $entry;
+
+ //         if($result!==$intID){echo $;}
+ //         else{ 
+ //       	$flag =1; //found ID in list
+ //       } 
+ //  }
 
 	if($flag==0){//checking if we did not found ID in list
 		$db->close();
@@ -45,19 +48,18 @@ EOF;
    if(!$ret){
       echo $db->lastErrorMsg();
    } else {
-      $db->close();
-      header("Location: Driver_main_fetched.html");
-      echo "list status updated\n";
-   }
-   
-   
-   
-   
-   
-   $db->close();
-
-
+  	$db->close();
+  ; }
 ?>
+<form action="Driver_main_fetched.php" method="POST">
+<input type="hidden" name="name_ID" value="$uname">
+<input type="submit">
+</form>
+<?php
+  header("Location: Driver_main_fetched.php");
+?>
+   
+
 
 
 </body>

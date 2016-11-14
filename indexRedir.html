@@ -1,0 +1,40 @@
+<!DOCTYPE   html>
+<html>
+    <head>
+        <title>LettuceBuy Home</title>
+        <link rel = "stylesheet" type = "text/css" href="index_style.css"/>
+        <link rel = "stylesheet" type = "text/css" href="navigation-style.css"/>
+    </head>
+    
+    <body>
+        <div class= "nav">
+            <ul id="menu1">
+                <li><a href = "index.html">Home</a></li>
+                <li><a href = "about.html">About</a></li>
+                <li><a href = "contact.html">Contact</a></li>
+            </ul>
+            
+            <ul id="menu2">
+                <li><a href = "./Login/login.html">Log In</a></li>
+            </ul>
+        </div>
+        <div class ="header1"> 
+            <h1> Welcome to LettuceBuy</h1>
+            <h4> The most convenient way to do grocery or make money in free time!</h4>
+        </div>
+        <div class = "signup">
+            <h2> Log-in to LettuceBuy</h2>
+            <h5><font color="red"> Sorry the username/password you entered were incorrect, try again</font></h5>
+            <form action="./Login/login_clients.php" method="POST">
+                Name: <input type="text" name="name_ID"><br>
+                Password: <input type="password" name="password"><br>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        <div class = "signup">
+            <h3> Sign up for this great service!</h3>
+            <a href="./Register/client_register.html"><button>Sign up as Customer</button></a>
+            <a href="./Register/driver_register.html"><button>Sign up as Driver</button></a>
+        </div>
+    </body>
+</html>

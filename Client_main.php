@@ -3,6 +3,7 @@
     <head>
         <title>Customer Home Page</title>
         <link rel = "stylesheet" type = "text/css" href="navigation-style.css"/>
+        <link rel = "stylesheet" type = "text/css" href="input_style.css"/>
     </head>
     
     <body>
@@ -17,10 +18,10 @@
                 <button><a href = "index.html">Log Out</a></button>
             </ul>
          </div>
-            <!some how we need to add the the function that click on log out will actually log out of the system not only go to the index page>
             <?php  $uname=$_GET["name_ID"]; ?>
         <div class = "bodyformat">
             <h3> Welcome: <?php echo "$uname"; ?></h3> 
+<<<<<<< HEAD
 <br>
 <br>
 <h3> Submit a new list</h3> 
@@ -32,6 +33,17 @@ Address of Store <input type="text" name="address"><br>
 </form>
  
         
+=======
+            <br>
+            <br>
+                <h2> Enter your order</h2> 
+                <h6> items separate by a space</h6>
+                <form action="newlist.php" method="get">
+                    <input type="hidden" name="name_ID" value="$uname">
+                    items <input type="text" name="items"><br>
+                    <input type="submit">
+                </form>
+>>>>>>> 37de12c6df6eb175172d8123dab99b3c02c4ca18
         </div>
     </body>
 </html>

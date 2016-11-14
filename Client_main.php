@@ -14,7 +14,7 @@
             </ul>
             
             <ul id="menu2">
-                <buttom><a href = "index.html">Log Out</a></buttom>
+                <button><a href = "index.html">Log Out</a></button>
             </ul>
          </div>
             <!some how we need to add the the function that click on log out will actually log out of the system not only go to the index page>
@@ -23,11 +23,12 @@
             <h3> Welcome: <?php echo "$uname"; ?></h3> 
 <br>
 <br>
-<h3> Submit new List</h3> 
-<form action="newlist.php" method="get">
+<h3> Submit a new list</h3> 
+<form action="./newlist.php" method="POST">
 <input type="hidden" name="name_ID" value="$uname">
-items <input type="text" name="items"><br>
-<input type="submit">
+Items <input type="text" name="items"><br>
+Address of Store <input type="text" name="address"><br>
+<input type="submit" value="Submit List">
 </form>
  
         

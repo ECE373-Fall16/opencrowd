@@ -25,7 +25,7 @@
             </ul>
             
             <ul id="menu2">
-               <buttom><a href = "index.html">Log Out</a></buttom>
+               <button><a href = "index.html">Log Out</a></button>
             </ul> 
             <!some how we need to add the the function that click on log out will actually log out of the system not only go to the index page>
         </div>
@@ -33,18 +33,24 @@
         <div class = "bodyformat">
             <h3> Welcome: <?php echo "$uname"; ?></h3> <br/>
         
-        <h3><?php
+        <h4><?php
+	echo "Please select an ID from below:<br>";
         $returned_set = $db->query("SELECT * FROM list WHERE status='incomplete';");
         while ($entry = $returned_set->fetcharray()) {
-            echo 'ID: ' . $entry['ID'] . '  items: ' . $entry['items'];
+            echo 'ID: ' . $entry['ID']; 
+            echo '<html><br></html>';
+	    echo 'Items: ' . $entry['items'];
+            echo '<html><br></html>';
+	    echo 'Address of Store: ' . $entry['address'];
+            echo '<html><br></html>';
             echo '<html><br></html>';
         }
         ?>
-        </h3> 
-        <form action="driver_fetch.php" method="get">
+        </h4> 
+        <form action="driver_fetch.php" method="POST">
         <input type="hidden" name="name_ID" value="$uname">
         ID <input type="text" name="listID"><br>
-        <input type="submit">
+        <input type="submit" value="Pick List">
         </form>
         
         </div>

@@ -30,13 +30,15 @@ EOF;
  
  if ($ret > 0){ //found it in the db 
     echo "Username: $uname already exists, retry with new username<br>";
-    header ('Location: client_register_redirect.html');
+    header ('Location: driver_register_redirect.html');
    }	
  else{ //can insert into the db
     $ret = $db->exec($sqlinsert);
        if(!$ret){
           echo $db->lastErrorMsg();
        } else {
+          $db->close();
+	  header("Location: ../index.html");
           echo "driver added successfully\n";
        }
  }

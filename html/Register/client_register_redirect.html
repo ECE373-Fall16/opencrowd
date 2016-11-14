@@ -1,27 +1,27 @@
 <!DOCTYPE  html>
 <html>
     <head>
-        <title>New Driver Sign up</title>
+        <title>New Customer Sign up</title>
         <link rel = "stylesheet" type = "text/css" href="navigation-style.css"/>
         <link rel = "stylesheet" type = "text/css" href="input_style.css"/>
-        
     </head>
     
     <body>
         <div class= "nav">
             <ul id="menu1">
-                <li><a href = "../index.html">Home</a></li>
-                <li><a href = "../about.html">About</a></li>
-                <li><a href = "../contact.html">Contact</a></li>
+                <li><a href = "index.html">Home</a></li>
+                <li><a href = "about.html">About</a></li>
+                <li><a href = "contact.html">Contact</a></li>
             </ul>
             
             <ul id="menu2">
-                <li><a href = "login.html">Log In</a></li>
+                <li><a href = "../index.html">Log In</a></li>
             </ul>
         </div>
         <div class = "bodyformat">
-            <h2> Sign up as a Driver</h2>
-            <form action="driver_register.php" method="POST">
+            <h2> Sign up for Customer</h2>
+	    <h5> Sorry that username is taken </h5>
+            <form action="driver_register.php" method="get">
                 Name: <input type="text" name="name_ID"><br>
                 Password: <input type="text" name="password"><br>
                 <input type="submit">
@@ -29,5 +29,3 @@
         </div>
     </body>
 </html> 
-
-

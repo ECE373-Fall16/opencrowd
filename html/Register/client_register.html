@@ -15,25 +15,17 @@
             </ul>
             
             <ul id="menu2">
-                <li><a href = "login.html">Log In</a></li>
+                <li><a href = "/Login/login.html">Log In</a></li>
             </ul>
         </div>
         <div class = "bodyformat">
             <h2> Sign up for Customer</h2>
-            <form action="/Register/client_register.php" method="get">
-                <h3 align="center">Name: <input type="text" name="name_ID"><br></h3>
-                <h3 align="center">Password: <input type="text" name="password"><br></h3>
-                <h1 align="center"><input type="submit"></h1>
+            <form action="client_register.php" method="POST">
+                Name: <input type="text" name="name_ID"><br>
+                Password: <input type="password" name="password"><br>
+                Address: <input type="text" name="address"><br>
+                <input type="submit">
             </form>
         </div>
-	   <p><h2> Sign up for Drivers</h2><\p>
-            <form action="/Register/driver_register.php" method="get">
-                <h3 align="center">Name: <input type="text" name="name_ID"><br></h3>
-                <h3 align="center">Password: <input type="text" name="password"><br></h3>
-                <h1 align="center"><input type="submit"></h1>
-            </form>
-        </div>
-	   
     </body>
 </html> 
-

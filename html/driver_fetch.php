@@ -12,9 +12,26 @@
    $db = new MyDB();
 
 //====================================================================================add list to db
-$uname=$_GET["name_ID"];
-$pass=$_GET["password"];
-$listID=$_GET["listID"];
+$uname=$_POST["name_ID"];
+$pass=$_POST["password"];
+$listID=$_POST["listID"];
+$flag = 1;
+
+ // $intID = (int) $listID;
+ // $returned_set = $db->query("SELECT ID FROM list WHERE status='incomplete';");
+ // while ($entry = $returned_set->fetcharray()) {
+ //         $result = (int) $entry;
+
+ //         if($result!==$intID){echo $;}
+ //         else{ 
+ //       	$flag =1; //found ID in list
+ //       } 
+ //  }
+
+	if($flag==0){//checking if we did not found ID in list
+		$db->close();
+		header ("Location: Driver_main.php"); //if wrong ID then go back to main
+	}
 
   $sql =<<<EOF
       UPDATE drivers SET CURRENTLIST = $listID WHERE USERNAME = "$uname"
@@ -22,9 +39,8 @@ EOF;
    $ret = $db->exec($sql);
    if(!$ret){
       echo $db->lastErrorMsg();
-   } else {
-      echo "list fetched updated\n";
-   }
+   } 
+
    $sql =<<<EOF
       UPDATE list SET status = 'fetched' WHERE ID = "$listID"
 EOF;
@@ -32,17 +48,18 @@ EOF;
    if(!$ret){
       echo $db->lastErrorMsg();
    } else {
-      echo "list status updated\n";
-   }
-   
-   
-   
-   
-   
-   $db->close();
-
-
+  	$db->close();
+  ; }
 ?>
+<form action="Driver_main_fetched.php" method="POST">
+<input type="hidden" name="name_ID" value="$uname">
+<input type="submit">
+</form>
+<?php
+  header("Location: Driver_main_fetched.php");
+?>
+   
+
 
 
 </body>

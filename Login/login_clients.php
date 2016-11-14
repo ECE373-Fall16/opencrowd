@@ -28,7 +28,7 @@ $debug="I AM HERE<br>";
 	if($drivret<=0){ //neither client nor driver
 		echo "Sorry wrong Username or Password<br>";
 		echo "Please try again...<br>";
-		header('Location: login_redirect.html');
+		header('Location: ../indexRedir.html');//login_redirect.html
 	}
        elseif ($drivret>0){
 	//	echo "Welcome driver $uname!<br>";

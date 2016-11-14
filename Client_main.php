@@ -3,6 +3,7 @@
     <head>
         <title>Customer Home Page</title>
         <link rel = "stylesheet" type = "text/css" href="navigation-style.css"/>
+        <link rel = "stylesheet" type = "text/css" href="input_style.css"/>
     </head>
     
     <body>
@@ -21,16 +22,15 @@
             <?php  $uname=$_GET["name_ID"]; ?>
         <div class = "bodyformat">
             <h3> Welcome: <?php echo "$uname"; ?></h3> 
-<br>
-<br>
-<h3> Submit new List</h3> 
-<form action="newlist.php" method="get">
-<input type="hidden" name="name_ID" value="$uname">
-items <input type="text" name="items"><br>
-<input type="submit">
-</form>
- 
-        
+            <br>
+            <br>
+                <h4> Enter your order</h4> 
+                <h6> items separate by a space</h6>
+                <form action="newlist.php" method="get">
+                    <input type="hidden" name="name_ID" value="$uname">
+                    items <input type="text" name="items"><br>
+                    <input type="submit">
+                </form>
         </div>
     </body>
 </html>

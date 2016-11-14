@@ -23,7 +23,7 @@
             <h3> Welcome: <?php echo "$uname"; ?></h3> 
             <br>
             <br>
-                <h4> Enter your order</h4> 
+                <h2> Enter your order</h2> 
                 <h6> items separate by a space</h6>
                 <form action="newlist.php" method="get">
                     <input type="hidden" name="name_ID" value="$uname">

@@ -49,18 +49,9 @@ EOF;
       echo $db->lastErrorMsg();
    } else {
   	$db->close();
-  ; }
+ 	 header("Location: Driver_main_fetched.php");
+   }
 ?>
-<form action="Driver_main_fetched.php" method="POST">
-<input type="hidden" name="name_ID" value="$uname">
-<input type="submit">
-</form>
-<?php
-  header("Location: Driver_main_fetched.php");
-?>
-   
-
-
 
 </body>
 </html>

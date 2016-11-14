@@ -31,20 +31,21 @@
         <div class = "bodyformat">
         
         <h4><?php
-	$uname=$_POST("name_ID");
+//	$uname=$_POST("name_ID");
 	echo "You fetched a list!<br>";
-        $returned_set = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME="$uname";");
-	$returned_num = (int) $returned_set;
-	
-        $returned_set = $db->query("SELECT * FROM list WHERE ID=$returned_num;");
-        while ($entry = $returned_set->fetcharray()) {
-            echo 'ID: ' . $entry['ID']; 
-            echo '<html><br></html>';
-	    echo 'Items: ' . $entry['items'];
-            echo '<html><br></html>';
-	    echo 'Address of Store: ' . $entry['address'];
-            echo '<html><br></html>';
-        }
+	echo "Currently, work in progress...<br>";
+//        $returned_set = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME="$uname";");
+//	$returned_num = (int) $returned_set;
+//	
+//        $returned_set = $db->query("SELECT * FROM list WHERE ID=$returned_num;");
+//        while ($entry = $returned_set->fetcharray()) {
+//            echo 'ID: ' . $entry['ID']; 
+//            echo '<html><br></html>';
+//	    echo 'Items: ' . $entry['items'];
+//            echo '<html><br></html>';
+//	    echo 'Address of Store: ' . $entry['address'];
+//            echo '<html><br></html>';
+//        }
         ?>
         </h4> 
         </div>

@@ -14,13 +14,13 @@
             </ul>
             
             <ul id="menu2">
-                <button><a href = "index.html">Log Out</a></button>
+               <li><a href = "index.html">Log Out</a></li>
             </ul>
          </div>
             <!some how we need to add the the function that click on log out will actually log out of the system not only go to the index page>
             <?php  $uname=$_GET["name_ID"]; ?>
         <div class = "bodyformat">
-            <h3> Welcome: <?php echo "$uname"; ?></h3> 
+            <h3> Welcome to LettuceBuy!</h3> 
 <br>
 <br>
 <h3> Submit a new list</h3> 

@@ -25,16 +25,16 @@
             </ul>
             
             <ul id="menu2">
-               <button><a href = "index.html">Log Out</a></button>
+              <li><a href = "index.html">Log Out</a></button><li>
             </ul> 
             <!some how we need to add the the function that click on log out will actually log out of the system not only go to the index page>
         </div>
         <?php  $uname=$_GET["name_ID"]; ?>
         <div class = "bodyformat">
-            <h3> Welcome: <?php echo "$uname"; ?></h3> <br/>
+            <h3> Welcome to LettuceBuy! </h3> <br/>
         
         <h4><?php
-	echo "Please select an ID from below:<br>";
+	echo "Please select an ID of available list from below:<br>";
         $returned_set = $db->query("SELECT * FROM list WHERE status='incomplete';");
         while ($entry = $returned_set->fetcharray()) {
             echo 'ID: ' . $entry['ID']; 

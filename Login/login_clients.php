@@ -25,7 +25,7 @@ $debug="I AM HERE<br>";
    if($ret<=0){
 	//checking if its a driver if not a client
         $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
-	if($drivret<=0){ //neither client nor driver
+	if($drivret<=0 && $ret<=0){ //neither client nor driver
 		echo "Sorry wrong Username or Password<br>";
 		echo "Please try again...<br>";
 		header('Location: ../indexRedir.html');//login_redirect.html

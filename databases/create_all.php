@@ -24,6 +24,7 @@
       (ID  INTEGER PRIMARY KEY        AUTOINCREMENT,
       USERNAME            TEXT     NOT NULL,
       PASSWORD            TEXT     NOT NULL,
+      PHONE		  TEXT	   NOT NULL,
       CURRENTLIST  INTEGER 
       );
 EOF;
@@ -41,6 +42,7 @@ EOF;
       USERNAME            TEXT     NOT NULL,
       PASSWORD            TEXT     NOT NULL,
       ADDRESS		  TEXT     NOT NULL,
+      PHONE		  TEXT	   NOT NULL,
       CURRENTLIST  INTEGER
       );
 EOF;

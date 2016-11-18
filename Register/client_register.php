@@ -20,10 +20,11 @@ $debug = "I AM HERE<br>";
   $uname=$_POST["name_ID"];
   $pass=$_POST["password"];
   $Caddress=$_POST["address"];
+  $phone=$_POST["phone"]; 
 
  $sqlinsert =<<<EOF
-      INSERT INTO clients (USERNAME,PASSWORD,ADDRESS,CURRENTLIST)
-      VALUES ("$uname", "$pass","$Caddress", -1);
+      INSERT INTO clients (USERNAME,PASSWORD,ADDRESS,PHONE,CURRENTLIST)
+      VALUES ("$uname", "$pass","$Caddress","$phone", -1);
 EOF;
 
  // $ret = $db->exec($sql); //we will search here to see if username exists

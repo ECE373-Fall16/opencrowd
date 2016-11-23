@@ -13,37 +13,38 @@
 
 //====================================================================================add list to db
 $uname=$_GET["name_ID"];
-$pass=$_GET["password"];
-$listID=$_GET["listID"];
+$listnum=$_GET["listID"];
+$listnum=(int)$listnum; //parse into int
 
+$returned_set = $db->querySingle("SELECT COUNT(*) FROM list WHERE ID=$listnum;");
+
+	if($returned_set==0){//checking if we did not found ID in list
+		$db->close();
+		header ("Location: Driver_main.php?flag=1&name_ID=$uname"); //if wrong ID then go back to main
+	}
+
+  else{
   $sql =<<<EOF
-      UPDATE drivers SET CURRENTLIST = $listID WHERE USERNAME = "$uname"
+      UPDATE drivers SET CURRENTLIST = $listnum WHERE USERNAME = "$uname"
 EOF;
    $ret = $db->exec($sql);
    if(!$ret){
       echo $db->lastErrorMsg();
-   } else {
-      echo "list fetched updated\n";
-   }
-   $sql =<<<EOF
-      UPDATE list SET status = 'fetched' WHERE ID = "$listID"
-EOF;
-   $ret = $db->exec($sql);
-   if(!$ret){
-      echo $db->lastErrorMsg();
-   } else {
-      echo "list status updated\n";
-   }
-   
-   
-   
-   
-   
-   $db->close();
+   } 
 
+   $sql =<<<EOF
+      UPDATE list SET status = 'fetched' WHERE ID = "$listnum"
+EOF;
+   $ret = $db->exec($sql);
+   if(!$ret){
+      echo $db->lastErrorMsg();
+   } else {
+  	$db->close();
+ 	 header("Location: Driver_main_fetched.php?name_ID=$uname");
+   }
+}
 
 ?>
-
 
 </body>
 </html>

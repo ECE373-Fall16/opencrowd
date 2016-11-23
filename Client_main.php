@@ -6,29 +6,34 @@
     </head>
     
     <body>
+	 <h3>
+		<?php 
+              	   $uname=$_GET["name_ID"];
+		   echo "Welcome to LettuceBuy $uname!";
+	?></h3> 
         <div class= "nav">
             <ul id="menu1">
-                <li><a href = "Client_main.php">Home</a></li>
+		<form action="Client_main.php" method="GET">
+		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
+		<input type="submit" value="Home"/>
+		</form>
                 <li><a href = "about.html">About</a></li>
                 <li><a href = "contact.html">Contact</a></li>
             </ul>
             
             <ul id="menu2">
-                <button><a href = "index.html">Log Out</a></button>
+               <li><a href = "index.html">Log Out</a></li>
             </ul>
          </div>
-            <!some how we need to add the the function that click on log out will actually log out of the system not only go to the index page>
-            <?php  $uname=$_GET["name_ID"]; ?>
         <div class = "bodyformat">
-            <h3> Welcome: <?php echo "$uname"; ?></h3> 
-<br>
+           <br>
 <br>
 <h3> Submit a new list</h3> 
-<form action="./newlist.php" method="POST">
-<input type="hidden" name="name_ID" value="$uname">
+<form action="./newlist.php" method="GET">
+<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
 Items <input type="text" name="items"><br>
 Address of Store <input type="text" name="address"><br>
-<input type="submit" value="Submit List">
+<input type="submit" value="Submit List"/>
 </form>
  
         

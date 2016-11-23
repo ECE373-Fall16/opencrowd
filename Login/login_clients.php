@@ -17,32 +17,26 @@
 $debug="I AM HERE<br>";
 
 //while(true){ 
-  $uname=$_POST["name_ID"];
-  $pass=$_POST["password"];
+  $uname=$_GET["name_ID"];
+  $pass=$_GET["password"];
+
 //Now will compare with database if match --EXPECTING ONLY 1
 //can also do SELECT PASSWORD from clients WHERE USERNAME=$uname
+
    $ret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname' AND PASSWORD='$pass';");
-   if($ret<=0){
+   if ($ret>0){ //is a client 
+      header("Location:../Client_main.php?name_ID=$uname");
+   }
+   elseif($ret==0){ //if not a client
 	//checking if its a driver if not a client
         $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
-	if($drivret<=0){ //neither client nor driver
-		echo "Sorry wrong Username or Password<br>";
-		echo "Please try again...<br>";
-		header('Location: login_redirect.html');
+	if($drivret==0){ //neither client nor driver
+		header('Location: ../indexRedir.html');//login_redirect.html
 	}
-       elseif ($drivret>0){
-	//	echo "Welcome driver $uname!<br>";
-                header ('Location: ../index.html');
-		}
+        elseif ($drivret>0){ //driver
+                header("Location:../Driver_main.php?flag=0&name_ID=$uname");
+	}
    }
-   elseif ($ret>0){ //assuming only one username exists with that username
-      echo "Welcome client $uname!<br>";
-      header ('Location: ../index.html');
-      //break; //logged in
-   }
-	//!!!!!!SHOULD BE REDIRECTED TO AN AFTER LOGIN PAGE OF RESPECTIVE LOGIN?
-//} //end while 
-
 ?>
 
 

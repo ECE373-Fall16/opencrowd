@@ -24,6 +24,7 @@
       (ID  INTEGER PRIMARY KEY        AUTOINCREMENT,
       USERNAME            TEXT     NOT NULL,
       PASSWORD            TEXT     NOT NULL,
+      PHONE		  TEXT	   NOT NULL,
       CURRENTLIST  INTEGER 
       );
 EOF;
@@ -40,6 +41,8 @@ EOF;
       (ID  INTEGER PRIMARY KEY        AUTOINCREMENT,
       USERNAME            TEXT     NOT NULL,
       PASSWORD            TEXT     NOT NULL,
+      ADDRESS		  TEXT     NOT NULL,
+      PHONE		  TEXT	   NOT NULL,
       CURRENTLIST  INTEGER
       );
 EOF;
@@ -55,6 +58,7 @@ EOF;
       CREATE TABLE list
       (ID  INTEGER PRIMARY KEY        AUTOINCREMENT,
       items TEXT NOT NULL,
+      address TEXT NOT NULL,
       status TEXT NOT NULL);
 EOF;
 

@@ -11,10 +11,17 @@
 //=============================================================================================open db
    $db = new MyDB();
 
-$uname=$_POST["username"];
-$items=$_POST["items"];
-$address=$_POST["address"];
+$uname=$_GET["name_ID"];
+$items=$_GET["items"];
+$address=$_GET["address"];
 //================================check exist
+
+ $check= $db->query("SELECT CURRENTLIST FROM CLIENTS WHERE USERNAME='$uname'");
+
+ if($check != -1){ //user already has a list online
+	$db->close;
+	header("Location: Client_main.php?name_ID=$uname");
+  }
 
  $sql =<<<EOF
       INSERT INTO list (items,address,status)
@@ -35,15 +42,11 @@ EOF;
       echo $db->lastErrorMsg();
    } else {
         $db->close();
-	header("Location: Client_main.php");
+	header("Location: Client_main.php?name_ID=$uname");
       echo "clients updated\n";
    }
    
    $db->close();
-
-
 ?>
-
-
 </body>
 </html>

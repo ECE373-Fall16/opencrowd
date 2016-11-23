@@ -29,11 +29,11 @@
            <br>
 <br>
 <h3> Submit a new list</h3> 
-<form action="./newlist.php" method="POST">
-<input type="hidden" name="name_ID" value="$uname">
+<form action="./newlist.php" method="GET">
+<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
 Items <input type="text" name="items"><br>
 Address of Store <input type="text" name="address"><br>
-<input type="submit" value="Submit List">
+<input type="submit" value="Submit List"/>
 </form>
  
         

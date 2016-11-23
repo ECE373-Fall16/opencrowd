@@ -19,7 +19,10 @@
     ?>
         <div class= "nav">
             <ul id="menu1">
-                <li><a href = "Driver_main.php">Home</a></li>
+               	<form action="Driver_main.php" method="GET">
+		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
+		<input type="submit" value="Home"/>
+		</form>
                 <li><a href = "about.html">About</a></li>
                 <li><a href = "contact.html">Contact</a></li>
             </ul>
@@ -27,13 +30,15 @@
             <ul id="menu2">
               <li><a href = "index.html">Log Out</a></button><li>
             </ul> 
-            <!some how we need to add the the function that click on log out will actually log out of the system not only go to the index page>
         </div>
         <?php  $uname=$_GET["name_ID"]; ?>
         <div class = "bodyformat">
-            <h3> Welcome to LettuceBuy! </h3> <br/>
+            <h3> Welcome to LettuceBuy <?php echo "$uname";?>! </h3> <br/>
         
         <h4><?php
+	$newflag=$_GET["flag"];
+//	$newflag=(int)$newflag;
+	if($newflag==1)echo "Sorry invalid ID<br>";
 	echo "Please select an ID of available list from below:<br>";
         $returned_set = $db->query("SELECT * FROM list WHERE status='incomplete';");
         while ($entry = $returned_set->fetcharray()) {
@@ -47,8 +52,8 @@
         }
         ?>
         </h4> 
-        <form action="driver_fetch.php" method="POST">
-        <input type="hidden" name="name_ID" value="$uname">
+        <form action="driver_fetch.php" method="GET">
+        <input type="hidden" name="name_ID" value="<?php echo $uname;?>">
         ID <input type="text" name="listID"><br>
         <input type="submit" value="Pick List">
         </form>

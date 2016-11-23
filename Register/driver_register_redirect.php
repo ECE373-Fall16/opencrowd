@@ -16,11 +16,12 @@
             </ul>
             
             <ul id="menu2">
-                <li><a href = "../index.html">Go Back</a></li>
+                <li><a href = "../index.html">Log In</a></li>
             </ul>
         </div>
         <div class = "bodyformat">
-            <h2> Sign up as Driver</h2>
+            <h2> Sign up as a Driver</h2>
+            <h5> Sorry username:<?php $uname=$_GET["name_ID"]; echo "$uname";?> is taken, try another one </h5>
             <form action="driver_register.php" method="POST">
                 Name: <input type="text" name="name_ID"><br>
                 Password: <input type="password" name="password"><br>
@@ -30,5 +31,3 @@
         </div>
     </body>
 </html> 
-
-

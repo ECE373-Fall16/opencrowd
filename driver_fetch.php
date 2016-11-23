@@ -12,29 +12,20 @@
    $db = new MyDB();
 
 //====================================================================================add list to db
-$uname=$_POST["name_ID"];
-$pass=$_POST["password"];
-$listID=$_POST["listID"];
-$flag = 1;
+$uname=$_GET["name_ID"];
+$listnum=$_GET["listID"];
+$listnum=(int)$listnum; //parse into int
 
- // $intID = (int) $listID;
- // $returned_set = $db->query("SELECT ID FROM list WHERE status='incomplete';");
- // while ($entry = $returned_set->fetcharray()) {
- //         $result = (int) $entry;
+$returned_set = $db->querySingle("SELECT COUNT(*) FROM list WHERE ID=$listnum;");
 
- //         if($result!==$intID){echo $;}
- //         else{ 
- //       	$flag =1; //found ID in list
- //       } 
- //  }
-
-	if($flag==0){//checking if we did not found ID in list
+	if($returned_set==0){//checking if we did not found ID in list
 		$db->close();
-		header ("Location: Driver_main.php"); //if wrong ID then go back to main
+		header ("Location: Driver_main.php?flag=1&name_ID=$uname"); //if wrong ID then go back to main
 	}
 
+  else{
   $sql =<<<EOF
-      UPDATE drivers SET CURRENTLIST = $listID WHERE USERNAME = "$uname"
+      UPDATE drivers SET CURRENTLIST = $listnum WHERE USERNAME = "$uname"
 EOF;
    $ret = $db->exec($sql);
    if(!$ret){
@@ -42,15 +33,17 @@ EOF;
    } 
 
    $sql =<<<EOF
-      UPDATE list SET status = 'fetched' WHERE ID = "$listID"
+      UPDATE list SET status = 'fetched' WHERE ID = "$listnum"
 EOF;
    $ret = $db->exec($sql);
    if(!$ret){
       echo $db->lastErrorMsg();
    } else {
   	$db->close();
- 	 header("Location: Driver_main_fetched.php");
+ 	 header("Location: Driver_main_fetched.php?name_ID=$uname");
    }
+}
+
 ?>
 
 </body>

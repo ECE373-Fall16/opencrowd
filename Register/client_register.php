@@ -39,7 +39,7 @@ EOF;
        if(!$ret){
           echo $db->lastErrorMsg();
        } else {
-	  header("Location: /index.html");
+	  header("Location: ../index.html");
           echo "user added successfully\n";
        }
  }

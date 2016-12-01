@@ -9,8 +9,6 @@
 		<?php 
               	   $uname=$_GET["name_ID"];
 		   $newflag=$_GET["flag"];
-		   $check = $_GET["check"];
-                   echo "$check<br>";
 		   echo "Welcome to LettuceBuy $uname!";
         	?></h3> 
         <div class= "nav">
@@ -35,9 +33,11 @@
 <h3> <?php
 	$newflag=$_GET["flag"];
 	$newflag=(int)$newflag;
+
 	if($newflag==0){echo "Submit a new list";}
 	elseif($newflag==1){ echo "You already have an active list! <br>";
 	      echo "please delete or update it <br>";}
+	elseif($newflag==3)echo "Your list has been deleted, feel free to submit a new one<br>";
 	?>
 	
 </h3> 
@@ -47,8 +47,7 @@ Items <input type="text" name="items"><br>
 Address of Store <input type="text" name="address"><br>
 <input type="submit" value="Submit List"/>
 </form>
- 
-        
+
         </div>
     </body>
 </html>

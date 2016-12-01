@@ -19,10 +19,12 @@ $debug = "I AM HERE<br>";
 //======================add user to db
   $uname=$_POST["name_ID"];
   $pass=$_POST["password"];
+  $Caddress=$_POST["address"];
+  $phone=$_POST["phone"]; 
 
  $sqlinsert =<<<EOF
-      INSERT INTO clients (USERNAME,PASSWORD,CURRENTLIST)
-      VALUES ("$uname", "$pass", -1);
+      INSERT INTO clients (USERNAME,PASSWORD,ADDRESS,PHONE,CURRENTLIST)
+      VALUES ("$uname", "$pass","$Caddress","$phone", -1);
 EOF;
 
  // $ret = $db->exec($sql); //we will search here to see if username exists
@@ -37,6 +39,7 @@ EOF;
        if(!$ret){
           echo $db->lastErrorMsg();
        } else {
+	  header("Location: /index.html");
           echo "user added successfully\n";
        }
  }

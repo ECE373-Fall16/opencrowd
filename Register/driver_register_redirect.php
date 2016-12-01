@@ -1,9 +1,10 @@
 <!DOCTYPE  html>
 <html>
     <head>
-        <title>New Customer Sign up</title>
+        <title>New Driver Sign up</title>
         <link rel = "stylesheet" type = "text/css" href="navigation-style.css"/>
         <link rel = "stylesheet" type = "text/css" href="input_style.css"/>
+        
     </head>
     
     <body>
@@ -15,17 +16,16 @@
             </ul>
             
             <ul id="menu2">
-                <li><a href = "../index.html">Go Back</a></li>
+                <li><a href = "../index.html">Log In</a></li>
             </ul>
         </div>
         <div class = "bodyformat">
-            <h2> Sign up as a Customer</h2>
-            <h3> Sorry that username is taken, please try another one</h2>
-            <form action="client_register.php" method="POST">
+            <h2> Sign up as a Driver</h2>
+            <h5> Sorry username:<?php $uname=$_GET["name_ID"]; echo "$uname";?> is taken, try another one </h5>
+            <form action="driver_register.php" method="POST">
                 Name: <input type="text" name="name_ID"><br>
                 Password: <input type="password" name="password"><br>
                 Phone Number: <input type="text" name="phone"><br>
-                Address: <input type="text" name="address"><br>
                 <input type="submit" value="Sign Up">
             </form>
         </div>

@@ -1,0 +1,35 @@
+<!DOCTYPE   html>
+<html>
+    <head>
+        <title>Log in</title>
+        <link rel = "stylesheet" type = "text/css" href="index_style.css"/>
+        <link rel = "stylesheet" type = "text/css" href="input_style.css"/>
+    </head>
+    
+    <body>
+        <div class= "nav">
+            <ul id="menu1">
+                <li><a href = "index.html">Home</a></li>
+                <li><a href = "about.html">About</a></li>
+                <li><a href = "contact.html">Contact</a></li>
+            </ul>
+            
+            <ul id="menu2">
+                <li><a href = "/Register/client_register.html">Sign up for Customer</a></li>
+                <li><a href = "driver_register.html">Sign up for Driver</a></li>
+            </ul>
+        </div>
+        <div class ="header1"> 
+            <h1> Welcome to LettuceBuy</h1>
+            <h4> The most convenient way to do grocery or make money in free time!</h4>
+        </div>
+        <div class = "bodyformat">
+            <h2> Log-in to LettuceBuy</h2>
+            <form action="./login_clients.php" method="POST">
+                Name: <input type="text" name="name_ID"><br>
+                Password: <input type="password" name="password"><br>
+                <input type="submit">
+            </form>
+        </div>
+    </body>
+</html>

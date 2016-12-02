@@ -20,10 +20,11 @@ $debug = "I AM HERE<br>";
   $uname=$_POST["name_ID"];
   $pass=$_POST["password"];
   $phonenum=$_POST["phone"];
+  $address=$_POST["address"];
 
  $sqlinsert =<<<EOF
-      INSERT INTO drivers (USERNAME,PASSWORD,PHONE,CURRENTLIST)
-      VALUES ("$uname", "$pass", "$phonenum", -1);
+      INSERT INTO drivers (USERNAME,PASSWORD,PHONE,ADDRESS,CURRENTLIST)
+      VALUES ("$uname", "$pass", "$phonenum","$address", -1);
 EOF;
 
  // $ret = $db->exec($sql); //we will search here to see if username exists
@@ -38,7 +39,7 @@ EOF;
           echo $db->lastErrorMsg();
        } else { //added successfully
           $db->close();
-	  header("Location: ../index.html");
+	  header("Location: ../index.php");
        }
  }
    $db->close();

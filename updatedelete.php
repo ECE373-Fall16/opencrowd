@@ -49,6 +49,7 @@ EOF;
 	$db->close();
 	header("Location: Client_main_submitted.php?update=1&name_ID=$uname");
 }
+
 elseif($flag==1){ //user wants to delete list
    $reset=-1; //temp for holding -1
 

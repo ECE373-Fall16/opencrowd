@@ -39,7 +39,7 @@ EOF;
           echo $db->lastErrorMsg();
        } else { //added successfully
           $db->close();
-	  header("Location: ../index.html");
+	  header("Location: ../index.php");
        }
  }
    $db->close();

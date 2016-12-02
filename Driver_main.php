@@ -38,7 +38,7 @@
         <h4><?php
 	$newflag=$_GET["flag"];
 //	$newflag=(int)$newflag;
-	if($newflag==1)echo "Sorry invalid ID<br>";
+	if($newflag==1)echo "<h3><font face='verdana' color='RED'>Sorry invalid ID</font></h3><br>";
 	echo "Please select an ID of available list from below:<br>";
         $returned_set = $db->query("SELECT * FROM list WHERE status='incomplete';");
         while ($entry = $returned_set->fetcharray()) {

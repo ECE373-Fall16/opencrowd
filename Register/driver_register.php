@@ -30,7 +30,7 @@ EOF;
   $cret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname';");
   $dret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname';");
  if ($cret > 0 || $dret > 0){ //found it in the db therefore username taken 
-    header ("Location: driver_register_redirect.php?name_ID=$uname");
+    header ("Location: pageDriver_register.php?flag=1&name_ID=$uname");
    }	
  else{ //can insert into the db
     $ret = $db->exec($sqlinsert);

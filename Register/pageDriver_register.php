@@ -21,6 +21,11 @@
         </div>
         <div class = "bodyformat">
             <h2> Sign up as Driver</h2>
+	    <h2> <?php $newflag=$_GET["flag"]; 
+		$uname=$_GET["name_ID"];
+		$newflag=(int)$newflag;
+		if($newflag==1)echo "Sorry username:'$uname' has been taken, Please try another one" ?> </h2>
+
             <form action="driver_register.php" method="POST">
                 Name: <input type="text" name="name_ID"><br>
                 Password: <input type="password" name="password"><br>

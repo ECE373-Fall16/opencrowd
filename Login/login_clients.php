@@ -25,7 +25,7 @@ $debug="I AM HERE<br>";
 
    $ret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname' AND PASSWORD='$pass';");
    if ($ret>0){ //is a client 
-      header("Location:../Client_main.php?name_ID=$uname");
+      header("Location:../Client_main.php?flag=0&name_ID=$uname");
    }
    elseif($ret==0){ //if not a client
 	//checking if its a driver if not a client

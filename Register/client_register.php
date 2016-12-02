@@ -27,26 +27,24 @@ $debug = "I AM HERE<br>";
       VALUES ("$uname", "$pass","$Caddress","$phone", -1);
 EOF;
 
- // $ret = $db->exec($sql); //we will search here to see if username exists
-  $ret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname';");
- 
- if ($ret > 0){ //found it in the db 
-    echo "Username: $uname already exists, retry with new username<br>";
-    header ('Location: client_register_redirect.html');
+// $ret = $db->exec($sql); //we will search here to see if username exists
+  $cret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname';");
+  $dret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname';");
+ if ($cret > 0 || $dret > 0){ //found it in the db therefore username taken 
+    header ("Location: pageClient_register.php?flag=1&name_ID=$uname");
    }	
  else{ //can insert into the db
     $ret = $db->exec($sqlinsert);
        if(!$ret){
           echo $db->lastErrorMsg();
-       } else {
-	  header("Location: /index.html");
-          echo "user added successfully\n";
+       } else { //added successfully
+          $db->close();
+	  header("Location: ../index.html");
        }
  }
    $db->close();
 
 ?>
-
 
 </body>
 </html>

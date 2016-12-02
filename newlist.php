@@ -14,14 +14,16 @@
 $uname=$_GET["name_ID"];
 $items=$_GET["items"];
 $address=$_GET["address"];
-//================================check exist
 
- $check= $db->query("SELECT CURRENTLIST FROM CLIENTS WHERE USERNAME='$uname'");
 
- if($check != -1){ //user already has a list online
-	$db->close;
-	header("Location: Client_main.php?name_ID=$uname");
-  }
+ $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
+ $listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
+ $check = $listnum['CURRENTLIST'];
+ $check = (int)$check; //have int form of current list 
+
+ $temp = -1; 
+
+if($check == -1){ //user does not already has a list online
 
  $sql =<<<EOF
       INSERT INTO list (items,address,status)
@@ -34,19 +36,23 @@ EOF;
    } 
   //taking ID of row where we inserted into database and giving it to parameter in CLIENTS table
   $rollid = $db->lastInsertRowID();
+
   $clientschange =<<<EOF
       UPDATE clients SET CURRENTLIST = $rollid WHERE USERNAME = "$uname"
 EOF;
+
    $ret = $db->exec($clientschange);
    if(!$ret){
       echo $db->lastErrorMsg();
    } else {
         $db->close();
-	header("Location: Client_main.php?name_ID=$uname");
-      echo "clients updated\n";
+	header("Location: Client_main_submitted.php?name_ID=$uname");
    }
-   
+} 
+else{ //user already had list which means $check was a number different than -1
    $db->close();
+   header("Location: Client_main.php?flag=1&name_ID=$uname");
+}
 ?>
 </body>
 </html>

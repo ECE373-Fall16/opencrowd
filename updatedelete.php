@@ -15,7 +15,7 @@ $flag=$_GET["flag"];
 $uname=$_GET["name_ID"];
 $flag=(int)$flag;
 
-//find which list the user had in order to update it or delete
+//find which list the user had, in order to update it or delete
 	 $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
 	 $listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
 	 $check = $listnum['CURRENTLIST'];
@@ -26,9 +26,9 @@ if($flag==0){ //update list
  	$items=$_GET["items"];
  	$address=$_GET["address"];
 
-	 $stat = $db->query("SELECT status FROM list WHERE USERNAME='$uname';");
+	 $stat = $db->query("SELECT status FROM list WHERE ID=$check;");
 	 $stat = $stat->fetcharray(); //getting the number of currentlist to be compared
-	 $test = $listnum['status'];
+	 $test = $stat['status'];
 	 
 	 $numcheck=strcmp($test,'incomplete'); 
         	
@@ -37,17 +37,43 @@ if($flag==0){ //update list
 	   header("Location: Client_main_submitted.php?update=2&name_ID=$uname");
 	}
 
-	 $sql =<<<EOF
-	      UPDATE list SET items=$items,address=$address WHERE ID=$check 
-EOF;
 
+	if((strcmp($address,""))==0){ //only want to change items
+
+	  $changeitems =<<<EOF
+	      UPDATE list SET items='$items' WHERE ID=$check 
+EOF;
+	   $ret = $db->exec($changeitems);
+	   if(!$ret){
+	      echo $db->lastErrorMsg();
+	   } 
+		$db->close();
+		header("Location: Client_main_submitted.php?update=1&name_ID=$uname");
+	}
+
+
+	if(strcmp($items,"")==0){ //only want to change address
+
+	  $changeaddress =<<<EOF
+	      UPDATE list SET address='$address' WHERE ID=$check 
+EOF;
+	   $ret = $db->exec($changeaddress);
+	   if(!$ret){
+	      echo $db->lastErrorMsg();
+	   } 
+	   $db->close();
+	   header("Location: Client_main_submitted.php?update=1&name_ID=$uname");
+	}
+
+	//update both fields
+	 $sql =<<<EOF
+	      UPDATE list SET items='$items',address='$address' WHERE ID=$check 
+EOF;
+	
 	   $ret = $db->exec($sql);
 	   if(!$ret){
 	      echo $db->lastErrorMsg();
 	   } 
-
-	$db->close();
-	header("Location: Client_main_submitted.php?update=1&name_ID=$uname");
 }
 
 elseif($flag==1){ //user wants to delete list

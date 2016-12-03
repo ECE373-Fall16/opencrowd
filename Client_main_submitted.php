@@ -43,6 +43,19 @@
 	$data = $entry['CURRENTLIST'];
 	$data = (int)$data;
 
+
+	//checking if list has been fetched or not
+	 $stat = $db->query("SELECT status FROM list WHERE ID=$data;");
+	 $stat = $stat->fetcharray(); //getting the number of currentlist to be compared
+	 $test = $stat['status'];
+	 
+	 $numcheck=strcmp($test,'fetched'); 
+        	
+	if($numcheck==0){ //if the list has been fetched
+	   $update=2;
+	}
+
+
 	if($update==1)echo "Your list has been successfully updated<br>";
 	elseif($update==2)echo "Your list has been fetched by a driver, please call them instead<br>";
 
@@ -50,6 +63,7 @@
 		echo "Your list is available to all drivers<br>";
 		echo "Your list ID is:$data<br>";
 		echo "Here are the details of your list:-<br>";	
+            	echo '<html><br></html>';
 	}
 
         $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
@@ -63,6 +77,7 @@
 	if($update==2){//list has been fetched, display driver info
 		$getinfo = $db->query("SELECT * FROM drivers WHERE CURRENTLIST=$data;"); //picking driver that has same ID
  		while ($info = $getinfo->fetcharray()){
+            	 echo '<html><br></html>';
 		 echo 'Name: ' . $info['USERNAME'];
             	 echo '<html><br></html>';
 		 echo 'Phone Number: ' . $info['PHONE'];
@@ -78,7 +93,7 @@
 	<h2>If you wish to enter more items, please enter your list once again</h2>
 	<form action="updatedelete.php" method="GET">
 	<input type="hidden" name="name_ID" value=<?php echo "$uname";?>>
-	<input type="hidden" name="flag" value=0>
+	<input type="hidden" name="flag" value=<?php $up=0;echo$up;?>>
 	More Items:<input type="text" name="items"><br>
 	Change Address of Store:<input type="text" name="address"><br>
 	<input type="submit" value="Update List">
@@ -86,7 +101,7 @@
 
 	<form action="updatedelete.php" method="GET">
 	<input type="hidden" name="name_ID" value=<?php echo "$uname";?>>
-	<input type="hidden" name="flag" value=1>
+	<input type="hidden" name="flag" value=<?php $del=1;echo$del;?>>
 	<input type="submit" value="Delete List">
 	</form> 
 

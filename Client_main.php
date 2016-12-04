@@ -10,6 +10,7 @@
               	   $uname=$_GET["name_ID"];
 		   $newflag=$_GET["flag"];
 		   echo "Welcome to LettuceBuy $uname!";
+
         	?></h3> 
         <div class= "nav">
             <ul id="menu1">

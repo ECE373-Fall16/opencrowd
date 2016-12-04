@@ -42,7 +42,7 @@
     $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
     $entry = $returned_set->fetcharray();
 	$status = $entry['status'];
-    echo "the status is $status <br>";
+    //echo "the status is $status <br>";
     
     if ($status == "completed"){
         ?>
@@ -61,17 +61,45 @@
 	$update=(int)$update;
 	if($update==1)echo "Your list has been successfully updated<br>";
 	elseif($update==2)echo "Your list has been fetched by a driver, please call them instead<br>";
-
-	echo "Your list is available to all drivers<br>";
-	echo "Your list ID is:$data<br>";
-	echo "Here are the details of your list:-<br>";	
+    //new stuff
+    if ($status == "fetched"){
+        echo "Your list has been chosen by a driver!<br>";//could find the driver
+	    echo "Your list ID is:$data<br>";
+	    echo "Here are the details of your list:-<br>";	
         $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
         while ($entry = $returned_set->fetcharray()) {
-	    echo 'Items: ' . $entry['items'];
+	        echo 'Items: ' . $entry['items'];
+            echo '<html><br></html>';
+	        echo 'Address of Store: ' . $entry['address'];
+            echo '<html><br></html>';
+        }
+
+        ?>
+        <font color='blue'><h2>Your groceries have arrived! Please confirm below: </font><br></h2>
+        <form action="Client_main_done.php" method="GET">
+        <input type="hidden" name="name_ID" value=<?php echo "$uname";?> >
+        <input type="hidden" name="flag" value=1>
+        <input type="submit" value="My groceries have arrived"/>
+        </form>
+        <?php
+    }
+    else{
+        //list of client is neither fetched nor completed
+        echo "Your list is available to all drivers<br>";
+	    echo "Your list ID is:$data<br>";
+	    echo "Here are the details of your list:-<br>";	
+        $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
+        while ($entry = $returned_set->fetcharray()) {
+	        echo 'Items: ' . $entry['items'];
             echo '<html><br></html>';
 	    echo 'Address of Store: ' . $entry['address'];
             echo '<html><br></html>';
         }
+        
+    }
+    
+ 
+	
 ?>
 	<h2>If you wish to enter more items, please enter your list once again</h2>
 	<form action="updatedelete.php" method="GET">

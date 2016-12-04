@@ -30,6 +30,7 @@
                 Name: <input type="text" name="name_ID"><br>
                 Password: <input type="password" name="password"><br>
                 Phone Number: <input type="text" name="phone"><br>
+                Address: <input type="text" name="address"><br>
                 <input type="submit" value="Sign Up">
             </form>
         </div>

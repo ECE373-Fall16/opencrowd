@@ -39,7 +39,7 @@
 
 	echo "You selected list with ID:$data<br>";
 	echo "Here are the details:<br>";	
-        $returned_set = $db->query("SELECT * FROM list WHERE ID=$data AND status='incomplete';");
+        $returned_set = $db->query("SELECT * FROM list WHERE ID=$data AND status='fetched';");// AND status='incomplete'
         while ($entry = $returned_set->fetcharray()) {
             echo 'ID: ' . $entry['ID']; 
             echo '<html><br></html>';
@@ -58,6 +58,7 @@
 
     <form action="Driver_main_done.php" method="GET">
 		<input type="hidden" name="name_ID" value="<?php echo $uname;?>">
+		<input type="hidden" name="list_ID" value="<?php echo $data;?>">
 		<input type="submit" value="Confirm"/>
 	</form>
        

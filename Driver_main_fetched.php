@@ -50,6 +50,17 @@
         }
 
        ?>
+       <br>
+       <br>
+    <?php 
+    echo 'Please confirm once you are done';
+    ?>   
+
+    <form action="Driver_main_done.php" method="GET">
+		<input type="hidden" name="name_ID" value="<?php echo $uname;?>">
+		<input type="submit" value="Confirm"/>
+	</form>
+       
         </h4> 
     </body>
 </html>

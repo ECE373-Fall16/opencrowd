@@ -114,12 +114,14 @@ h1#home {
     top: 10px;
     margin-bottom: 0px;
     float: right;
+    font-size: 1.1em;
     display: inline;
     padding: 5px;
     text-decoration: none;
     color: #3498DB;
 }
 .menu-nav p{
+    font-size: 1.4em;
     padding: 33px 0;
     color: #c0392b;
 }

@@ -1,0 +1,10 @@
+.body{
+    position: relative;
+    font-family: cursive;
+}
+#header {
+    position: relative;
+    text-align: center;
+    color:crimson;
+    
+}

@@ -1,0 +1,19 @@
+
+.header1 {
+    background-color: aquamarine;
+    position: relative;
+    top: 10px;
+    padding: 70px 0px 70px 0px;
+}
+.header1 h1,h4 {
+    text-align: center;
+    color: blueviolet;
+}
+.signup{
+    position: relative;
+    text-align: center;
+    font-family: cursive;
+}
+.signup a {
+    color: black;
+}

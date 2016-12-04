@@ -52,7 +52,7 @@ EOF;
 	}
 
 
-	if(strcmp($items,"")==0){ //only want to change address
+	if((strcmp($items,""))==0){ //only want to change address
 
 	  $changeaddress =<<<EOF
 	      UPDATE list SET address='$address' WHERE ID=$check 
@@ -99,6 +99,7 @@ EOF;
 
    header("Location: Client_main.php?flag=3&name_ID=$uname");
 }
+
 ?>
 </body>
 </html>

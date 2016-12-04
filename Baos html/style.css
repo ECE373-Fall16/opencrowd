@@ -1,5 +1,11 @@
 a { color: #555555}
 p { font-size: 1.1em;}
+.check-txt{
+    color: #900C3F;
+}
+.check-box{
+   margin-top: 13px;
+}
 /* index-page css */
 .grey-background {
     background-color:#ededed;
@@ -25,7 +31,7 @@ h1#home {
     padding: 16px;
     border-radius: 9px;
     -moz- border-radius: 9px;
-    font-size: 1.2em;
+    font-size: 1.8em;
     border: 1px solid #8e8e8e;
     width:100%;
     
@@ -108,12 +114,14 @@ h1#home {
     top: 10px;
     margin-bottom: 0px;
     float: right;
+    font-size: 1.1em;
     display: inline;
     padding: 5px;
     text-decoration: none;
     color: #3498DB;
 }
 .menu-nav p{
+    font-size: 1.4em;
     padding: 33px 0;
     color: #c0392b;
 }

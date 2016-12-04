@@ -65,7 +65,7 @@
 		echo "Here are the details of your list:-<br>";	
             	echo '<html><br></html>';
 	}
-
+	
         $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
         while ($entry = $returned_set->fetcharray()) {
 	    echo 'Items: ' . $entry['items'];
@@ -92,17 +92,18 @@
         </h4> 
 	<h2>If you wish to enter more items, please enter your list once again</h2>
 	<form action="updatedelete.php" method="GET">
-	<input type="hidden" name="name_ID" value=<?php echo "$uname";?>>
-	<input type="hidden" name="flag" value=<?php $up=0;echo$up;?>>
+	<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/><br>
+	<input type="hidden" name="flag" value="<?php $up=0;echo$up;?>"/><br>
 	More Items:<input type="text" name="items"><br>
 	Change Address of Store:<input type="text" name="address"><br>
-	<input type="submit" value="Update List">
+	<input type="submit" value="Update Your List"/>
 	</form> 
 
+	<?php//delete button?>
 	<form action="updatedelete.php" method="GET">
-	<input type="hidden" name="name_ID" value=<?php echo "$uname";?>>
-	<input type="hidden" name="flag" value=<?php $del=1;echo$del;?>>
-	<input type="submit" value="Delete List">
+	<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
+	<input type="hidden" name="flag" value="<?php $del=1;echo$del;?>"/>
+	<input type="submit" value="Delete Your List"/>
 	</form> 
 
     </body>

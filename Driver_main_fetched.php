@@ -49,6 +49,17 @@
             echo '<html><br></html>';
         }
 
+	echo "Client info:<br>";
+	$returned_set = $db->query("SELECT * FROM clients WHERE CURRENTLIST=$data;");
+        while ($entry = $returned_set->fetcharray()) {
+	    echo 'Name: ' . $entry['USERNAME'];
+            echo '<html><br></html>';
+	    echo 'Address: ' . $entry['ADDRESS'];
+            echo '<html><br></html>';
+	    echo 'Phone Number: ' . $entry['PHONE'];
+            echo '<html><br></html>';
+        }
+
        ?>
         </h4> 
     </body>

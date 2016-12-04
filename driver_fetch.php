@@ -16,7 +16,7 @@ $uname=$_GET["name_ID"];
 $listnum=$_GET["listID"];
 $listnum=(int)$listnum; //parse into int
 
-$returned_set = $db->querySingle("SELECT COUNT(*) FROM list WHERE ID=$listnum;");
+$returned_set = $db->querySingle("SELECT COUNT(*) FROM list WHERE ID=$listnum AND status='incomplete';");
 
 	if($returned_set==0){//checking if we did not found ID in list
 		$db->close();

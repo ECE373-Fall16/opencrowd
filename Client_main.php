@@ -18,6 +18,12 @@
 		<input type="hidden" name="flag" value="<?php echo "$newflag";?>"/>
 		<input type="submit" value="Home"/>
 		</form>
+		
+		<form action="./Register/pageClient_register.php" method="GET">
+		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
+		<input type="hidden" name="flag" value=2>
+		<input type="submit" value="Update Information"/>
+		</form>
                 <li><a href = "about.html">About</a></li>
                 <li><a href = "contact.html">Contact</a></li>
             </ul>

@@ -39,7 +39,7 @@
 <h3> <?php
 	$newflag=$_GET["flag"];
 	$newflag=(int)$newflag;
-
+    
 	if($newflag==0){echo "Submit a new list";}
 	elseif($newflag==1){ echo "You already have an active list! <br>";
 	      echo "please delete or update it <br>";}

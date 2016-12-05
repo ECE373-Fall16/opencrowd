@@ -33,13 +33,18 @@ if($returned_set==0){//checking if we did not found ID in list
 		//echo "returned_set=0 <br>";
 		#header ("Location: Driver_main.php?flag=1&name_ID=$uname"); //if wrong ID then go back to main
 }
-else{
+else{//The client has confirmed that hte groceries have arrived and then the status of the list changes to "confirmed" and the CURRENTLIST needs to be updated to the default value (-1)for the client
    $sql =<<<EOF
       UPDATE list SET status = "confirmed" WHERE ID = "$listnum"
 EOF;
    $ret = $db->exec($sql);
    
-   if(!$ret){
+   $sql2 =<<<EOF
+      UPDATE clients SET CURRENTLIST = "-1" WHERE CURRENTLIST = "$listnum"
+EOF;
+    $ret2 = $db->exec($sql2);
+         
+   if(!$ret or !$ret2){
         //echo "there was an error";
         echo $db->lastErrorMsg();
    } else {

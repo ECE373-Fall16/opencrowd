@@ -46,7 +46,7 @@ EOF;
 	   
 	   //$db->close();
 	   //echo "Status should be completed! Here we can link to other file";
-	   header("Location: Driver_main.php?flag=0&name_ID=$uname");
+	   header("Location: Driver_main_fetched.php?name_ID=$uname");
     }
 }
 

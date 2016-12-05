@@ -38,6 +38,12 @@
 	elseif($newflag==1){ echo "You already have an active list! <br>";
 	      echo "please delete or update it <br>";}
 	elseif($newflag==3)echo "Your list has been deleted, feel free to submit a new one<br>";
+	elseif($newflag==4){
+	    echo "Thank you for buying with us!<br>";
+	    echo "Submit a new list";
+	    
+    }
+
 	?>
 	
 </h3> 

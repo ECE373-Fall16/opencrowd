@@ -36,10 +36,31 @@
 	$entry = $entry->fetcharray();
 	$data = $entry['CURRENTLIST'];
 	$data = (int)$data;
+	
+// Driver confirmed (status of list is completed) and needs to wait until client change status to "confirmed"
+    $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
+    $entry = $returned_set->fetcharray();
+	$status = $entry['status'];
+	//echo "the status is $status";
+    if ($status == "completed"){
+        //then it got redirected from Driver_main_done.php
+        
+        echo "Thank you for your service! We are waiting for the client to confirm...<br>";
+        echo "Once client confirms, you could choose more lists!<br>";
+        
+    }    
+//----------------------------------
+//Client confirmed that grocries arrived
+    if ($status == "confirmed"){
+        //Client pressed "My groceries have arrived" in Client_main_submitted.php
+        header("Location: Driver_main.php?flag=0&name_ID=$uname");       
+        
+    }
 
+//----------------------------------
 	echo "You selected list with ID:$data<br>";
 	echo "Here are the details:-<br>";	
-        $returned_set = $db->query("SELECT * FROM list WHERE ID=$data AND status='incomplete';");
+        $returned_set = $db->query("SELECT * FROM list WHERE ID=$data AND status='fetched';");
         while ($entry = $returned_set->fetcharray()) {
             echo 'ID: ' . $entry['ID']; 
             echo '<html><br></html>';
@@ -61,6 +82,22 @@
         }
 
        ?>
+	   <br>
+       <br>
+    <?php 
+    if ($status != "completed"){
+        echo 'Please confirm once you are done';
+        ?>
+        <form action="Driver_main_done.php" method="GET">
+    		<input type="hidden" name="name_ID" value="<?php echo $uname;?>">
+    		<input type="hidden" name="list_ID" value="<?php echo $data;?>">
+	       	<input type="submit" value="Confirm"/>
+    	</form>
+    <?php
+    
+    }
+
+    ?>   
         </h4> 
     </body>
 </html>

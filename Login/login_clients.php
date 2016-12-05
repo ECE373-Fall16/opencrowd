@@ -33,7 +33,7 @@ $debug="I AM HERE<br>";
       $check = $listnum['CURRENTLIST'];
       $check = (int)$check; //have int form of current list 
 
-	if($check==-1)header("Location:../Client_main.php?update=0&name_ID=$uname"); //user does not have a list
+	if($check==-1)header("Location:../Client_main.php?flag=0&name_ID=$uname"); //user does not have a list
 	else{header("Location:../Client_main_submitted.php?update=0&name_ID=$uname");} //user has an active list
 	
    }
@@ -49,7 +49,7 @@ $debug="I AM HERE<br>";
     		  $check = $listnum['CURRENTLIST'];
  		  $check = (int)$check; //have int form of current list 
 
-	          if($check==-1)header("Location:../Driver_main.php?update=0&name_ID=$uname"); //user does not have a list
+	          if($check==-1)header("Location:../Driver_main.php?flag=0&name_ID=$uname"); //user does not have a list
 		  else{header("Location:../Driver_main_fetched.php?update=0&name_ID=$uname");} //user has an active list
 
 	}

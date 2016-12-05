@@ -39,13 +39,24 @@
 
 	echo "You selected list with ID:$data<br>";
 	echo "Here are the details:-<br>";	
-        $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
+        $returned_set = $db->query("SELECT * FROM list WHERE ID=$data AND status='fetched';");
         while ($entry = $returned_set->fetcharray()) {
             echo 'ID: ' . $entry['ID']; 
             echo '<html><br></html>';
 	    echo 'Items: ' . $entry['items'];
             echo '<html><br></html>';
 	    echo 'Address of Store: ' . $entry['address'];
+            echo '<html><br></html>';
+        }
+
+	echo "Client info:<br>";
+	$returned_set = $db->query("SELECT * FROM clients WHERE CURRENTLIST=$data;");
+        while ($entry = $returned_set->fetcharray()) {
+	    echo 'Name: ' . $entry['USERNAME'];
+            echo '<html><br></html>';
+	    echo 'Address: ' . $entry['ADDRESS'];
+            echo '<html><br></html>';
+	    echo 'Phone Number: ' . $entry['PHONE'];
             echo '<html><br></html>';
         }
 

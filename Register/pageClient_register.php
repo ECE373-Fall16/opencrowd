@@ -27,7 +27,7 @@
             </ul>
             
             <ul id="menu2">
-                <li><a href = "../index.html">Go Back</a></li>
+                <li><a href = "../index.php">Go Back</a></li>
             </ul>
         </div>
         

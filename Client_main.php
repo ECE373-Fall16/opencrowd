@@ -29,7 +29,7 @@
             </ul>
             
 	    <ul id="menu2">
-              <li><a href = "index.html">Log Out</a></button><li>
+              <li><a href = "index.php">Log Out</a></button><li>
             </ul> 
 
          </div>

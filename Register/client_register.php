@@ -34,14 +34,18 @@ $question=(int)$question;
 EOF;
 
 //first we check if both passwords were correct or not in the confirm field
-$check=strcmp("$state","$city");
+$check=strcmp("$pass","$confirm");
 $place=0;
-if($check!=$place){header ("Location: register-Client.php?flag=1");} //if not the same then confirm is wrong, go back
+if($check!=$place){
+	$db->close();
+	header ("Location: register-Client.php?flag=1");
+} //if not the same then confirm is wrong, go back
 
 // $ret = $db->exec($sql); //we will search here to see if username exists
   $cret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname';");
   $dret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname';");
  if ($cret > 0 || $dret > 0){ //found it in the db therefore username taken 
+    $db->close();
     header ("Location: register-Client.php?flag=2&name_ID=$uname");
    }	
  else{ //can insert into the db
@@ -50,7 +54,7 @@ if($check!=$place){header ("Location: register-Client.php?flag=1");} //if not th
           echo $db->lastErrorMsg();
        } else { //added successfully
           $db->close();
-	  header("Location: ../Login-page.php?flag=3");
+	  header("Location: ../Login-page.php?flag=3&check=$check");
        }
  }
    $db->close();

@@ -36,11 +36,19 @@ $question=(int)$question;
       INSERT INTO drivers (FIRSTNAME,LASTNAME,USERNAME,PASSWORD,STREET,CITY,STATE,PHONE,QUESTION,SECURE,CURRENTLIST)
       VALUES ("$firstname","$lastname","$uname","$pass","$street","$city","$state","$phone",$question,"$answer", -1);
 EOF;
+//first we check if both passwords were correct or not in the confirm field
+$check=strcmp("$pass","$confirm");
+$place=0;
+if($check!=$place){
+	$db->close();
+	header ("Location: register-Client.php?flag=1");
+} //if not the same then confirm is wrong, go back
 
  // $ret = $db->exec($sql); //we will search here to see if username exists
   $cret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname';");
   $dret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname';");
  if ($cret > 0 || $dret > 0){ //found it in the db therefore username taken 
+    $db->close();
     header ("Location: register-Driver.php?flag=2&name_ID=$uname");
    }	
  else{ //can insert into the db

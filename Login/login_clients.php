@@ -33,7 +33,11 @@ $debug="I AM HERE<br>";
       $check = $listnum['CURRENTLIST'];
       $check = (int)$check; //have int form of current list 
 
-	if($check==-1)header("Location:../Client_main.php?flag=0&name_ID=$uname"); //user does not have a list
+	if($check==-1){
+		session_start();//start session
+		$_SESSION["username"]="$uname";//session's global variable is the username of customer
+		header("Location:../Client_main.php?flag=0&name_ID=$uname"); //user does not have a list
+	}
 	else{header("Location:../Client_main_submitted.php?update=0&name_ID=$uname");} //user has an active list
 	
    }
@@ -41,7 +45,7 @@ $debug="I AM HERE<br>";
 	//checking if its a driver if not a client
         $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
 	if($drivret==0){ //neither client nor driver
-		header('Location: ../index.php?flag=1');//login_redirect.html
+		header('Location: ../Login-page.php?flag=1');//login_redirect.html
 	}
         elseif ($drivret>0){ //driver
 		  $listnum = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME='$uname';");

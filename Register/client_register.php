@@ -12,10 +12,6 @@
 
    $db = new MyDB();
 
-
-$debug = "I AM HERE<br>";
-//checking if the username exists already in the db
-
 //======================add user to db
   $firstname=$_POST["firstname"];
   $lastname=$_POST["lastname"];
@@ -30,7 +26,7 @@ $debug = "I AM HERE<br>";
   $answer=$_POST["answer"];
 
 $question=(int)$question;
-if(empty($_POST['firstname']) || (empty($_POST['lastname'])) || empty($_POST['name_ID']) ||  (empty($_POST['password']))  || empty($_POST['phone']) || (empty($_POST['street'])) || empty($_POST['city']) || empty($_POST['state']) || empty($_POST['question']) || empty($_POST['answer'])) header("Location: register-Client.php?flag=3");
+//if(empty($_POST['firstname']) || (empty($_POST['lastname'])) || empty($_POST['name_ID']) ||  (empty($_POST['password']))  || empty($_POST['phone']) || (empty($_POST['street'])) || empty($_POST['city']) || empty($_POST['state']) || empty($_POST['question']) || empty($_POST['answer'])) header("Location: register-Client.php?flag=3");
 
  $sqlinsert =<<<EOF
       INSERT INTO clients (FIRSTNAME,LASTNAME,USERNAME,PASSWORD,STREET,CITY,STATE,PHONE,QUESTION,SECURE,CURRENTLIST)
@@ -38,7 +34,7 @@ if(empty($_POST['firstname']) || (empty($_POST['lastname'])) || empty($_POST['na
 EOF;
 
 //first we check if both passwords were correct or not in the confirm field
-$check=strcmp("$pass","$confirm");
+$check=strcmp("$state","$city");
 $place=0;
 if($check!=$place){header ("Location: register-Client.php?flag=1");} //if not the same then confirm is wrong, go back
 

@@ -30,7 +30,7 @@ $debug = "I AM HERE<br>";
   $answer=$_POST["answer"];
 
 $question=(int)$question;
-if("$firstname"=="" || "$lastname"=="" || "$uname"=="" || "$pass"=="" || "$confirm"=="" || "$phone"=="" || "$street"=="" || "$city"=="" || "$state"=="" || $question==0 || "$answer"=="" )header("Location: register-Client.php?flag=3");
+//if("$firstname"=="" || "$lastname"=="" || "$uname"=="" || "$pass"=="" || "$confirm"=="" || "$phone"=="" || "$street"=="" || "$city"=="" || "$state"=="" || $question==0 || "$answer"=="" )header("Location: register-Client.php?flag=3");
 
  $sqlinsert =<<<EOF
       INSERT INTO drivers (FIRSTNAME,LASTNAME,USERNAME,PASSWORD,STREET,CITY,STATE,PHONE,QUESTION,SECURE,CURRENTLIST)

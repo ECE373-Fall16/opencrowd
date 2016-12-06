@@ -22,7 +22,7 @@
                         </div>
                         <div class = "column5">
                             <ul>
-                                <li><a href=<?php echo"/Login/Login-page.html"?>>Login Here</a></li>
+                                <li><a href=<?php echo"/Login-page.php"?>>Login Here</a></li>
                             </ul>
                         </div>
                     </div>
@@ -33,11 +33,20 @@
                 <h1 id="home">New future of grocery shopping</h1>
                 <div class="row">
                     <div class="column6">
+			   <h4><font color="red">
+
+			    <?php 
+				$loggedout=$_GET["logout"];
+				$loggedout=(int)$loggedout;
+				if($loggedout==-1)echo "You are logged out, have a good day";
+			    ?>
+
+	        	   <h4></font>
                         <div class="barter-container">
                             <p class="ad-txt">Don't want to waste your time on grocery shopping!</p>
                         </div>
                         <div class= btn-container>
-                            <form action="/Register/register-Client.php" method= "GET">
+                            <form action="/Register/register-Client.php">
                                 <input type="submit" class="large-btn large-magnify" value="Sign-up free as Customer">
                             </form>
                         </div>  
@@ -48,7 +57,7 @@
                             <p class="ad-txt">Want to earn money on spare time by doing everyday grocery shoping</p>
                         </div>
                         <div class="btn-container">
-                            <form action="/Register/register-Driver.php" method= "GET">
+                            <form action="/Register/register-Driver.php">
                                 <input type="submit" class="large-btn large-magnify" value="Sign-up free as Driver">
                             </form>
                         </div>

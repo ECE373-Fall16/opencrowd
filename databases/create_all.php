@@ -30,9 +30,10 @@
       STREET		  TEXT	   NOT NULL,
       CITY		  TEXT	   NOT NULL,
       STATE		  TEXT	   NOT NULL,
-      QUESTION		  INTEGER
-      ANSWER		  TEXT	   NOT NULL,
-      CURRENTLIST  INTEGER
+      QUESTION		  INTEGER,
+      SECURE		  TEXT	   NOT NULL,
+      CURRENTLIST  INTEGER,
+      LOGIN        INTEGER
       );
 EOF;
    $ret = $db->exec($sql);
@@ -54,9 +55,10 @@ EOF;
       CITY		  TEXT	   NOT NULL,
       STATE		  TEXT	   NOT NULL,
       PHONE		  TEXT	   NOT NULL,
-      QUESTION     INTEGER
+      QUESTION     INTEGER,
       SECURE		  TEXT	   NOT NULL,
-      CURRENTLIST  INTEGER
+      CURRENTLIST  INTEGER,
+      LOGIN        INTEGER
       );
 EOF;
 

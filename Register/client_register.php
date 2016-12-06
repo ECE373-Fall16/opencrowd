@@ -29,6 +29,9 @@ $debug = "I AM HERE<br>";
   $question=$_POST["question"];
   $answer=$_POST["answer"];
 
+$question=(int)$question;
+if(empty($_POST['firstname']) || (empty($_POST['lastname'])) || empty($_POST['name_ID']) ||  (empty($_POST['password']))  || empty($_POST['phone']) || (empty($_POST['street'])) || empty($_POST['city']) || empty($_POST['state']) || empty($_POST['question']) || empty($_POST['answer'])) header("Location: register-Client.php?flag=3");
+
  $sqlinsert =<<<EOF
       INSERT INTO clients (FIRSTNAME,LASTNAME,USERNAME,PASSWORD,STREET,CITY,STATE,PHONE,QUESTION,SECURE,CURRENTLIST)
       VALUES ("$firstname","$lastname","$uname","$pass","$street","$city","$state","$phone",$question,"$answer", -1);
@@ -51,7 +54,7 @@ if($check!=$place){header ("Location: register-Client.php?flag=1");} //if not th
           echo $db->lastErrorMsg();
        } else { //added successfully
           $db->close();
-	  header("Location: ../index.html?check=$check");
+	  header("Location: ../Login-page.php?flag=3");
        }
  }
    $db->close();

@@ -48,7 +48,7 @@
 		<?php		
         if($newflag==2){//updating
             ?>
-
+            <?php //echo "$uname"; we can show information before we update it?>
             <form action="updateInfo.php" method="GET">
                 <input type="hidden" name="oldName_ID" value="<?php echo $uname;?>">
                 Name: <input type="text" name="name_ID"><br>

@@ -16,6 +16,8 @@
        }
     //=============================================================================================open db
        $db = new MyDB();
+       
+       $uname=$_GET["name_ID"];
     ?>
         <div class= "nav">
             <ul id="menu1">
@@ -23,7 +25,6 @@
 		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
 		<input type="submit" value="Home"/>
 		</form>
-		
 		<form action="./Register/pageDriver_register.php" method="GET">
 		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
 		<input type="hidden" name="flag" value=2>
@@ -35,7 +36,7 @@
             </ul>
             
             <ul id="menu2">
-              <li><a href = "index.html">Log Out</a></button><li>
+              <li><a href = "index.php">Log Out</a></button><li>
             </ul> 
         </div>
         <?php  $uname=$_GET["name_ID"]; ?>

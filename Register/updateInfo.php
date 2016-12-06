@@ -26,7 +26,7 @@ $returned_set = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$
 
 //need to check if it is a driver instead
 $returned_set2 = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$olduname';");
-
+echo "$returned_set2  $olduname <br>";
 if($returned_set==0 && $returned_set2==0){//checking if we did not find ID in clients nor drivers
 		$db->close();
 		echo "There is not clients with the corresponging ID<br>";

@@ -41,7 +41,7 @@
 		      <?php  
 		}else{
 		    ?>
-                <h2> Sign up for Customer</h2>
+                <h2> Sign up as Customer</h2>
 		    <?php
 		}
 		?>

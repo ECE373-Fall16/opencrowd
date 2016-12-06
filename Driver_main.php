@@ -23,6 +23,13 @@
 		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
 		<input type="submit" value="Home"/>
 		</form>
+		
+		<form action="./Register/pageDriver_register.php" method="GET">
+		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
+		<input type="hidden" name="flag" value=2>
+		<input type="submit" value="Update Information"/>
+		</form>
+		
                 <li><a href = "about.html">About</a></li>
                 <li><a href = "contact.html">Contact</a></li>
             </ul>

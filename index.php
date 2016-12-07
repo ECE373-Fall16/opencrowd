@@ -46,7 +46,7 @@
                             <p class="ad-txt">Don't want to waste your time on grocery shopping!</p>
                         </div>
                         <div class= btn-container>
-                            <form action="/Register/register-Client.php">
+                            <form action="./Register/register-Client.php">
                                 <input type="submit" class="large-btn large-magnify" value="Sign-up free as Customer">
                             </form>
                         </div>  
@@ -57,7 +57,7 @@
                             <p class="ad-txt">Want to earn money on spare time by doing everyday grocery shoping</p>
                         </div>
                         <div class="btn-container">
-                            <form action="/Register/register-Driver.php">
+                            <form action="./Register/register-Driver.php">
                                 <input type="submit" class="large-btn large-magnify" value="Sign-up free as Driver">
                             </form>
                         </div>

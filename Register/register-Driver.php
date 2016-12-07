@@ -13,6 +13,17 @@
         <link href="<?php echo "../style.css"?>"  rel="stylesheet" type="text/css">
 
     </head>
+    <div class= "nav">
+            <ul id="menu1">
+                <li><a href = "../index.php">Home</a></li>
+                <li><a href = "../about.html">About</a></li>
+                <li><a href = "../contact.html">Contact</a></li>
+            </ul>
+            
+            <ul id="menu2">
+                <li><a href = "../index.php">Go Back</a></li>
+            </ul>
+        </div>
     <body>
         <div class="container12">
            <header>
@@ -27,7 +38,7 @@
             <h1 id="home">Create your LettuceBuy Account as Driver</h1>
             <div class="row">
                 <div class="column5" id="register-pic">
-                     <a href= "" ><img src ="groceries2.jpg"></a> 
+                     <a href= "" ><img src ="../groceries2.jpg"></a> 
                 </div>
                 <div class="column7">
                     <div class="signup-container">

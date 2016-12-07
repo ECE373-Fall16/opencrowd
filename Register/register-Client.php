@@ -23,26 +23,25 @@
                     <div class = "column5">
                     </div>
                 </div>
-        <div class= "nav">
+       	    <div class= "nav">
             <ul id="menu1">
-                <li><a href = "../index.php"> Home</a></li>
-                <li><a href = "../about.html"> About</a></li>
-                <li><a href = "../contact.html">Contact</a></li>
+                <li><a href = "<?php echo "../index.php";?>"> Home</a></li>
             </ul>
             
             <ul id="menu2">
-                <li><a href = "../index.php"> Go Back</a></li>
+                <li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
             </ul>
-        </div>
+	    </div>         
+	    </div>
+
             </header>
 
-<?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field 
-?>
+<?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field ?>
 
             <h1 id="home">Create your LettuceBuy Account as Customer</h1>
             <div class="row">
                 <div class="column5" id="register-pic">
-                     <a href= "" ><img src ="../groceries1.jpg"></a> 
+                     <a href= "" ><img src ="groceries1.jpg"></a> 
                 </div>
                 
                 <div class="column7">
@@ -54,7 +53,7 @@
 		?>
 		</font>
 
-                        <form action="../Register/client_register.php" method="POST">
+                        <form action="/Register/client_register.php" method="POST">
                             
                             <p class="input-direction">Name</p>
                                 <div class="row">

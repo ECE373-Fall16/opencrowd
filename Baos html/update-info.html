@@ -7,10 +7,10 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Register as Driver</title>
+        <title>Update Infomation</title>
 
-        <link href="<?php echo "../1140.css"?>" rel="stylesheet" type="text/css">
-        <link href="<?php echo "../style.css"?>"  rel="stylesheet" type="text/css">
+        <link href="1140.css" rel="stylesheet" type="text/css">
+        <link href="style.css" rel="stylesheet" type="text/css">
 
     </head>
     <body>
@@ -22,120 +22,99 @@
                     </div>
                     <div class = "column5">
                     </div>
-		
-       	    <div class= "nav">
-            <ul id="menu1">
-                <li><a href = "<?php echo "../index.php";?>"> Home</a></li>
-            </ul>
-            
-            <ul id="menu2">
-                <li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
-            </ul>
-	    </div>         
-	    </div>
+                </div>
             </header>
-            <h1 id="home">Create your LettuceBuy Account as Driver</h1>
+            <h1 id="home">Update Infomation </h1>
             <div class="row">
                 <div class="column5" id="register-pic">
                      <a href= "" ><img src ="groceries2.jpg"></a> 
                 </div>
                 <div class="column7">
                     <div class="signup-container">
-
-			<font color="red">
-				<?php $flag=$_GET["flag"];
-			        if($flag==3)echo "Please fill out all of the fields below";
-			        echo "<br>";
-				?>
-			</font>
-
-                        <form action="driver_register.php" method="POST">
+                        <form action="./Login/login_clients.php" method="GET">
                             
-                            <p class="input-direction">Name</p>
-                                <div class="row">
-                                    <div class="column3">
-                                        <div class = "para-input">
-                                            <input type="text" class="small-fld" name="firstname" placeholder="First name">
-                                        </div>
-                                    </div>
-                                    <div class="column3">
-                                        <div class = "para-input">
-                                            <input type="text" class="small-fld" name="lastname" placeholder="Last name">
-                                        </div>
-                                     </div>        
-                            </div>
-                            <p class="input-direction">Choose your username</p>
-			   <h5><font color="red">
-				<?php $flag=$_GET["flag"];
-				      $flag=(int)$flag;
-				      
-				      if($flag==2){	
-				        $uname=$_GET["name_ID"];
-					echo "Sorry '$uname' has been taken, try another one";
-				      }
-				?>
-			   </h5></font>
-                                <div class="row">
-                                    <div class="column6">
-                                        <div class = "para-input">
-                                            <input type="text" class="small-fld" name="name_ID" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="column1">
-                                    </div>        
+                            <div class="row">
+                                <div class="column2">
+                                    <p class="input-direction">Change Name</p>
                                 </div>
-                             <p class="input-direction">Create your password</p>
-                                <div class="row">
-                                    <div class="column6">
-                                        <div class = "para-input">
-                                            <input type="password" class="small-fld" name="password" placeholder="Password">
-                                        </div>
+                                <div class ="column4 check-box">
+                                         <input type="checkbox" name="no-Update" value=1><span class="check-txt"> Check if no change</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="column3">
+                                    <div class = "para-input">
+                                        <input type="text" class="small-fld" name="firstname" value="" placeholder="First name...">
                                     </div>
-                                    <div class="column1">
-                                    </div>        
-                                </div> 
-
-				<h4><font color="red">
- 				<?php $flag=$_GET["flag"];
-				      $flag=(int)$flag;
-				      
-				      if($flag==1){	
-					echo "Both passwords did not match";
-				      }
-				?>                         
-			        </div> 
-				</h4></font>
-
+                                </div>
+                                <div class="column3">
+                                    <div class = "para-input">
+                                        <input type="text" class="small-fld" name="lastname" value="" placeholder="Last name...">
+                                    </div>
+                                </div>        
+                            </div>
+                            <div class="row">
+                                <div class="column2">
+                                    <p class="input-direction">Change password</p>
+                                </div>
+                                <div class ="column3 check-box">
+                                         <input type="checkbox" name="no-Update" value=1><span class="check-txt"> Check if no change</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="column6">
+                                    <div class = "para-input">
+                                        <input type="password" class="small-fld" name="password" value="" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="column1">
+                                </div>        
+                            </div> 
                              <p class="input-direction">Confirm your password</p>
                                 <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
-                                            <input type="password" class="small-fld" name="confirm" placeholder="Confirm Password">
+                                            <input type="password" class="small-fld" name="password1" value="" placeholder="Password">
                                         </div>
                                     </div>
                                     <div class="column1">
                                     </div>        
                                 </div> 
-                             <p class="input-direction">Mobile phone</p>
+                             <div class="row">
+                                <div class="column3">
+                                    <p class="input-direction">Change Phone Number</p>
+                                </div>
+                                <div class ="column3 check-box">
+                                         <input type="checkbox" name="no-Update" value=1><span class="check-txt"> Check if no change</span>
+                                </div>
+                            </div>
                                 <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="phone" placeholder="eg. XXX-XXX-XXXX">
+                                            <input type="text" class="small-fld" name="phone" value="" placeholder="0123456789">
                                         </div>
                                     </div>
                                     <div class="column1">
                                     </div>        
                                 </div> 
-                             <p class="input-direction">Home Address</p>
+                             <div class="row">
+                                <div class="column3">
+                                    <p class="input-direction">Change Home Address</p>
+                                </div>
+                                <div class ="column3 check-box">
+                                         <input type="checkbox" name="no-Update" value=1><span class="check-txt"> Check if no change</span>
+                                </div>
+                            </div>
                                 <div class="row">
                                     <div class="column4">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="street" placeholder="Street">
+                                            <input type="text" class="small-fld" name="street" value="" placeholder="Street">
                                         </div>
                                     </div>
                                     <div class="column2">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="city" placeholder="City">
+                                            <input type="text" class="small-fld" name="city" value="" placeholder="City">
                                         </div>
                                     </div>
                                     <div class="column2">
@@ -196,9 +175,16 @@
                                         </div>
                                     </div>
                                 </div> 
-                              <p class="input-direction">Select Your Security Questions:</p> 
+                              <div class="row">
+                                <div class="column2">
+                                    <p class="input-direction">Change </p>
+                                </div>
+                                <div class ="column3 check-box">
+                                         <input type="checkbox" name="no-Update" value=1><span class="check-txt"> Check if no change</span>
+                                </div>
+                            </div>
                                 <div class = "para-input">
-                                    <select  name="quesion" class="small-fld">
+                                    <select  name="question" class="small-fld">
                                     <option value="0">Select a question from the following options.</option>
                                     <option value="1">Who's your daddy?</option>
                                     <option value="2">What is your favorite color?</option>
@@ -211,17 +197,15 @@
                             <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
-                                           <input type="text" class="small-fld" name="answer" placeholder="Your Answer">
+                                            <input type="text" class="small-fld" name="answer" value="" placeholder="Your Answer...">
                                         </div>
-                                    </div>
-                                    <div class="column1">
-                                    </div>        
+                                    </div> 
                                 </div> 
                             <div class="btn-container">
-                                <input type="submit" class="large-btn large-magnify" value="Create Your Account">
+                                <input type="submit" class="small-btn small-magnify" value="Update Your Information">
                             </div>
-                            
                         </form>
+                        
                     </div>
                 </div>
                

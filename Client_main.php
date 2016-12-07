@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE   html>
 <html>
     <head>
@@ -7,9 +10,10 @@
     <body>
 	 <h3>
 		<?php 
-              	   $uname=$_GET["name_ID"];
+              	  // $uname=$_GET["name_ID"];
 		   $newflag=$_GET["flag"];
-		   echo "Welcome to LettuceBuy $uname!";
+		  $uname = $_SESSION["name_ID"]; //save username
+		   echo "Welcome to LettuceBuy " . $_SESSION["name_ID"] . "!";
         	?></h3> 
         <div class= "nav">
             <ul id="menu1">
@@ -18,18 +22,10 @@
 		<input type="hidden" name="flag" value="<?php echo "$newflag";?>"/>
 		<input type="submit" value="Home"/>
 		</form>
-		
-		<form action="./Register/pageClient_register.php" method="GET">
-		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
-		<input type="hidden" name="flag" value=2>
-		<input type="submit" value="Update Information"/>
-		</form>
-                <li><a href = "about.html">About</a></li>
-                <li><a href = "contact.html">Contact</a></li>
             </ul>
             
 	    <ul id="menu2">
-              <li><a href = "index.html">Log Out</a></button><li>
+              <li><a href = "<?php echo"index.php";?>">Log Out</a></button><li>
             </ul> 
 
          </div>
@@ -39,17 +35,11 @@
 <h3> <?php
 	$newflag=$_GET["flag"];
 	$newflag=(int)$newflag;
-    
+
 	if($newflag==0){echo "Submit a new list";}
 	elseif($newflag==1){ echo "You already have an active list! <br>";
 	      echo "please delete or update it <br>";}
 	elseif($newflag==3)echo "Your list has been deleted, feel free to submit a new one<br>";
-	elseif($newflag==4){
-	    echo "Thank you for buying with us!<br>";
-	    echo "Submit a new list";
-	    
-    }
-
 	?>
 	
 </h3> 

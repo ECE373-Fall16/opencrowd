@@ -36,7 +36,8 @@
         </div>
             </header>
 
-<?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field ?>
+<?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field 
+?>
 
             <h1 id="home">Create your LettuceBuy Account as Customer</h1>
             <div class="row">
@@ -53,7 +54,7 @@
 		?>
 		</font>
 
-                        <form action="/Register/client_register.php" method="POST">
+                        <form action="../Register/client_register.php" method="POST">
                             
                             <p class="input-direction">Name</p>
                                 <div class="row">

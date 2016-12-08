@@ -6,8 +6,21 @@
         <meta name="robots" content="index,follow">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>Register as Customer</title>
+<!--> Adding the correct title at the label for updating or for creating a new account
+<!-->
+        <?php $newflag=$_GET["flag"]; 
+		$uname=$_GET["name_ID"];
+		$newflag=(int)$newflag;
+		if ($newflag==2){//means updating
+		?>
+		    <title>Updating Information Of Client</title>
+		  <?php  
+		}else{
+		    ?>
+		    <title>Register as Customer</title>
+		    <?php
+		}
+		?>
 
         <link href="<?php echo "../1140.css"?>" rel="stylesheet" type="text/css">
         <link href="<?php echo "../style.css"?>"  rel="stylesheet" type="text/css">
@@ -39,7 +52,27 @@
 <?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field 
 ?>
 
+<!--> Adding the correct title in the page
+<!-->
+
+            <?php
+        if ($newflag==2){//means updating
+		      ?>
+                <h2> Update Your Information</h2>
+                <h1 id="home">Update your LettuceBuy Account as Customer</h1>
+		      <?php  
+		}else{
+		    ?>
             <h1 id="home">Create your LettuceBuy Account as Customer</h1>
+		    <?php
+		}
+		?>
+		
+
+            
+        
+        
+        
             <div class="row">
                 <div class="column5" id="register-pic">
                      <a href= "" ><img src ="../groceries1.jpg"></a> 

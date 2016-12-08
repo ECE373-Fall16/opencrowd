@@ -17,8 +17,6 @@
 //USERS LIST WILL NEVER BE DELETED. COULD BE A DEAD LIST. MAYBE CAN FIX IF WE HAVE TIME
 //FOR NOW JUST CHECKING CLIENT HAS ACTIVE LIST OR NOT AND SAME FOR DRIVER
 
-$debug="I AM HERE<br>";
-
 //while(true){ 
   $uname=$_GET["name_ID"];
   $pass=$_GET["password"];
@@ -35,16 +33,25 @@ $debug="I AM HERE<br>";
 
 	if($check==-1){
 		session_start();//start session
-		$_SESSION["username"]="$uname";//session's global variable is the username of customer
-		header("Location:../Client_main.php?flag=0&name_ID=$uname"); //user does not have a list
+		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+		$_SESSION["logout"]=0;
+		$db->close();
+		header("Location:../Client_main.php?flag=0"); //user does not have a list
 	}
-	else{header("Location:../Client_main_submitted.php?update=0&name_ID=$uname");} //user has an active list
-	
+	else{ //user has an active list
+
+		session_start();	
+		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+		$_SESSION["logout"]=0;
+		$db->close();
+		header("Location:../Client_main_submitted.php?update=0");
+	} 	
    }
    elseif($ret==0){ //if not a client
 	//checking if its a driver if not a client
         $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
 	if($drivret==0){ //neither client nor driver
+		$db->close();
 		header('Location: ../Login-page.php?flag=1');//login_redirect.html
 	}
         elseif ($drivret>0){ //driver
@@ -53,8 +60,20 @@ $debug="I AM HERE<br>";
     		  $check = $listnum['CURRENTLIST'];
  		  $check = (int)$check; //have int form of current list 
 
-	          if($check==-1)header("Location:../Driver_main.php?flag=0&name_ID=$uname"); //user does not have a list
-		  else{header("Location:../Driver_main_fetched.php?update=0&name_ID=$uname");} //user has an active list
+	          if($check==-1){
+			session_start();	
+			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+			$_SESSION["logout"]=0;
+			$db->close();
+			header("Location:../Driver_main.php?flag=0&name_ID=$uname"); //user does not have a list
+		  }
+		  else{
+			session_start();
+			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+			$_SESSION["logout"]=0;
+			$db->close();
+			header("Location:../Driver_main_fetched.php?update=0&name_ID=$uname");
+		} //user has an active list
 
 	}
    }

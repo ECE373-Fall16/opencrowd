@@ -50,7 +50,7 @@ if($check!=$place){
   $dret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname';");
  if ($cret > 0 || $dret > 0){ //found it in the db therefore username taken 
     $db->close();
-    header ("Location: register-Client.php?flag=2&name_ID=$uname");
+    header ("Location: register-Client.php?flag=4&name_ID=$uname");
    }	
  else{ //can insert into the db
     $ret = $db->exec($sqlinsert);

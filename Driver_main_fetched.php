@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  $uname=$_SESSION["name_ID"];
+?>
+<!DOCTYPE   html>
+
 <html>
     <head>
         <title>Driver Home Page</title>
@@ -8,7 +14,7 @@
         <div class= "nav">
             <ul id="menu1">
                	<form action="Driver_main.php" method="GET">
-		<input type="hidden" name="name_ID" value="<?php $uname=$_GET["name_ID"]; echo "$uname";?>"/>
+		<input type="hidden" name="name_ID" value="<?php echo"$uname";?>"/>
 		<input type="submit" value="Home"/>
 		</form>
                 <li><a href = "about.html">About</a></li>
@@ -16,7 +22,7 @@
             </ul>
             
             <ul id="menu2">
-               <button><a href = "index.html">Log Out</a></button>
+               <button><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button>
             </ul> 
         </div>
         <h4>
@@ -30,7 +36,6 @@
       		 }
     	   $db = new MyDB();
 
-	$uname=$_GET["name_ID"];
        // $returned_num = $db->query("SELECT * FROM drivers WHERE USERNAME='$uname';");
         $entry = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME='$uname';");
 	$entry = $entry->fetcharray();

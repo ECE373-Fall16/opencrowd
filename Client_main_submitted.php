@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+<!DOCTYPE   html>
 <html>
     <head>
         <title>Client list  Page</title>
@@ -33,7 +37,7 @@
       		 }
     	   $db = new MyDB();
 
-	$uname=$_GET["name_ID"];
+	$uname=$_SESSION["name_ID"];
 	$update=$_GET["update"]; //this flag gets information where it was redirected from
 	$update=(int)$update;
 

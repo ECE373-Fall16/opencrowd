@@ -26,7 +26,11 @@
   $answer=$_POST["answer"];
 
 $question=(int)$question;
-//if(empty($_POST['firstname']) || (empty($_POST['lastname'])) || empty($_POST['name_ID']) ||  (empty($_POST['password']))  || empty($_POST['phone']) || (empty($_POST['street'])) || empty($_POST['city']) || empty($_POST['state']) || empty($_POST['question']) || empty($_POST['answer'])) header("Location: register-Client.php?flag=3");
+
+if(empty($firstname) || (empty($lastname)) || empty($uname) ||  empty($pass)  || empty($phone) || empty($street) || empty($city) || empty($state) || ($question==0) || empty($answer)){
+	$db->close();
+	 header("Location: register-Client.php?flag=3");
+}
 
  $sqlinsert =<<<EOF
       INSERT INTO clients (FIRSTNAME,LASTNAME,USERNAME,PASSWORD,STREET,CITY,STATE,PHONE,QUESTION,SECURE,CURRENTLIST)
@@ -34,14 +38,18 @@ $question=(int)$question;
 EOF;
 
 //first we check if both passwords were correct or not in the confirm field
-$check=strcmp("$state","$city");
+$check=strcmp("$pass","$confirm");
 $place=0;
-if($check!=$place){header ("Location: register-Client.php?flag=1");} //if not the same then confirm is wrong, go back
+if($check!=$place){
+	$db->close();
+	header ("Location: register-Client.php?flag=1");
+} //if not the same then confirm is wrong, go back
 
 // $ret = $db->exec($sql); //we will search here to see if username exists
   $cret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname';");
   $dret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname';");
  if ($cret > 0 || $dret > 0){ //found it in the db therefore username taken 
+    $db->close();
     header ("Location: register-Client.php?flag=2&name_ID=$uname");
    }	
  else{ //can insert into the db

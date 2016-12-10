@@ -12,10 +12,6 @@
 
    $db = new MyDB();
 
-
-$debug = "I AM HERE<br>";
-//checking if the username exists already in the db
-
 //======================add user to db
   $firstname=$_POST["firstname"];
   $lastname=$_POST["lastname"];
@@ -30,17 +26,30 @@ $debug = "I AM HERE<br>";
   $answer=$_POST["answer"];
 
 $question=(int)$question;
-//if("$firstname"=="" || "$lastname"=="" || "$uname"=="" || "$pass"=="" || "$confirm"=="" || "$phone"=="" || "$street"=="" || "$city"=="" || "$state"=="" || $question==0 || "$answer"=="" )header("Location: register-Client.php?flag=3");
+
+if(empty($firstname) || (empty($lastname)) || empty($uname) ||  empty($pass)  || empty($phone) || empty($street) || empty($city) || empty($state) || ($question==0) || empty($answer)){
+	$db->close();
+	 header("Location: register-Driver.php?flag=3");
+}
 
  $sqlinsert =<<<EOF
       INSERT INTO drivers (FIRSTNAME,LASTNAME,USERNAME,PASSWORD,STREET,CITY,STATE,PHONE,QUESTION,SECURE,CURRENTLIST)
       VALUES ("$firstname","$lastname","$uname","$pass","$street","$city","$state","$phone",$question,"$answer", -1);
 EOF;
 
- // $ret = $db->exec($sql); //we will search here to see if username exists
+//first we check if both passwords were correct or not in the confirm field
+$check=strcmp("$pass","$confirm");
+$place=0;
+if($check!=$place){
+	$db->close();
+	header ("Location: register-Driver.php?flag=1");
+} //if not the same then confirm is wrong, go back
+
+// $ret = $db->exec($sql); //we will search here to see if username exists
   $cret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname';");
   $dret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname';");
  if ($cret > 0 || $dret > 0){ //found it in the db therefore username taken 
+    $db->close();
     header ("Location: register-Driver.php?flag=2&name_ID=$uname");
    }	
  else{ //can insert into the db
@@ -56,7 +65,5 @@ EOF;
 
 ?>
 
-
 </body>
 </html>
-

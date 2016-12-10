@@ -38,6 +38,9 @@
             <div class="container12">
 
                 <h1 id="home">Login if you have an Account:</h1>
+
+		<?php $stuff=$_GET["check"];echo $stuff;?>
+
                 <div class="row">
                     <div class= "column3 empty">
                         <h1>to make the box central</h1>

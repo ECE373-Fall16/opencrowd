@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE  html>
 <html lang="en">
     <head>
@@ -38,7 +42,11 @@
 			    <?php 
 				$loggedout=$_GET["logout"];
 				$loggedout=(int)$loggedout;
-				if($loggedout==-1)echo "You are logged out, have a good day";
+				if($loggedout==-1){
+					session_unset();
+					session_destroy();
+					echo "You are logged out, have a good day";
+				}
 			    ?>
 
 	        	   <h4></font>

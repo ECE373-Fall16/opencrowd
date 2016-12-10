@@ -45,12 +45,12 @@
                                 <div class="row">
                                     <div class="column3">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="firstname"  placeholder="First name...">
+                                            <input type="text" class="small-fld" name="firstname" placeholder="First name">
                                         </div>
                                     </div>
                                     <div class="column3">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="lastname"  placeholder="Last name...">
+                                            <input type="text" class="small-fld" name="lastname" placeholder="Last name">
                                         </div>
                                      </div>        
                             </div>
@@ -68,7 +68,7 @@
                                 <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="name_ID"  placeholder="">
+                                            <input type="text" class="small-fld" name="name_ID" placeholder="">
                                         </div>
                                     </div>
                                     <div class="column1">
@@ -78,7 +78,7 @@
                                 <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
-                                            <input type="password" class="small-fld" name="password"  placeholder="Password">
+                                            <input type="password" class="small-fld" name="password" placeholder="Password">
                                         </div>
                                     </div>
                                     <div class="column1">
@@ -100,7 +100,7 @@
                                 <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
-                                            <input type="password" class="small-fld" name="confirm"  placeholder="Confirm Password">
+                                            <input type="password" class="small-fld" name="confirm" placeholder="Confirm Password">
                                         </div>
                                     </div>
                                     <div class="column1">
@@ -110,7 +110,7 @@
                                 <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="phone"  placeholder="eg. XXX-XXX-XXXX">
+                                            <input type="text" class="small-fld" name="phone" placeholder="eg. XXX-XXX-XXXX">
                                         </div>
                                     </div>
                                     <div class="column1">
@@ -120,12 +120,12 @@
                                 <div class="row">
                                     <div class="column4">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="street"  placeholder="Street">
+                                            <input type="text" class="small-fld" name="street" placeholder="Street">
                                         </div>
                                     </div>
                                     <div class="column2">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="city"  placeholder="City">
+                                            <input type="text" class="small-fld" name="city" placeholder="City">
                                         </div>
                                     </div>
                                     <div class="column2">
@@ -201,7 +201,7 @@
                             <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
-                                           <input type="text" class="small-fld" name="answer"  placeholder="Your Answer...">
+                                           <input type="text" class="small-fld" name="answer" placeholder="Your Answer">
                                         </div>
                                     </div>
                                     <div class="column1">

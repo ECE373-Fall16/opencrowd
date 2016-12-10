@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE   html>
 <html>
     <head>
@@ -7,9 +10,10 @@
     <body>
 	 <h3>
 		<?php 
-              	   $uname=$_GET["name_ID"];
+              	  // $uname=$_GET["name_ID"];
 		   $newflag=$_GET["flag"];
-		   echo "Welcome to LettuceBuy $uname!";
+		  $uname = $_SESSION["name_ID"]; //save username
+		   echo "Welcome to LettuceBuy " . $_SESSION["name_ID"] . "!";
         	?></h3> 
         <div class= "nav">
             <ul id="menu1">
@@ -18,12 +22,10 @@
 		<input type="hidden" name="flag" value="<?php echo "$newflag";?>"/>
 		<input type="submit" value="Home"/>
 		</form>
-                <li><a href = "about.html">About</a></li>
-                <li><a href = "contact.html">Contact</a></li>
             </ul>
             
 	    <ul id="menu2">
-              <li><a href = "index.html">Log Out</a></button><li>
+              <li><a href = "<?php echo"index.php";?>">Log Out</a></button><li>
             </ul> 
 
          </div>

@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+<!DOCTYPE   html>
 
 <html>
     <head>
@@ -16,35 +20,26 @@
        }
     //=============================================================================================open db
        $db = new MyDB();
-       
-       $uname=$_GET["name_ID"];
+       $uname=$_SESSION["name_ID"];
     ?>
+	
         <div class= "nav">
             <ul id="menu1">
                	<form action="Driver_main.php" method="GET">
 		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
 		<input type="submit" value="Home"/>
 		</form>
-		<form action="./Register/pageDriver_register.php" method="GET">
-		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
-		<input type="hidden" name="flag" value=2>
-		<input type="submit" value="Update Information"/>
-		</form>
-		
-                <li><a href = "about.html">About</a></li>
-                <li><a href = "contact.html">Contact</a></li>
             </ul>
             
             <ul id="menu2">
-              <li><a href = "index.php">Log Out</a></button><li>
+              <li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
             </ul> 
         </div>
-        <?php  $uname=$_GET["name_ID"]; ?>
         <div class = "bodyformat">
             <h3> Welcome to LettuceBuy <?php echo "$uname";?>! </h3> <br/>
         
-        <h4><?php
-	$newflag=$_GET["flag"];
+        <h4>
+	<?php
 	$newflag=(int)$newflag;
 	if($newflag==1)echo "Sorry invalid ID<br>";
 	echo "Please select an ID of available list from below:<br>";
@@ -61,7 +56,7 @@
         ?>
         </h4> 
         <form action="driver_fetch.php" method="GET">
-        <input type="hidden" name="name_ID" value="<?php echo $uname;?>">
+        <input type="hidden" name="name_ID" value="<?php echo "$uname";?>">
         ID <input type="text" name="listID"><br>
         <input type="submit" value="Pick List">
         </form>

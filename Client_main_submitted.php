@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+<!DOCTYPE   html>
 <html>
     <head>
         <title>Client list  Page</title>
@@ -33,54 +37,48 @@
       		 }
     	   $db = new MyDB();
 
-	$uname=$_GET["name_ID"];
+	$uname=$_SESSION["name_ID"];
 	$update=$_GET["update"]; //this flag gets information where it was redirected from
 	$update=(int)$update;
 
 	//obtaining list number of client
-    $entry = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
+        $entry = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
 	$entry = $entry->fetcharray();
 	$data = $entry['CURRENTLIST'];
 	$data = (int)$data;
 
-    
-    //new
-    $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
-    $entry = $returned_set->fetcharray();
-	$status = $entry['status'];
-    //echo "the status is $status <br>";
-    
-    if ($status == "completed"){
-        ?>
-        <font color='blue'><h2>Your groceries have arrived! Please confirm below: </font><br></h2>
-        <form action="Client_main_done.php" method="GET">
-        <input type="hidden" name="name_ID" value=<?php echo "$uname";?> >
-        <input type="submit" value="My groceries have arrived"/>
-        </form>
-        <?php
-    }
-    
-	$update=(int)$update;
+
+	//checking if list has been fetched or not
+	 $stat = $db->query("SELECT status FROM list WHERE ID=$data;");
+	 $stat = $stat->fetcharray(); //getting the number of currentlist to be compared
+	 $test = $stat['status'];
+	 
+	 $numcheck=strcmp($test,'fetched'); 
+        	
+	if($numcheck==0){ //if the list has been fetched
+	   $update=2;
+	}
+
 
 	if($update==1)echo "Your list has been successfully updated<br>";
 	elseif($update==2)echo "Your list has been fetched by a driver, please call them instead<br>";
 
-    if ($status == "fetched"){
-        echo "Your list has been chosen by a driver!<br>";//could find the driver
-	    echo "Your list ID is:$data<br>";
-	    echo "Here are the details of your list:-<br>";	
+	if($update==0 || $update==1){ //either coming from login or after updating list
+		echo "Your list is available to all drivers<br>";
+		echo "Your list ID is:$data<br>";
+		echo "Here are the details of your list:-<br>";	
+            	echo '<html><br></html>';
+	}
+	
         $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
         while ($entry = $returned_set->fetcharray()) {
-	        echo 'Items: ' . $entry['items'];
+	    echo 'Items: ' . $entry['items'];
             echo '<html><br></html>';
-	        echo 'Address of Store: ' . $entry['address'];
+	    echo 'Address of Store: ' . $entry['address'];
             echo '<html><br></html>';
         }
-        
-        //driver info
-        echo '<font color="DarkMagenta "><h3>Information of the driver who is buying your groceries: </font><br></h3>';
-        //echo "Information of the driver who is making your groceries:";
-        #if($update==2){//list has been fetched, display driver info
+	
+	if($update==2){//list has been fetched, display driver info
 		$getinfo = $db->query("SELECT * FROM drivers WHERE CURRENTLIST=$data;"); //picking driver that has same ID
  		while ($info = $getinfo->fetcharray()){
             	 echo '<html><br></html>';
@@ -91,23 +89,7 @@
 	 	 echo 'Address: ' . $info['ADDRESS'];
               	 echo '<html><br></html>';
 		}
-#}
-        
-    }
-    else{
-        //list of client is neither fetched nor completed
-        echo "Your list is available to all drivers<br>";
-	    echo "Your list ID is:$data<br>";
-	    echo "Here are the details of your list:-<br>";	
-
-        $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
-        while ($entry = $returned_set->fetcharray()) {
-	        echo 'Items: ' . $entry['items'];
-            echo '<html><br></html>';
-	    echo 'Address of Store: ' . $entry['address'];
-            echo '<html><br></html>';
-        }
-    }
+	}
 
 ?>
 

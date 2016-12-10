@@ -41,7 +41,7 @@
 		      <?php  
 		}else{
 		    ?>
-                <h2> Sign up as Customer</h2>
+                <h2> Sign up for Customer</h2>
 		    <?php
 		}
 		?>
@@ -62,7 +62,7 @@
             <?php
         }else{
             ?>
-            <form action="client_register.php" method="POST">
+            <form action="./client_register.php" method="POST">
                 Name: <input type="text" name="name_ID"><br>
                 Password: <input type="password" name="password"><br>
                 Phone Number: <input type="text" name="phone"><br>

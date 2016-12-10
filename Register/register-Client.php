@@ -6,8 +6,24 @@
         <meta name="robots" content="index,follow">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>Register as Customer</title>
+        
+<?php #Adding the correct title at the label for updating or for creating a new account
+       		 $newflag=$_GET["flag"]; 
+		$uname=$_GET["name_ID"];
+		$newflag=(int)$newflag;
+		//bruteforcing it to update
+		//$newflag=2;
+		
+		if ($newflag==2){//means updating
+		?>
+		    <title>Updating Information Of Client</title>
+		  <?php  
+		}else{
+		    ?>
+		    <title>Register as Customer</title>
+		    <?php
+		}
+		?>
 
         <link href="<?php echo "../1140.css"?>" rel="stylesheet" type="text/css">
         <link href="<?php echo "../style.css"?>"  rel="stylesheet" type="text/css">
@@ -23,27 +39,65 @@
                     <div class = "column5">
                     </div>
                 </div>
+       	    <div class= "nav">
+            
+            <ul id="menu2">
+                <li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
+            </ul>
+	    </div>         
+	    </div>
+
             </header>
 
-<?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field ?>
+<?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field 
+?>
 
+<?php #Adding the correct title in the page 
+        if ($newflag==2){//means updating
+		      ?>
+                <h1 id="home">Update your LettuceBuy Customer Account</h1>
+		      <?php  
+		}else{
+		    ?>
             <h1 id="home">Create your LettuceBuy Account as Customer</h1>
+		    <?php
+		}
+		?>
+		
+
+
             <div class="row">
                 <div class="column5" id="register-pic">
-                     <a href= "" ><img src ="groceries1.jpg"></a> 
+                     <a href= "" ><img src ="../groceries1.jpg"></a> 
                 </div>
                 
                 <div class="column7">
                     <div class="signup-container">
 		<font color="red">
-		<?php $flag=$_GET["flag"];
-		      if($flag==3)echo "Please fill out all of the fields below";
-		     echo "<br>";
+		<?php //$flag=$_GET["flag"];
+		      if($flag==3){echo "Please fill out all of the fields below";
+			     echo "<br>";}
+			
+		     else{
+				  echo "*All fields are required";
+			       	  echo "<br>";
+			}
+		     
 		?>
 		</font>
-
-                        <form action="/Register/client_register.php" method="POST">
-                            
+        <?php #checking where to send the info when pressing either "update info" or "create new account"
+                        if($newflag==2){//updating send to updateInfo.php and send the username as oldName_ID
+                         ?>
+                        <form action="./updateInfo.php" method="POST">
+                        <input type="hidden" name="oldName_ID" value="<?php echo $uname;?>">
+                        Fill out the information that you would like to update:
+                          <?php
+                        }else{
+                            ?>
+                        <form action="./client_register.php" method="POST">
+                        <?php 
+                        }	?>	
+            
                             <p class="input-direction">Name</p>
                                 <div class="row">
                                     <div class="column3">
@@ -62,9 +116,9 @@
 				<?php $flag=$_GET["flag"];
 				      $flag=(int)$flag;
 				      
-				      if($flag==2){	
+				      if($flag==4){	
 				        $uname=$_GET["name_ID"];
-					echo "Sorry '$uname' has been taken, try another one";
+					     echo "Sorry '$uname' has been taken, try another one";
 				      }
 				?>
 				</h5></font>
@@ -208,7 +262,16 @@
                                     </div>        
                                 </div> 
                             <div class="btn-container">
+                                <?php #checking if it is a "update"	or "crate your account" button	
+                                if($newflag==2){//updating
+                                 ?>
+                                <input type="submit" class="large-btn large-magnify" value="Update Your Account">
+                                  <?php
+                                }else{
+                                    ?>
                                 <input type="submit" class="large-btn large-magnify" value="Create Your Account">
+                                <?php 
+                                }	?>	
                             </div>
                         
                         </form>
@@ -221,3 +284,4 @@
 
     </body>
 </html>
+

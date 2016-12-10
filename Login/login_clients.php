@@ -18,9 +18,10 @@
 //FOR NOW JUST CHECKING CLIENT HAS ACTIVE LIST OR NOT AND SAME FOR DRIVER
 
 //while(true){ 
-  $uname=$_GET["name_ID"];
-  $pass=$_GET["password"];
-
+  $uname=$_POST["name_ID"];
+  $pass=$_POST["password"];
+  $encrypt=md5($pass); //decrpyt by matching encrypted pw
+ 
 //Now will compare with database if match --EXPECTING ONLY 1
 //can also do SELECT PASSWORD from clients WHERE USERNAME=$uname
 
@@ -49,7 +50,7 @@
    }
    elseif($ret==0){ //if not a client
 	//checking if its a driver if not a client
-        $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
+        $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$encrypt';");
 	if($drivret==0){ //neither client nor driver
 		$db->close();
 		header('Location: ../Login-page.php?flag=1');//login_redirect.html

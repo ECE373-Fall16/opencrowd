@@ -52,6 +52,7 @@
 				$flag=(int)$flag;
 				if($flag==1)echo "Sorry the username/password you entered were incorrect, try again <br>";
 				elseif($flag==3)echo "You are registered, Login below";
+				
 			?></font></h5>
 
                      <div class="column6">   

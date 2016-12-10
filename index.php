@@ -26,7 +26,7 @@
                         </div>
                         <div class = "column5">
                             <ul>
-                                <li><a href=<?php echo"/Login-page.php"?>>Login Here</a></li>
+                                <li><a href=<?php echo"./Login-page.php"?>>Login Here</a></li>
                             </ul>
                         </div>
                     </div>

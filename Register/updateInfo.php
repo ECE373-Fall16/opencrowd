@@ -44,6 +44,8 @@ if($check!=$place){
 } 
 
 
+$_SESSION["name_ID"]="$uname";
+
     //update database
 $returned_set = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$olduname';");
 
@@ -73,11 +75,12 @@ EOF;
                 UPDATE clients SET LASTNAME = "$lastname" WHERE USERNAME = "$olduname"      
 EOF;
         }
-        if(!empty($uname)){
+        //if(!empty($uname)){
               $sql =<<<EOF
                 UPDATE clients SET USERNAME = "$uname" WHERE USERNAME = "$olduname"      
 EOF;
-        }
+             $_SESSION["name_ID"]="$uname";
+        //}
         if(!empty($pass)){//assuming password gets check
               $sql =<<<EOF
                 UPDATE clients SET PASSWORD = "$pass" WHERE USERNAME = "$olduname"      
@@ -117,30 +120,31 @@ EOF;
 //end of checking each field to update-----------------------------------------------------
 //DONE UPDATING
 
-   $ret = $db->exec($sql);
+        $ret = $db->exec($sql);
    
-   if(!$ret){
-        echo "there was an error";
-        echo $db->lastErrorMsg();
-   } else {
-       #echo "Got updated! ?";
-       //testing status (succeeded)
-       $returned_set = $db->query("SELECT * FROM clients WHERE USERNAME='$uname';");
-       $entry = $returned_set->fetcharray();
-	   $username = $entry['USERNAME'];
-	   $pass = $entry['PASSWORD'];
-	   $addr = $entry['ADDRESS'];
-	   $phone = $entry['PHONE'];
-	   #echo "The old username is: $olduname <br>";
-	   #echo "The username is: $username <br>";
-	   #echo "The password is: $pass <br>";
-	   #echo "The address is: $addr <br>";
-	   #echo "The phone is: $phone <br>";
-	   
-	   //$db->close();
-	   //echo "Status should be completed! Here we can link to other file";
-	   header("Location: ../Client_main.php?flag=0&name_ID=$uname");
-    }
+       if(!$ret){
+            echo "there was an error";
+            echo $db->lastErrorMsg();
+       } else {
+           #echo "Got updated! ?";
+           //testing status (succeeded)
+           $returned_set = $db->query("SELECT * FROM clients WHERE USERNAME='$uname';");
+           $entry = $returned_set->fetcharray();
+    	   $username = $entry['USERNAME'];
+    	   $pass = $entry['PASSWORD'];
+    	   $addr = $entry['ADDRESS'];
+    	   $phone = $entry['PHONE'];
+    	   #echo "The old username is: $olduname <br>";
+    	   #echo "The username is: $username <br>";
+    	   #echo "The password is: $pass <br>";
+    	   #echo "The address is: $addr <br>";
+    	   #echo "The phone is: $phone <br>";
+    	   
+    	   //$db->close();
+    	   //echo "Status should be completed! Here we can link to other file";
+    	   $db->close();
+    	   header("Location: ../Client_main.php?flag=0&name_ID=$uname");
+        }
        
    }else{//it is a driver then
 
@@ -225,6 +229,7 @@ EOF;
 	   
 	   //$db->close();
 	   //echo "Status should be completed! Here we can link to other file";
+	   $db->close();
 	   header("Location: ../Driver_main.php?flag=0&name_ID=$uname");
     
    }

@@ -9,8 +9,8 @@
 
         <title>Login</title>
 
-        <link href="<?php echo "../1140.css"?>" rel="stylesheet" type="text/css">
-        <link href="<?php echo "../style.css"?>"  rel="stylesheet" type="text/css">
+        <link href="<?php echo "./1140.css"?>" rel="stylesheet" type="text/css">
+        <link href="<?php echo "./style.css"?>"  rel="stylesheet" type="text/css">
 
     </head>
     <body>
@@ -43,7 +43,7 @@
 
                 <div class="row">
                     <div class= "column3 empty">
-                        <h1>to make the box central</h1>
+                        <h1><font color="white"> to make the box central</font></h1>
                     </div>
 
 		           <h5><font color="red"> 

@@ -22,6 +22,21 @@
   $pass=$_POST["password"];
   $encrypt=md5($pass); //decrpyt by matching encrypted pw
  
+  if(isset($_POST["flag"]{
+	$flag=$_POST["flag"];
+	$flag=(int)$flag;
+        $listnum = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname';");
+
+	if($listnum==0){ //username invalid
+	  $db->close();
+	  header("Location: forgot-password.php?error=Username invalid&flag=$flag");
+	}
+	else{
+		$db->close();
+		header("Location: forgot-password.php?error=Username found, please reset your password below&flag=1");
+	}
+	
+}
 //Now will compare with database if match --EXPECTING ONLY 1
 //can also do SELECT PASSWORD from clients WHERE USERNAME=$uname
 

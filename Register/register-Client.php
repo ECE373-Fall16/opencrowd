@@ -13,7 +13,7 @@
 		$uname=$_GET["name_ID"];
 		$newflag=(int)$newflag;
 		//bruteforcing it to update
-		$newflag=2;
+		//$newflag=2;
 		
 		if ($newflag==2){//means updating
 		?>
@@ -60,7 +60,7 @@
 
         if ($newflag==2){//means updating
 		      ?>
-                <h1 id="home">Update your LettuceBuy Account as Customer</h1>
+                <h1 id="home">Update your LettuceBuy Customer Account</h1>
 		      <?php  
 		}else{
 		    ?>
@@ -89,18 +89,13 @@
                          ?>
                         <form action="./updateInfo.php" method="POST">
                         <input type="hidden" name="oldName_ID" value="<?php echo $uname;?>">
+                        Fill out the information that you would like to be updated:
                           <?php
                         }else{
                             ?>
                         <form action="./client_register.php" method="POST">
                         <?php 
                         }	?>	
-                            
-                            <?php  if ($newflag==2){//means updating 
-                            ?>
-                            Fill out the information that you would like to be updated:
-                            <?php 
-                             }	?>	
             
                             <p class="input-direction">Name</p>
                                 <div class="row">

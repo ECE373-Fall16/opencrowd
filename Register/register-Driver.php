@@ -7,7 +7,25 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Register as Driver</title>
+<?php #Adding the correct title at the label for updating or for creating a new account
+
+        $newflag=$_GET["flag"]; 
+		$uname=$_GET["name_ID"];
+		$newflag=(int)$newflag;
+		//bruteforcing it to update
+		//$newflag=2;
+		
+		if ($newflag==2){//means updating
+		?>
+		    <title>Updating Information Of Driver</title>
+		  <?php  
+		}else{
+		    ?>
+		    <title>Register as Driver</title>
+		    <?php
+		}
+		?>
+
 
         <link href="<?php echo "../1140.css"?>" rel="stylesheet" type="text/css">
         <link href="<?php echo "../style.css"?>"  rel="stylesheet" type="text/css">
@@ -34,10 +52,23 @@
 	    </div>         
 	    </div>
             </header>
+            
+            <?php #Adding the correct title in the page 
+
+        if ($newflag==2){//means updating
+		      ?>
+                <h1 id="home">Update your LettuceBuy Driver Account</h1>
+		      <?php  
+		}else{
+		    ?>
             <h1 id="home">Create your LettuceBuy Account as Driver</h1>
+		    <?php
+		}
+		?>
+            
             <div class="row">
                 <div class="column5" id="register-pic">
-                     <a href= "" ><img src ="groceries2.jpg"></a> 
+                     <a href= "" ><img src ="../groceries2.jpg"></a> 
                 </div>
                 <div class="column7">
                     <div class="signup-container">
@@ -48,8 +79,20 @@
 			        echo "<br>";
 				?>
 			</font>
-
-                        <form action="driver_register.php" method="POST">
+			 <?php #checking where to send the info when pressing either "update info" or "create new account"
+                        if($newflag==2){//updating send to updateInfo.php and send the username as oldName_ID
+                         ?>
+                        <form action="./updateInfo.php" method="POST">
+                        <input type="hidden" name="oldName_ID" value="<?php echo $uname;?>">
+                        Fill out the information that you would like to be updated:
+                          <?php
+                        }else{
+                            ?>
+                        <form action="./driver_register.php" method="POST">
+                        <?php 
+                        }	
+                        //end of checking where to send information          
+                        ?>	
                             
                             <p class="input-direction">Name</p>
                                 <div class="row">
@@ -218,7 +261,17 @@
                                     </div>        
                                 </div> 
                             <div class="btn-container">
+                            
+                                 <?php #checking if it is a "update"	or "crate your account" button	
+                                if($newflag==2){//updating
+                                 ?>
+                                <input type="submit" class="large-btn large-magnify" value="Update Your Account">
+                                  <?php
+                                }else{
+                                    ?>
                                 <input type="submit" class="large-btn large-magnify" value="Create Your Account">
+                                <?php 
+                                }	?>	
                             </div>
                             
                         </form>

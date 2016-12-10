@@ -6,8 +6,8 @@
         <meta name="robots" content="index,follow">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--> Adding the correct title at the label for updating or for creating a new account
-<!-->
+<?php #Adding the correct title at the label for updating or for creating a new account?>
+
         <?php $newflag=$_GET["flag"]; 
 		$uname=$_GET["name_ID"];
 		$newflag=(int)$newflag;
@@ -49,11 +49,11 @@
 
             </header>
 
-<?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field ?>
+<?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field 
+?>
 
 <!--> Adding the correct title in the page
 <!-->
-
             <?php
         if ($newflag==2){//means updating
 		      ?>
@@ -68,10 +68,7 @@
 		?>
 		
 
-            
-        
-        
-        
+
             <div class="row">
                 <div class="column5" id="register-pic">
                      <a href= "" ><img src ="groceries1.jpg"></a> 
@@ -106,7 +103,7 @@
 				<?php $flag=$_GET["flag"];
 				      $flag=(int)$flag;
 				      
-				      if($flag==2){	
+				      if($flag==2){	//Hassaan is using flag 2 for smtg else we should check that
 				        $uname=$_GET["name_ID"];
 					echo "Sorry '$uname' has been taken, try another one";
 				      }

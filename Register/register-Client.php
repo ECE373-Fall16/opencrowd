@@ -112,7 +112,7 @@
                             </div>
           
                         <?php 
-                        if($newflag!=2){//updating send to updateInfo.php and then dont show the choice to change the username
+                        if($newflag!=2){//updating and then dont show the choice to change the username, nor pass, nor question
                          ?>
                                 <p class="input-direction">Choose your username</p>
         			       <h5><font color="red">
@@ -135,14 +135,8 @@
         				?>
                         
                         </h5></font>
-                          <?php
-                        }
-                        ?>
-
-                            
-				
-                                
-                             <p class="input-direction">Create your password</p>
+                        
+                        <p class="input-direction">Create your password</p>
                                 <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
@@ -171,6 +165,17 @@
                                     <div class="column1">
                                     </div>        
                                 </div> 
+                        
+                        
+                        
+                          <?php
+                        }
+                        ?>
+
+                            
+				
+                                
+                             
                              <p class="input-direction">Mobile phone</p>
                                 <div class="row">
                                     <div class="column6">
@@ -251,7 +256,12 @@
                                         </div>
                                     </div>
                                 </div> 
-                            <p class="input-direction">Select Your Security Questions:</p> 
+                                
+                                <?php 
+                        if($newflag!=2){//updating and then dont show the choice to change the username, nor pass, nor question
+                         ?>
+                         
+                         <p class="input-direction">Select Your Security Questions:</p> 
                                 <div class = "para-input">
                                     <select  name="question" class="small-fld">
                                     <option value="0">Select a question from the following options.</option>
@@ -272,6 +282,12 @@
                                     <div class="column1">
                                     </div>        
                                 </div> 
+                         
+                         <?php
+                     }
+
+                         ?>
+                            
                             <div class="btn-container">
                                 <?php #checking if it is a "update"	or "crate your account" button	
                                 if($newflag==2){//updating

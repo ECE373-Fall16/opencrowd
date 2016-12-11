@@ -74,77 +74,78 @@ EOF;
         
         if(!empty($lastname)){
             echo "going to update last name";            
-              $sql =<<<EOF
+              $sql2 =<<<EOF
                 UPDATE clients SET LASTNAME = "$lastname" WHERE USERNAME = "$olduname"      
 EOF;
         }
         /*
         if(!empty($pass)){//password gets checked with confirm
-              $sql =<<<EOF
+              $sql3 =<<<EOF
                 UPDATE clients SET PASSWORD = "$pass" WHERE USERNAME = "$olduname"      
 EOF;
         }
+        */
         if(!empty($phone)){
-              $sql =<<<EOF
+              $sql3 =<<<EOF
                 UPDATE clients SET PHONE = "$phone" WHERE USERNAME = "$olduname"      
 EOF;
         }
         if(!empty($street)){
-              $sql =<<<EOF
+              $sql4 =<<<EOF
                 UPDATE clients SET STREET = "$street" WHERE USERNAME = "$olduname"      
 EOF;
         }
         if(!empty($city)){
-              $sql =<<<EOF
+              $sql5 =<<<EOF
                 UPDATE clients SET CITY = "$city" WHERE USERNAME = "$olduname"      
 EOF;
         }
         if(!empty($state)){
-              $sql =<<<EOF
+              $sql6 =<<<EOF
                 UPDATE clients SET STATE = "$state" WHERE USERNAME = "$olduname"      
 EOF;
         }
-        if(!empty($question)){
-              $sql =<<<EOF
-                UPDATE clients SET QUESTION = "$question" WHERE USERNAME = "$olduname"      
-EOF;
-        }
-        if(!empty($answer)){
-              $sql =<<<EOF
-                UPDATE clients SET SECURE = "$answer" WHERE USERNAME = "$olduname"      
-EOF;
-        }
-        */
+        
+        
 //end of checking each field to update-----------------------------------------------------
 //DONE UPDATING
 
         $ret = $db->exec($sql);
-   
-       if(!$ret){
+        $ret2 = $db->exec($sql2);  
+        $ret3 = $db->exec($sql3);  
+        $ret4 = $db->exec($sql4);  
+        $ret5 = $db->exec($sql5);  
+        $ret6 = $db->exec($sql6);  
+
+        
+       if(!$ret || !$ret2 || !$ret3 || !$ret4 || !$ret5 || !$ret6){//checking if any of the updates failed
             echo "there was an error";
             echo $db->lastErrorMsg();
        } else {
            echo "Got updated! ?<br>";
            //testing status (succeeded)
+           /*
            $returned_set = $db->query("SELECT * FROM clients WHERE USERNAME='$olduname';");
            $entry = $returned_set->fetcharray();
            $first = $entry['FIRSTNAME'];
+           $last = $entry['LASTNAME'];           
     	   $username = $entry['USERNAME'];
     	   $pass = $entry['PASSWORD'];
     	   $addr = $entry['ADDRESS'];
     	   $phone = $entry['PHONE'];
     	   echo "The firstname is: $first <br>";
-    	   #echo "The old username is: $olduname <br>";
-    	   #echo "The old username is: $olduname <br>";
-    	   #echo "The username is: $username <br>";
-    	   #echo "The password is: $pass <br>";
-    	   #echo "The address is: $addr <br>";
-    	   #echo "The phone is: $phone <br>";
-    	   
+    	   echo "The lastname is: $last <br>";    	   
+    	   echo "The old username is: $olduname <br>";
+    	   echo "The old username is: $olduname <br>";
+    	   echo "The username is: $username <br>";
+    	   echo "The password is: $pass <br>";
+    	   echo "The address is: $addr <br>";
+    	   echo "The phone is: $phone <br>";
+    	   */
     	   //$db->close();
     	   //echo "Status should be completed! Here we can link to other file";
     	   $db->close();
-    	   //header("Location: ../Client_main.php?flag=0&name_ID=$olduname");
+    	   header("Location: ../Client_main.php?flag=0&name_ID=$olduname");
         }
        
    }else{//it is a driver then

@@ -1,6 +1,8 @@
+
 <html><body>
     
 <?php
+   session_start();
    class MyDB extends SQLite3
    {
       function __construct()
@@ -11,9 +13,9 @@
 //=============================================================================================open db
    $db = new MyDB();
 
-$uname=$_GET["name_ID"];
-$items=$_GET["items"];
-$address=$_GET["address"];
+$uname=$_SESSION["name_ID"];
+$items=$_POST["items"];
+$address=$_POST["address"];
 
 
  $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
@@ -46,12 +48,12 @@ EOF;
       echo $db->lastErrorMsg();
    } else {
         $db->close();
-	header("Location: Client_main_submitted.php?name_ID=$uname");
+	header("Location: Client_main_submitted.php");
    }
 } 
 else{ //user already had list which means $check was a number different than -1
    $db->close();
-   header("Location: Client_main.php?flag=1&name_ID=$uname");
+   header("Location: Client_main.php?flag=1");
 }
 ?>
 </body>

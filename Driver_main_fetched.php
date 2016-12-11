@@ -13,12 +13,7 @@
     <body>
         <div class= "nav">
             <ul id="menu1">
-               	<form action="Driver_main.php" method="GET">
-		<input type="hidden" name="name_ID" value="<?php echo"$uname";?>"/>
-		<input type="submit" value="Home"/>
-		</form>
-                <li><a href = "about.html">About</a></li>
-                <li><a href = "contact.html">Contact</a></li>
+              <li><a href = "<?php echo "Driver_main_fetched.php";?>">Home</a></button><li>
             </ul>
             
             <ul id="menu2">

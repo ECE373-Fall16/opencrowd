@@ -11,19 +11,11 @@
     <body>
         <div class= "nav">
             <ul id="menu1">
-               	<form action="Client_main.php" method="GET">
-		<input type="hidden" name="name_ID" value="<?php $uname=$_GET["name_ID"]; echo "$uname";?>"/>
-		<input type="submit" value="Home"/>
-		</form>
-                <li><a href = "about.html">About</a></li>
-                <li><a href = "contact.html">Contact</a></li>
+              <li><a href = "<?php echo "Client_main_submitted.php";?>">Home</a></button><li>
             </ul>
             
             <ul id="menu2">
-	       <form action="index.php" method="GET">
-	       <input type"hidden" name="logout" value="<?php $log=-1;echo $log;?>" />
-	       <input type="submit" value="Logout"/>
-	       </form>
+              <li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
             </ul> 
         </div>
         <h4>

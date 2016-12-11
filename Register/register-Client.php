@@ -13,7 +13,7 @@
 		$uname=$_GET["name_ID"];
 		$newflag=(int)$newflag;
 		//bruteforcing it to update
-		//$newflag=2;
+		$newflag=2;
 		
 		if ($newflag==2){//means updating
 		?>
@@ -95,9 +95,9 @@
                             ?>
                         <form action="./client_register.php" method="POST">
                         <?php 
-                        }	?>	
-            
-                            <p class="input-direction">Name</p>
+                        }		
+                        ?>
+                                <p class="input-direction">Name</p>
                                 <div class="row">
                                     <div class="column3">
                                         <div class = "para-input">
@@ -110,18 +110,13 @@
                                         </div>
                                      </div>        
                             </div>
-                            <p class="input-direction">Choose your username</p>
-			       <h5><font color="red">
-				<?php $flag=$_GET["flag"];
-				      $flag=(int)$flag;
-				      
-				      if($flag==4){	
-				        $uname=$_GET["name_ID"];
-					     echo "Sorry '$uname' has been taken, try another one";
-				      }
-				?>
-				</h5></font>
-                                <div class="row">
+          
+                        <?php 
+                        if($newflag!=2){//updating send to updateInfo.php and then dont show the choice to change the username
+                         ?>
+                                <p class="input-direction">Choose your username</p>
+        			       <h5><font color="red">
+        			       <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
                                             <input type="text" class="small-fld" name="name_ID">
@@ -130,6 +125,23 @@
                                     <div class="column1">
                                     </div>        
                                 </div>
+        				<?php $flag=$_GET["flag"];
+        				      $flag=(int)$flag;
+        				      
+        				      if($flag==4){	
+        				        $uname=$_GET["name_ID"];
+        					     echo "Sorry '$uname' has been taken, try another one";
+        				      }
+        				?>
+                        
+                        </h5></font>
+                          <?php
+                        }
+                        ?>
+
+                            
+				
+                                
                              <p class="input-direction">Create your password</p>
                                 <div class="row">
                                     <div class="column6">

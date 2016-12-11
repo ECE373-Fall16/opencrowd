@@ -21,10 +21,10 @@
    //$phone=$_POST["phone"]; 
    
    //======================add user to db
-  $olduname=$_POST["oldName_ID"];
+  $olduname=$_POST["oldName_ID"];//this is the actual username
   $firstname=$_POST["firstname"];
   $lastname=$_POST["lastname"];
-  $uname=$_POST["name_ID"];
+  //$uname=$_POST["name_ID"]; // Cannot update username
   $pass=$_POST["password"];
   $confirm=$_POST["confirm"];
   $phone=$_POST["phone"];
@@ -33,18 +33,18 @@
   $state=$_POST["state"];
   $question=$_POST["question"];
   $answer=$_POST["answer"];
-   #echo "$olduname $uname  $pass $Caddress $phone ";
+   echo "The username is $olduname and will update his first name to : $firstname <br>";//good
 
 //checking password match
 $check=strcmp("$pass","$confirm");
 $place=0;
 if($check!=$place){
 	$db->close();
-	header ("Location: register-Client.php?flag=1");//flag 1 means a mismatch in passwords
+	header ("Location: register-Client.php?flag=1");//flag 1 means a mismatch in passwords PROBLEM WE NEED TO KNOW THAT IT IS UPDATING AS WELL
 } 
 
 
-$_SESSION["name_ID"]="$uname";
+//$_SESSION["name_ID"]="$uname";
 
     //update database
 $returned_set = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$olduname';");
@@ -61,27 +61,25 @@ else{ //we found an username
 
    //if it is a client
    if ($returned_set != 0){
-       #echo "found a client <br>" ;
+       echo "found a client <br>" ;//good
 //----------------------------------------CLIENT------------------------------------------------------------------       
 //We need to check FIRSTNAME,LASTNAME,USERNAME,PASSWORD,STREET,CITY,STATE,PHONE,QUESTION,SECURE,CURRENTLIST to not be empty to update
-    
+
         if(!empty($firstname)){
+            echo "going to update first name";
               $sql =<<<EOF
-                UPDATE clients SET FIRSTNAME = "$firstname" WHERE USERNAME = "$olduname"      
+                UPDATE clients SET FIRSTNAME = "$firstname" WHERE USERNAME = "$olduname"
 EOF;
         }
+        
         if(!empty($lastname)){
+            echo "going to update last name";            
               $sql =<<<EOF
                 UPDATE clients SET LASTNAME = "$lastname" WHERE USERNAME = "$olduname"      
 EOF;
         }
-        //if(!empty($uname)){
-              $sql =<<<EOF
-                UPDATE clients SET USERNAME = "$uname" WHERE USERNAME = "$olduname"      
-EOF;
-             $_SESSION["name_ID"]="$uname";
-        //}
-        if(!empty($pass)){//assuming password gets check
+        /*
+        if(!empty($pass)){//password gets checked with confirm
               $sql =<<<EOF
                 UPDATE clients SET PASSWORD = "$pass" WHERE USERNAME = "$olduname"      
 EOF;
@@ -116,7 +114,7 @@ EOF;
                 UPDATE clients SET SECURE = "$answer" WHERE USERNAME = "$olduname"      
 EOF;
         }
-
+        */
 //end of checking each field to update-----------------------------------------------------
 //DONE UPDATING
 
@@ -126,14 +124,17 @@ EOF;
             echo "there was an error";
             echo $db->lastErrorMsg();
        } else {
-           #echo "Got updated! ?";
+           echo "Got updated! ?<br>";
            //testing status (succeeded)
-           $returned_set = $db->query("SELECT * FROM clients WHERE USERNAME='$uname';");
+           $returned_set = $db->query("SELECT * FROM clients WHERE USERNAME='$olduname';");
            $entry = $returned_set->fetcharray();
+           $first = $entry['FIRSTNAME'];
     	   $username = $entry['USERNAME'];
     	   $pass = $entry['PASSWORD'];
     	   $addr = $entry['ADDRESS'];
     	   $phone = $entry['PHONE'];
+    	   echo "The firstname is: $first <br>";
+    	   #echo "The old username is: $olduname <br>";
     	   #echo "The old username is: $olduname <br>";
     	   #echo "The username is: $username <br>";
     	   #echo "The password is: $pass <br>";
@@ -143,7 +144,7 @@ EOF;
     	   //$db->close();
     	   //echo "Status should be completed! Here we can link to other file";
     	   $db->close();
-    	   header("Location: ../Client_main.php?flag=0&name_ID=$uname");
+    	   //header("Location: ../Client_main.php?flag=0&name_ID=$olduname");
         }
        
    }else{//it is a driver then
@@ -215,12 +216,14 @@ EOF;
    } else {
        #echo "Got updated! ?";
        //testing status (succeeded)
-       $returned_set = $db->query("SELECT * FROM clients WHERE USERNAME='$uname';");
+       $returned_set = $db->query("SELECT * FROM clients WHERE USERNAME='$olduname';");
        $entry = $returned_set->fetcharray();
+       $firstname = $entry['FIRSTNAME'];
 	   $username = $entry['USERNAME'];
 	   $pass = $entry['PASSWORD'];
 	   $addr = $entry['ADDRESS'];
 	   $phone = $entry['PHONE'];
+	   //echo "The firstname is: $firstname <br>";
 	   #echo "The old username is: $olduname <br>";
 	   #echo "The username is: $username <br>";
 	   #echo "The password is: $pass <br>";
@@ -230,7 +233,7 @@ EOF;
 	   //$db->close();
 	   //echo "Status should be completed! Here we can link to other file";
 	   $db->close();
-	   header("Location: ../Driver_main.php?flag=0&name_ID=$uname");
+	   //header("Location: ../Driver_main.php?flag=0&name_ID=$uname");
     
    }
    

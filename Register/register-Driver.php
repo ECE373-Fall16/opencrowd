@@ -107,12 +107,16 @@
                                         </div>
                                      </div>        
                             </div>
+                            
+                            <?php 
+                        if($newflag!=2){//updating and then dont show the choice to change the username, nor pass
+                         ?>
                             <p class="input-direction">Choose your username</p>
 			   <h5><font color="red">
 				<?php $flag=$_GET["flag"];
 				      $flag=(int)$flag;
 				      
-				      if($flag==2){	
+				      if($flag==4){	
 				        $uname=$_GET["name_ID"];
 					echo "Sorry '$uname' has been taken, try another one";
 				      }
@@ -121,7 +125,7 @@
                                 <div class="row">
                                     <div class="column6">
                                         <div class = "para-input">
-                                            <input type="text" class="small-fld" name="name_ID" placeholder="">
+                                            <input type="text" class="small-fld" name="name_ID">
                                         </div>
                                     </div>
                                     <div class="column1">
@@ -159,6 +163,9 @@
                                     <div class="column1">
                                     </div>        
                                 </div> 
+                                 <?php
+                        }
+                        ?>
                              <p class="input-direction">Mobile phone</p>
                                 <div class="row">
                                     <div class="column6">
@@ -239,9 +246,12 @@
                                         </div>
                                     </div>
                                 </div> 
+                                <?php 
+                        if($newflag!=2){//updating and then dont show the choice to change  question
+                         ?>
                               <p class="input-direction">Select Your Security Questions:</p> 
                                 <div class = "para-input">
-                                    <select  name="quesion" class="small-fld">
+                                    <select  name="question" class="small-fld">
                                     <option value="0">Select a question from the following options.</option>
                                     <option value="1">Who's your daddy?</option>
                                     <option value="2">What is your favorite color?</option>
@@ -260,6 +270,10 @@
                                     <div class="column1">
                                     </div>        
                                 </div> 
+                                <?php
+                     }
+
+                         ?>
                             <div class="btn-container">
                             
                                  <?php #checking if it is a "update"	or "crate your account" button	

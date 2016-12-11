@@ -112,7 +112,7 @@
                             </div>
           
                         <?php 
-                        if($newflag!=2){//updating and then dont show the choice to change the username, nor pass, nor question
+                        if($newflag!=2){//updating and then dont show the choice to change the username, nor pass
                          ?>
                                 <p class="input-direction">Choose your username</p>
         			       <h5><font color="red">
@@ -258,7 +258,7 @@
                                 </div> 
                                 
                                 <?php 
-                        if($newflag!=2){//updating and then dont show the choice to change the username, nor pass, nor question
+                        if($newflag!=2){//updating and then dont show the choice to change  question
                          ?>
                          
                          <p class="input-direction">Select Your Security Questions:</p> 

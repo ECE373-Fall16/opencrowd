@@ -155,86 +155,83 @@ EOF;
 //We need to check FIRSTNAME,LASTNAME,USERNAME,PASSWORD,STREET,CITY,STATE,PHONE,QUESTION,SECURE,CURRENTLIST to not be empty to update
     
         if(!empty($firstname)){
+            echo "going to update first name";
               $sql =<<<EOF
-                UPDATE clients SET FIRSTNAME = "$firstname" WHERE USERNAME = "$olduname"      
+                UPDATE drivers SET FIRSTNAME = "$firstname" WHERE USERNAME = "$olduname"
 EOF;
         }
+        
         if(!empty($lastname)){
-              $sql =<<<EOF
-                UPDATE clients SET LASTNAME = "$lastname" WHERE USERNAME = "$olduname"      
+            echo "going to update last name";            
+              $sql2 =<<<EOF
+                UPDATE drivers SET LASTNAME = "$lastname" WHERE USERNAME = "$olduname"      
 EOF;
         }
-        if(!empty($uname)){
-              $sql =<<<EOF
-                UPDATE clients SET USERNAME = "$uname" WHERE USERNAME = "$olduname"      
-EOF;
-        }
-        if(!empty($pass)){//assuming password gets check
-              $sql =<<<EOF
+        /*
+        if(!empty($pass)){//password gets checked with confirm
+              $sql3 =<<<EOF
                 UPDATE clients SET PASSWORD = "$pass" WHERE USERNAME = "$olduname"      
 EOF;
         }
+        */
         if(!empty($phone)){
-              $sql =<<<EOF
-                UPDATE clients SET PHONE = "$phone" WHERE USERNAME = "$olduname"      
+              $sql3 =<<<EOF
+                UPDATE drivers SET PHONE = "$phone" WHERE USERNAME = "$olduname"      
 EOF;
         }
         if(!empty($street)){
-              $sql =<<<EOF
-                UPDATE clients SET STREET = "$street" WHERE USERNAME = "$olduname"      
+              $sql4 =<<<EOF
+                UPDATE drivers SET STREET = "$street" WHERE USERNAME = "$olduname"      
 EOF;
         }
         if(!empty($city)){
-              $sql =<<<EOF
-                UPDATE clients SET CITY = "$city" WHERE USERNAME = "$olduname"      
+              $sql5 =<<<EOF
+                UPDATE drivers SET CITY = "$city" WHERE USERNAME = "$olduname"      
 EOF;
         }
         if(!empty($state)){
-              $sql =<<<EOF
-                UPDATE clients SET STATE = "$state" WHERE USERNAME = "$olduname"      
+              $sql6 =<<<EOF
+                UPDATE drivers SET STATE = "$state" WHERE USERNAME = "$olduname"      
 EOF;
         }
-        if(!empty($question)){
-              $sql =<<<EOF
-                UPDATE clients SET QUESTION = "$question" WHERE USERNAME = "$olduname"      
-EOF;
-        }
-        if(!empty($answer)){
-              $sql =<<<EOF
-                UPDATE clients SET SECURE = "$answer" WHERE USERNAME = "$olduname"      
-EOF;
-        }
-
+        
+        
 //end of checking each field to update-----------------------------------------------------
 //DONE UPDATING
 
+        $ret = $db->exec($sql);
+        $ret2 = $db->exec($sql2);  
+        $ret3 = $db->exec($sql3);  
+        $ret4 = $db->exec($sql4);  
+        $ret5 = $db->exec($sql5);  
+        $ret6 = $db->exec($sql6);  
 
-   $ret = $db->exec($sql);
-   
-   if(!$ret){
+        
+       if(!$ret || !$ret2 || !$ret3 || !$ret4 || !$ret5 || !$ret6){//checking if any of the updates failed
         echo "there was an error";
         echo $db->lastErrorMsg();
    } else {
        #echo "Got updated! ?";
        //testing status (succeeded)
-       $returned_set = $db->query("SELECT * FROM clients WHERE USERNAME='$olduname';");
+       /*
+       $returned_set = $db->query("SELECT * FROM drivers WHERE USERNAME='$olduname';");
        $entry = $returned_set->fetcharray();
        $firstname = $entry['FIRSTNAME'];
 	   $username = $entry['USERNAME'];
 	   $pass = $entry['PASSWORD'];
 	   $addr = $entry['ADDRESS'];
 	   $phone = $entry['PHONE'];
-	   //echo "The firstname is: $firstname <br>";
-	   #echo "The old username is: $olduname <br>";
-	   #echo "The username is: $username <br>";
-	   #echo "The password is: $pass <br>";
-	   #echo "The address is: $addr <br>";
-	   #echo "The phone is: $phone <br>";
-	   
+	   echo "The firstname is: $firstname <br>";
+	   echo "The old username is: $olduname <br>";
+	   echo "The username is: $username <br>";
+	   echo "The password is: $pass <br>";
+	   echo "The address is: $addr <br>";
+	   echo "The phone is: $phone <br>";
+	   */
 	   //$db->close();
 	   //echo "Status should be completed! Here we can link to other file";
 	   $db->close();
-	   //header("Location: ../Driver_main.php?flag=0&name_ID=$uname");
+	   header("Location: ../Driver_main.php?flag=0&name_ID=$uname");
     
    }
    

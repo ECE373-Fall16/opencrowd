@@ -70,20 +70,7 @@
         
 DISPLAYING INFORMATION </br>
 <?php
-class MyDB extends SQLite3
-   {
-	function __construct()
-	{
-	  $this->open('./databases/lettucebuy.db');//opened my database
-	}
-   }
-	
-   $db = new MyDB();
-   if(!$db){ //checking if doesn't exist
-	echo $db->lastErrorMsg();
-   } else {
-	echo "Opened database for login check for clients!!!<br>";
-   }
+
    $returned_set = $db->query("SELECT * FROM drivers WHERE USERNAME='$uname';");
    $entry = $returned_set->fetcharray();
        $firstname = $entry['FIRSTNAME'];

@@ -19,10 +19,10 @@
 
 //while(true){ 
   $uname=$_POST["name_ID"];
-  $pass=$_POST["password"];
-  $encrypt=md5($pass); //decrpyt by matching encrypted pw
- 
-  if(isset($_POST["flag"]{
+  $pass=md5($_POST["password"]);
+  echo $pass; 
+//for forgotpassword.php
+  if(isset($_POST["flag"])){
 	$flag=$_POST["flag"];
 	$flag=(int)$flag;
         $listnum = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname';");
@@ -37,6 +37,7 @@
 	}
 	
 }
+
 //Now will compare with database if match --EXPECTING ONLY 1
 //can also do SELECT PASSWORD from clients WHERE USERNAME=$uname
 
@@ -47,7 +48,7 @@
       $check = $listnum['CURRENTLIST'];
       $check = (int)$check; //have int form of current list 
 
-	if($check==-1){
+	if($check==-1){ //does not have an active list
 		session_start();//start session
 		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
 		$_SESSION["logout"]=0;
@@ -65,10 +66,10 @@
    }
    elseif($ret==0){ //if not a client
 	//checking if its a driver if not a client
-        $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$encrypt';");
+        $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
 	if($drivret==0){ //neither client nor driver
 		$db->close();
-		header('Location: ../Login-page.php?flag=1');//login_redirect.html
+	//	header('Location: ../Login-page.php?flag=1');//login_redirect.html
 	}
         elseif ($drivret>0){ //driver
 		  $listnum = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME='$uname';");
@@ -81,14 +82,14 @@
 			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
 			$_SESSION["logout"]=0;
 			$db->close();
-			header("Location:../Driver_main.php?flag=0&name_ID=$uname"); //user does not have a list
+			header("Location:../Driver_main.php?flag=0"); //user does not have a list
 		  }
 		  else{
 			session_start();
 			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
 			$_SESSION["logout"]=0;
 			$db->close();
-			header("Location:../Driver_main_fetched.php?update=0&name_ID=$uname");
+			header("Location:../Driver_main_fetched.php?update=0");
 		} //user has an active list
 
 	}

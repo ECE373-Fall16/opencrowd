@@ -16,8 +16,8 @@
   $firstname=$_POST["firstname"];
   $lastname=$_POST["lastname"];
   $uname=$_POST["name_ID"];
-  $pass=$_POST["password"];
-  $confirm=$_POST["confirm"];
+  $pass=md5($_POST["password"]);
+  $confirm=md5($_POST["confirm"]);
   $phone=$_POST["phone"];
   $street=$_POST["street"];
   $city=$_POST["city"];

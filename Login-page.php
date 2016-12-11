@@ -56,7 +56,7 @@
 			?></font></h5>
 
                      <div class="column6">   
-                        <form action="./Login/login_clients.php" method="GET"> 
+                        <form action="./Login/login_clients.php" method="POST"> 
                             <div class="sign-in-container">
                                     <div class="column6">
                                         <p class="input-direction">Enter your Username:</p>

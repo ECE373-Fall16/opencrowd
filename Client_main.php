@@ -17,20 +17,12 @@
         	?></h3> 
         <div class= "nav">
             <ul id="menu1">
-		<form action="Client_main.php" method="GET">
-		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
-		<input type="hidden" name="flag" value="<?php echo "$newflag";?>"/>
-		<input type="submit" value="Home"/>
-		</form>
-		<form action="./Register/register-Client.php" method="GET">
-		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
-		<input type="hidden" name="flag" value=2>
-		<input type="submit" value="Update Information"/>
-		</form>
+              <li><a href = "<?php echo "Client_main.php";?>">Home</a></button><li>
+              <li><a href = "<?php echo "./Register/register-Client.php?flag=2";?>">Update Credentials</a></button><li>
             </ul>
             
 	    <ul id="menu2">
-              <li><a href = "<?php echo"index.php";?>">Log Out</a></button><li>
+              <li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
             </ul> 
 
          </div>
@@ -48,8 +40,7 @@
 	?>
 	
 </h3> 
-<form action="./newlist.php" method="GET">
-<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
+<form action="./newlist.php" method="POST">
 Items <input type="text" name="items"><br>
 Address of Store <input type="text" name="address"><br>
 <input type="submit" value="Submit List"/>

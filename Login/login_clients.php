@@ -20,7 +20,7 @@
 //while(true){ 
   $uname=$_POST["name_ID"];
   $pass=md5($_POST["password"]);
-  echo $pass; 
+
 //for forgotpassword.php
   if(isset($_POST["flag"])){
 	$flag=$_POST["flag"];
@@ -69,7 +69,7 @@
         $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
 	if($drivret==0){ //neither client nor driver
 		$db->close();
-	//	header('Location: ../Login-page.php?flag=1');//login_redirect.html
+		header('Location: ../Login-page.php?flag=1');//login_redirect.html
 	}
         elseif ($drivret>0){ //driver
 		  $listnum = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME='$uname';");

@@ -12,7 +12,7 @@
 //=============================================================================================open db
 $db = new MyDB();
 
-$flag=$_GET["flag"];
+$flag=$_POST["flag"];
 $uname=$_SESSION["name_ID"];
 $flag=(int)$flag;
 

@@ -18,7 +18,7 @@
                <header>
                     <div class = "row">
                         <div class= "column7" id="header-pic">
-                            <a href= "" ><img src ="logo%20LettuceBuy.png"></a>
+                        <a href="<?php echo "../img/";?>" ><img src ="logo%20LettuceBuy.png"></a>
                         </div>
                         <div class = "column5">
                             <div class ="menu-nav">

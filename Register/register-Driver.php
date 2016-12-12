@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE  html>
 <html lang="en">
     <head>
@@ -9,7 +12,7 @@
 
 <?php #Adding the correct title at the label for updating or for creating a new account
        		 $newflag=$_GET["flag"]; 
-		$uname=$_GET["name_ID"];
+		$uname=$_SESSION["name_ID"];
 		$newflag=(int)$newflag;
 		//bruteforcing it to update
 		//$newflag=2;
@@ -35,16 +38,12 @@
            <header>
                 <div class = "row">
                     <div class= "column7" id="header-pic">
-                        <a href= "" ><img src ="logo%20LettuceBuy.png"></a>
+                            <a href= "" ><img src ="logo%20LettuceBuy.png"></a>
                     </div>
                     <div class = "column5">
                     </div>
 		
        	    <div class= "nav">
-            <ul id="menu1">
-                <li><a href = "<?php echo "../index.php";?>"> Home</a></li>
-            </ul>
-            
             <ul id="menu2">
                 <li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
             </ul>
@@ -66,7 +65,7 @@
             
             <div class="row">
                 <div class="column5" id="register-pic">
-                     <a href= "" ><img src ="../groceries2.jpg"></a> 
+                        <a<img src ="../img/groceries2.jpg"></a>
                 </div>
                 <div class="column7">
                     <div class="signup-container">
@@ -87,7 +86,6 @@
                         if($newflag==2){//updating send to updateInfo.php and send the username as oldName_ID
                          ?>
                         <form action="./updateInfo.php" method="POST">
-                        <input type="hidden" name="oldName_ID" value="<?php echo $uname;?>">
                         Fill out the information that you would like to be updated:
                           <?php
                         }else{
@@ -117,7 +115,7 @@
 				      $flag=(int)$flag;
 				      
 				      if($flag==2){	
-				        $uname=$_GET["name_ID"];
+				        $uname=$_SESSION["name_ID"];
 					echo "Sorry '$uname' has been taken, try another one";
 				      }
 				?>

@@ -11,19 +11,11 @@
     <body>
         <div class= "nav">
             <ul id="menu1">
-               	<form action="Client_main.php" method="GET">
-		<input type="hidden" name="name_ID" value="<?php $uname=$_GET["name_ID"]; echo "$uname";?>"/>
-		<input type="submit" value="Home"/>
-		</form>
-                <li><a href = "about.html">About</a></li>
-                <li><a href = "contact.html">Contact</a></li>
+              <li><a href = "<?php echo "Client_main_submitted.php";?>">Home</a></button><li>
             </ul>
             
             <ul id="menu2">
-	       <form action="index.php" method="GET">
-	       <input type"hidden" name="logout" value="<?php $log=-1;echo $log;?>" />
-	       <input type="submit" value="Logout"/>
-	       </form>
+              <li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
             </ul> 
         </div>
         <h4>
@@ -94,18 +86,9 @@
 ?>
 
         </h4> 
-	<h2>If you wish to enter more items, please enter your list once again</h2>
-	<form action="updatedelete.php" method="GET">
-	<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/><br>
-	<input type="hidden" name="flag" value="<?php $up=0;echo$up;?>"/><br>
-	More Items:<input type="text" name="items"><br>
-	Change Address of Store:<input type="text" name="address"><br>
-	<input type="submit" value="Update Your List"/>
-	</form> 
 
 	<?php//delete button?>
-	<form action="updatedelete.php" method="GET">
-	<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
+	<form action="updatedelete.php" method="POST">
 	<input type="hidden" name="flag" value="<?php $del=1;echo$del;?>"/>
 	<input type="submit" value="Delete Your List"/>
 	</form> 

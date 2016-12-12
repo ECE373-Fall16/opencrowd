@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE  html>
 <html lang="en">
     <head>
@@ -6,11 +9,14 @@
         <meta name="robots" content="index,follow">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php #Adding the correct title at the label for updating or for creating a new account?>
-
-        <?php $newflag=$_GET["flag"]; 
-		$uname=$_GET["name_ID"];
+        
+<?php #Adding the correct title at the label for updating or for creating a new account
+       		 $newflag=$_GET["flag"]; 
+		$uname=$_SESSION["name_ID"];
 		$newflag=(int)$newflag;
+		//bruteforcing it to update
+		//$newflag=2;
+		
 		if ($newflag==2){//means updating
 		?>
 		    <title>Updating Information Of Client</title>
@@ -31,15 +37,12 @@
            <header>
                 <div class = "row">
                     <div class= "column7" id="header-pic">
-                        <a href= "" ><img src ="logo%20LettuceBuy.png"></a>
+                        <a href="<?php echo "../img/";?>" ><img src ="logo%20LettuceBuy.png"></a>
                     </div>
                     <div class = "column5">
                     </div>
                 </div>
        	    <div class= "nav">
-            <ul id="menu1">
-                <li><a href = "<?php echo "../index.php";?>"> Home</a></li>
-            </ul>
             
             <ul id="menu2">
                 <li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
@@ -52,13 +55,10 @@
 <?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field 
 ?>
 
-<!--> Adding the correct title in the page
-<!-->
-            <?php
+<?php #Adding the correct title in the page 
         if ($newflag==2){//means updating
 		      ?>
-                <h2> Update Your Information</h2>
-                <h1 id="home">Update your LettuceBuy Account as Customer</h1>
+                <h1 id="home">Update your LettuceBuy Customer Account</h1>
 		      <?php  
 		}else{
 		    ?>
@@ -71,20 +71,35 @@
 
             <div class="row">
                 <div class="column5" id="register-pic">
-                     <a href= "" ><img src ="groceries1.jpg"></a> 
+                        <a href="<?php echo "../img/";?>" ><img src ="groceries1.jpg"></a>
                 </div>
                 
                 <div class="column7">
                     <div class="signup-container">
 		<font color="red">
-		<?php $flag=$_GET["flag"];
-		      if($flag==3)echo "Please fill out all of the fields below";
-		     echo "<br>";
+		<?php //$flag=$_GET["flag"];
+		      if($flag==3){echo "Please fill out all of the fields below";
+			     echo "<br>";}
+			
+		     else{
+				  echo "*All fields are required";
+			       	  echo "<br>";
+			}
+		     
 		?>
 		</font>
-
-                        <form action="/Register/client_register.php" method="POST">
-                            
+        <?php #checking where to send the info when pressing either "update info" or "create new account"
+                        if($newflag==2){//updating send to updateInfo.php and send the username as oldName_ID
+                         ?>
+                        <form action="./updateInfo.php" method="POST">
+                        Fill out the information that you would like to update:
+                          <?php
+                        }else{
+                            ?>
+                        <form action="./client_register.php" method="POST">
+                        <?php 
+                        }	?>	
+            
                             <p class="input-direction">Name</p>
                                 <div class="row">
                                     <div class="column3">
@@ -103,9 +118,9 @@
 				<?php $flag=$_GET["flag"];
 				      $flag=(int)$flag;
 				      
-				      if($flag==2){	//Hassaan is using flag 2 for smtg else we should check that
-				        $uname=$_GET["name_ID"];
-					echo "Sorry '$uname' has been taken, try another one";
+				      if($flag==4){	
+				        $uname=$_SESSION["name_ID"];
+					     echo "Sorry '$uname' has been taken, try another one";
 				      }
 				?>
 				</h5></font>
@@ -249,7 +264,16 @@
                                     </div>        
                                 </div> 
                             <div class="btn-container">
+                                <?php #checking if it is a "update"	or "crate your account" button	
+                                if($newflag==2){//updating
+                                 ?>
+                                <input type="submit" class="large-btn large-magnify" value="Update Your Account">
+                                  <?php
+                                }else{
+                                    ?>
                                 <input type="submit" class="large-btn large-magnify" value="Create Your Account">
+                                <?php 
+                                }	?>	
                             </div>
                         
                         </form>
@@ -262,3 +286,4 @@
 
     </body>
 </html>
+

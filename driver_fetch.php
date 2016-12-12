@@ -1,6 +1,7 @@
 <html><body>
     
 <?php
+   session_start();
    class MyDB extends SQLite3
    {
       function __construct()
@@ -12,15 +13,15 @@
    $db = new MyDB();
 
 //====================================================================================add list to db
-$uname=$_GET["name_ID"];
-$listnum=$_GET["listID"];
+$uname=$_SESSION["name_ID"];
+$listnum=$_POST["listID"];
 $listnum=(int)$listnum; //parse into int
 
 $returned_set = $db->querySingle("SELECT COUNT(*) FROM list WHERE ID=$listnum AND status='incomplete';");
 
 	if($returned_set==0){//checking if we did not found ID in list
 		$db->close();
-		header ("Location: Driver_main.php?flag=1&name_ID=$uname"); //if wrong ID then go back to main
+		header ("Location: Driver_main.php?flag=1"); //if wrong ID then go back to main
 	}
 
   else{
@@ -40,7 +41,7 @@ EOF;
       echo $db->lastErrorMsg();
    } else {
   	$db->close();
- 	 header("Location: Driver_main_fetched.php?name_ID=$uname");
+ 	 header("Location: Driver_main_fetched.php");
    }
 }
 

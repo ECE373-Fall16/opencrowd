@@ -18,7 +18,7 @@
                <header>
                     <div class = "row">
                         <div class= "column7" id="header-pic">
-                            <a href= "" ><img src ="logo%20LettuceBuy.png"></a>
+                        <a href="<?php echo "../img/";?>" ><img src ="logo%20LettuceBuy.png"></a>
                         </div>
                         <div class = "column5">
                             <div class ="menu-nav">
@@ -52,10 +52,11 @@
 				$flag=(int)$flag;
 				if($flag==1)echo "Sorry the username/password you entered were incorrect, try again <br>";
 				elseif($flag==3)echo "You are registered, Login below";
+				
 			?></font></h5>
 
                      <div class="column6">   
-                        <form action="./Login/login_clients.php" method="GET"> 
+                        <form action="./Login/login_clients.php" method="POST"> 
                             <div class="sign-in-container">
                                     <div class="column6">
                                         <p class="input-direction">Enter your Username:</p>
@@ -74,7 +75,7 @@
                             </div>  
                            </form>    
 
-                            <li class= "forgot-password"><a href="forgot-password.html">Forgot password?</a></li>
+                            <li class= "forgot-password"><a href="<?php echo "forgot-password.php?flag=0";?>">Forgot password?</a></li>
                     </div>
                 </div>
             </div> 

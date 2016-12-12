@@ -25,10 +25,7 @@
 	
         <div class= "nav">
             <ul id="menu1">
-               	<form action="Driver_main.php" method="GET">
-		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
-		<input type="submit" value="Home"/>
-		</form>
+              <li><a href = "<?php echo "Driver_main.php";?>">Home</a></button><li>
             </ul>
             
             <ul id="menu2">
@@ -55,8 +52,7 @@
         }
         ?>
         </h4> 
-        <form action="driver_fetch.php" method="GET">
-        <input type="hidden" name="name_ID" value="<?php echo "$uname";?>">
+        <form action="driver_fetch.php" method="POST">
         ID <input type="text" name="listID"><br>
         <input type="submit" value="Pick List">
         </form>

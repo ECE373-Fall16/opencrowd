@@ -1,6 +1,7 @@
 <html><body>
     
 <?php
+   session_start();
    class MyDB extends SQLite3
    {
       function __construct()
@@ -11,8 +12,8 @@
 //=============================================================================================open db
 $db = new MyDB();
 
-$flag=$_GET["flag"];
-$uname=$_GET["name_ID"];
+$flag=$_POST["flag"];
+$uname=$_SESSION["name_ID"];
 $flag=(int)$flag;
 
 //find which list the user had, in order to update it or delete
@@ -34,7 +35,7 @@ if($flag==0){ //update list
         	
 	if($numcheck!=0){ //if the list has been fetched then we return
 	   $db->close();
-	   header("Location: Client_main_submitted.php?update=2&name_ID=$uname");
+	   header("Location: Client_main_submitted.php?update=2");
 	}
 
 
@@ -48,7 +49,7 @@ EOF;
 	      echo $db->lastErrorMsg();
 	   } 
 		$db->close();
-		header("Location: Client_main_submitted.php?update=1&name_ID=$uname");
+		header("Location: Client_main_submitted.php?update=1");
 	}
 
 
@@ -62,7 +63,7 @@ EOF;
 	      echo $db->lastErrorMsg();
 	   } 
 	   $db->close();
-	   header("Location: Client_main_submitted.php?update=1&name_ID=$uname");
+	   header("Location: Client_main_submitted.php?update=1");
 	}
 
 	//update both fields
@@ -97,7 +98,7 @@ EOF;
 	 echo $db->lastErrorMsg();
     } 
 
-   header("Location: Client_main.php?flag=3&name_ID=$uname");
+   header("Location: Client_main.php?flag=3");
 }
 
 ?>

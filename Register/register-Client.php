@@ -9,11 +9,11 @@
         
 <?php #Adding the correct title at the label for updating or for creating a new account
 
-        $newflag=$_GET["flag"]; 
-		$uname=$_GET["name_ID"];
+        $newflag=$_POST["flag"]; 
+		$uname=$_POST["name_ID"];
 		$newflag=(int)$newflag;
 		//bruteforcing it to update
-		$newflag=2;
+		//$newflag=2;
 		
 		if ($newflag==2){//means updating
 		?>

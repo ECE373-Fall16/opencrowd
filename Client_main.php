@@ -22,7 +22,7 @@
 		<input type="hidden" name="flag" value="<?php echo "$newflag";?>"/>
 		<input type="submit" value="Home"/>
 		</form>
-		<form action="./Register/register-Client.php" method="GET">
+		<form action="./Register/register-Client.php" method="POST">
 		<input type="hidden" name="name_ID" value="<?php echo "$uname";?>"/>
 		<input type="hidden" name="flag" value=2>
 		<input type="submit" value="Update Information"/>

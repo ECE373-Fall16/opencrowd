@@ -24,9 +24,6 @@
   $olduname=$_POST["oldName_ID"];//this is the actual username
   $firstname=$_POST["firstname"];
   $lastname=$_POST["lastname"];
-  //$uname=$_POST["name_ID"]; // Cannot update username
-  $pass=$_POST["password"];
-  $confirm=$_POST["confirm"];
   $phone=$_POST["phone"];
   $street=$_POST["street"];
   $city=$_POST["city"];
@@ -145,7 +142,7 @@ EOF;
     	   //$db->close();
     	   //echo "Status should be completed! Here we can link to other file";
     	   $db->close();
-    	   header("Location: ../Client_main.php?flag=0&name_ID=$olduname");
+    	   header("Location: ../Client_main.php?flag=2&name_ID=$olduname");
         }
        
    }else{//it is a driver then
@@ -231,7 +228,7 @@ EOF;
 	   //$db->close();
 	   //echo "Status should be completed! Here we can link to other file";
 	   $db->close();
-	   header("Location: ../Driver_main.php?flag=0&name_ID=$uname");
+	   header("Location: ../Driver_main.php?flag=2&name_ID=$uname");
     
    }
    

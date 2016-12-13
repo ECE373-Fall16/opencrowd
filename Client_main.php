@@ -36,15 +36,37 @@
                     </div>
                 </header>
             </div>
+
+            <h3> Welcome to LettuceBuy <?php echo "$uname";?>! </h3> <br/>
+	    <h3> Please enter an item by using the drop down list </h3><br/>
 	
 	<?php #Displaying the list of items that have been selected
 	session_start();
 	$newvar=$_SESSION["listItem"];
 
 	echo "Your List: $newvar";
-	?>
 
-	<form action="addupdel.php" method= "POST">
+	#displaying  address info
+	/*
+	class MyDB extends SQLite3
+	   {
+		function __construct()
+		{
+	 	 $this->open('./databases/lettucebuy.db');//opened my database
+		}
+	   }
+	
+   	$db = new MyDB();
+	   if(!$db){ //checking if doesn't exist
+		echo $db->lastErrorMsg();
+	   } else {
+		//echo "Opened database for login check for clients!!!<br>";
+	   }
+	   $returned_set = $db->query("SELECT * FROM list WHERE USERNAME='$uname';");
+	   $entry = $returned_set->fetcharray();
+	   $addres = $entry['ADDRESS'];
+		*/
+	?>
 
 
         <div class="grey-background">
@@ -54,14 +76,26 @@
                     <div class="column6">
 			<?php 
 			$flag=$_GET["flag"];
-			if ($flag==1)echo "Please select an item or choose a valid quantity<br>";
+			$flag=(int)$flag;
+			if ($flag==1){?>
+				<p class=""><font color="red">Please select an item or choose a valid quantity</font></p>
+			<?php}
+			elseif($flag==3){?>
+				<p class=""><font color="red">The item already exists in your current list, please delete and update again</font></p>
+			<?php
+			}
 			?>
+
                         <p class="">Make a new order or update your current one</p>
-                        <div class="row">
+
+			<form action="addupdel.php" method= "POST">
+
+			<div class="row">
                             <div class="column3">
                                 <div class="barter-container">
                                         <div class="ui fluid search selection dropdown barter-items">
                                           <input type="hidden" name="item">
+                                          <input type="hidden" name="flag" value=1>
                                           <i class="dropdown icon"></i>
                                           <div class="default text">Items</div>
                                           <div class="menu">
@@ -73,9 +107,11 @@
                                 </div>
                             </div>
                             <div class="column2">
-                                <input type="number" id="item-number" class="small-fld" name="quantity" value="0" placeholder="Number ">    
+                                <input type="number" id="item-number" class="small-fld" name="quantity" value="0" placeholder="Number">
                             </div>
                         </div>
+
+
                         <div class="row">
                             <div class="column2">
                                 <div class= btn-container>
@@ -85,10 +121,29 @@
 				</form>
 
                             </div>
-                             <div class="column2">
-                                <div class= btn-container>
+				<form action="addupdel.php" method = "POST">
+
+				<div class="row">
+				    <div class="column3">
+					<div class="barter-container">
+						<div class="ui fluid search selection dropdown barter-items">
+						  <input type="hidden" name="item">
+						  <input type="hidden" name="flag" value=2>
+						  <i class="dropdown icon"></i>
+						  <div class="default text">Items</div>
+						  <div class="menu">
+						  <div class="item">Apple</div>
+						  <div class="item">Banana</div>
+						  <div class="item">Cherry</div>
+						  </div>
+						</div>
+					</div>
+				<div class="column2">
+					<div class= btn-container>
                                     <input onClick="deleteList()" type="submit" class="large-btn large-magnify" value="Delete Items">
                                 </div>
+			   </form>
+
                             </div>
                         </div>  
 
@@ -98,6 +153,13 @@
                         </div>
                         <div class="btn-container">
                             <form action="/newlist.php" method= "POST">
+			
+	                             Any Store Preference?
+				<div class="barter-container">
+            	                <input type="text" id="item-address" class="small-fld" name="address" value=" " placeholder="Number">
+				</div>
+
+
                                 <input type="submit" class="large-btn large-magnify" value="Submit List">
                             </form>
                         </div>

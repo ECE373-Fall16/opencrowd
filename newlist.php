@@ -15,9 +15,9 @@
 
 $uname=$_SESSION["name_ID"];
 //$items=$_POST["items"];
-//$address=$_POST["address"];
-$item=json_decode($_POST["itemsList"]);
-$itemC=json_decode($_POST["itemsCount"]);
+//could get items from session:
+$items=$_SESSION["listItem"];
+$address=$_POST["address"];
 
 //here we have items and number respectively
 $stuff=var_dump($item[0]);
@@ -54,12 +54,12 @@ EOF;
       echo $db->lastErrorMsg();
    } else {
         $db->close();
-//	header("Location: Client_main_submitted.php");
+	header("Location: Client_main_submitted.php");
    }
 } 
 else{ //user already had list which means $check was a number different than -1
    $db->close();
-   //header("Location: Client_main.php?flag=1");
+   header("Location: Client_main.php?flag=1");
 }
 ?>
 </body>

@@ -1,9 +1,6 @@
 language: php
-sudo: required
-dist: trusty
-group: edge
 php:
-
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install php5 sqlite3
+- 5.5
+- 5.4
+- hhvm
+script: phpunit Test.php

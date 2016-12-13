@@ -37,9 +37,9 @@ include 'client_register.php';
 $db = new MyDB();
 
 $drivret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname' AND PASSWORD='$pass';");
-//	if($drivret!=1){ //neither client nor driver
+	if($drivret!=1){ //neither client nor driver
 		exit(2);
-//	}
+	}
 
 
 $db->close();

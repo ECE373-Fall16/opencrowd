@@ -51,6 +51,7 @@
 	if($check==-1){ //does not have an active list
 		session_start();//start session
 		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+		$_SESSION["items"]="";
 		$_SESSION["logout"]=0;
 		$db->close();
 		header("Location:../Client_main.php?flag=0"); //user does not have a list
@@ -59,6 +60,7 @@
 
 		session_start();	
 		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+		$_SESSION["items"]="";
 		$_SESSION["logout"]=0;
 		$db->close();
 		header("Location:../Client_main_submitted.php?update=0");

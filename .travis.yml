@@ -1,4 +1,4 @@
 language: php
 php:
 - 5.5
-script: testing/tester.php 
+script: testing/tester.sh

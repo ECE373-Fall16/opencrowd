@@ -35,24 +35,12 @@ $_POST["answer"]='hi man i fuk you';
 
 include 'client_register.php';
 
+/*
 $returned_set = $db->querySingle("SELECT * FROM client WHERE USERNAME='cat';");
 $entry = $returned_set->fetcharray();
-
-
-
-
-
-
-
-/*
-$db = new MyDB1();
- $sqldisplay =<<<EOF
-      select * from clients;
-EOF;
-
-$ret = $db->exec($sqldisplay);
-echo $ret;
-$db->close();
 */
+
+
+
 
 ?>

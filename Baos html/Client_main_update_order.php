@@ -51,6 +51,7 @@ session_start();
                         <div class="row">    
                         <div class="column3">
                             <h1 id="topping">Current Order</h1>
+				<div class="barter-container">
 			<?php
 				       class MyDB extends SQLite3
 					 {
@@ -116,7 +117,7 @@ session_start();
 				}
 
 			?>
-
+				</div>
                         </div>
                         <div class="column5">
                                 <h1 id="topping">Add more items to current order</h1>
@@ -155,15 +156,24 @@ session_start();
                     </div>
                 </div>  
                     </div>
-                    <div class="column3">
-                            <div id="barter-list" class="ui list">
-                            </div>
-                            <div class="btn-container">
-                                <form action="/register-Driver.html" method= "GET">
-                                    <input type="submit" class="large-btn large-magnify" value="Add to Order ">
-                                </form>
-                            </div>
+                   <div class="column3">
+                        <div class="barter-container" >
+                            <h1 id="topping">Current Status :</h1>
+                            <!-- status php -->
+                        </div> 
+                        <div id="barter-list barter-container" class="ui list">
                         </div>
+                        <div class="btn-container">
+                            <form action="/register-Driver.html" method= "GET">
+                                <input type="submit" class="large-btn large-magnify" value="Add to Order ">
+                            </form>
+                        </div>
+			 <div class="btn-container">
+                            <form action="" method= "GET">
+                                <input type="submit" class="large-btn large-magnify" value="Delete Order">
+                            </form>
+                        </div>
+                    </div>
                 </div>
                    
             </div>

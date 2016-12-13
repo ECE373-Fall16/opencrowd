@@ -88,7 +88,7 @@
         </h4> 
 
 	<?php//delete button?>
-	<form action="updatedelete.php" method="POST">
+	<form action="delete.php" method="POST">
 	<input type="hidden" name="flag" value="<?php $del=1;echo$del;?>"/>
 	<input type="submit" value="Delete Your List"/>
 	</form> 

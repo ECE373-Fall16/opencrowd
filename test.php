@@ -1,10 +1,7 @@
 <?php 
 
-   $headers="From:lettucebuy@gmail.com".'\r\n';
-   $subject = "Signup";
-   $message= "
-	Thanks for signing up!";
-   $to = "lettucebuy@gmail.com";
-   $mailsend=mail($to,$subject,$message,$headers);
+	$stuff="lots, of, stuff";
+	$newstuff=str_replace("lots, ","","$stuff");
+	echo $newstuff;
 
 ?>

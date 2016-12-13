@@ -14,8 +14,14 @@
    $db = new MyDB();
 
 $uname=$_SESSION["name_ID"];
-$items=$_POST["items"];
-$address=$_POST["address"];
+//$items=$_POST["items"];
+//$address=$_POST["address"];
+$item=json_decode($_POST["itemsList"]);
+$itemC=json_decode($_POST["itemsCount"]);
+
+//here we have items and number respectively
+$stuff=var_dump($item[0]);
+echo "stuff is $stuff";
 
 
  $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
@@ -48,12 +54,12 @@ EOF;
       echo $db->lastErrorMsg();
    } else {
         $db->close();
-	header("Location: Client_main_submitted.php");
+//	header("Location: Client_main_submitted.php");
    }
 } 
 else{ //user already had list which means $check was a number different than -1
    $db->close();
-   header("Location: Client_main.php?flag=1");
+   //header("Location: Client_main.php?flag=1");
 }
 ?>
 </body>

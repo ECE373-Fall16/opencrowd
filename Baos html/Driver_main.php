@@ -26,6 +26,7 @@
         <div class= "nav">
             <ul id="menu1">
               <li><a href = "<?php echo "Driver_main.php";?>">Home</a></button><li>
+              <li><a href = "<?php echo "updateInfo.php?update=2";?>">Home</a></button><li>
             </ul>
             
             <ul id="menu2">

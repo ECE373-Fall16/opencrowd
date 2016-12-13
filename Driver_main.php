@@ -7,7 +7,8 @@
     <head>
         <title>Driver Home Page</title>
         <link rel = "stylesheet" type = "text/css" href="navigation-style.css"/>
-    </head>
+
+    <meta http-equiv="refresh" content="5"></head>
     
     <body>
     <?php
@@ -26,6 +27,7 @@
         <div class= "nav">
             <ul id="menu1">
               <li><a href = "<?php echo "Driver_main.php";?>">Home</a></button><li>
+              <li><a href = "<?php echo "/Regiser/register-Driver.php?update=2";?>">Update Profile</a></button><li>
             </ul>
             
             <ul id="menu2">
@@ -43,13 +45,24 @@
         $returned_set = $db->query("SELECT * FROM list WHERE status='incomplete';");
         while ($entry = $returned_set->fetcharray()) {
             echo 'ID: ' . $entry['ID']; 
+	    $ID =  $entry['ID']; 
             echo '<html><br></html>';
 	    echo 'Items: ' . $entry['items'];
             echo '<html><br></html>';
 	    echo 'Address of Store: ' . $entry['address'];
             echo '<html><br></html>';
+	    $addressCqu = $db->query("SELECT street FROM clients WHERE CURRENTLIST=$ID";
+	    $street = $addressCqu->fetcharray();
+	    $addressCqu = $db->query("SELECT city FROM clients WHERE CURRENTLIST=$ID";
+	    $city = $addressCqu->fetcharray();
+	    $addressCqu = $db->query("SELECT state FROM clients WHERE CURRENTLIST=$ID";
+	    $state = $addressCqu->fetcharray();
+	    echo 'Address for delivery:' . $street["street"] . ',' . $city["city"] . ',' . $state["state"];
             echo '<html><br></html>';
+	    
+
         }
+
         ?>
         </h4> 
         <form action="driver_fetch.php" method="POST">

@@ -11,7 +11,7 @@
       }
    }
    //===============open db
-   $db1 = new MyDB();
+   $db = new MyDB();
    if(!$db){
       echo $db->lastErrorMsg();
    } else {
@@ -36,9 +36,9 @@
       LOGIN        INTEGER
       );
 EOF;
-   $ret = $db1->exec($sql);
+   $ret = $db->exec($sql);
    if(!$ret){
-      echo $db1->lastErrorMsg();
+      echo $db->lastErrorMsg();
    } else {
       echo "Table for drivers created successfully\n";
    }
@@ -62,9 +62,9 @@ EOF;
       );
 EOF;
 
-   $ret = $db1->exec($sql);
+   $ret = $db->exec($sql);
    if(!$ret){
-      echo $db1->lastErrorMsg();
+      echo $db->lastErrorMsg();
    } else {
       echo "Table for clients created successfully\n";
    }
@@ -77,13 +77,12 @@ EOF;
       status TEXT NOT NULL);
 EOF;
 
-   $ret = $db1->exec($sql);
+   $ret = $db->exec($sql);
    if(!$ret){
-      echo $db1->lastErrorMsg();
+      echo $db->lastErrorMsg();
    } else {
       echo "Table for lists created successfully\n";
    }
-
    $db->close();
    //==================end create table
 ?>

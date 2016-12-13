@@ -51,19 +51,20 @@
 	if($check==-1){ //does not have an active list
 		session_start();//start session
 		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
-		$_SESSION["items"]="";
+		$_SESSION["listItem"]="";
 		$_SESSION["logout"]=0;
 		$db->close();
-		header("Location:../Client_main.php?flag=0"); //user does not have a list
+		header("Location: ../Client_main.php"); //user does not have a list
+		//header("Location:../Client_main.php?flag=0"); //user does not have a list
 	}
 	else{ //user has an active list
 
 		session_start();	
 		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
-		$_SESSION["items"]="";
+		$_SESSION["listItem"]="";
 		$_SESSION["logout"]=0;
 		$db->close();
-		header("Location:../Client_main_submitted.php?update=0");
+		header("Location: ../Client_main_submitted.php?update=0");
 	} 	
    }
    elseif($ret==0){ //if not a client
@@ -84,14 +85,14 @@
 			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
 			$_SESSION["logout"]=0;
 			$db->close();
-			header("Location:../Driver_main.php?flag=0"); //user does not have a list
+			header("Location: ../Driver_main.php?flag=0"); //user does not have a list
 		  }
 		  else{
 			session_start();
 			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
 			$_SESSION["logout"]=0;
 			$db->close();
-			header("Location:../Driver_main_fetched.php?update=0");
+			header("Location: ../Driver_main_fetched.php?update=0");
 		} //user has an active list
 
 	}

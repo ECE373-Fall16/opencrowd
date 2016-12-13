@@ -52,6 +52,7 @@
 	        	   <h4></font>
                         <div class="barter-container">
                             <p class="ad-txt">Don't want to waste your time on grocery shopping!</p>
+
                         </div>
                         <div class= btn-container>
                             <form action="/Register/register-Client.php">

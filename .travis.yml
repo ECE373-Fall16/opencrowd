@@ -6,4 +6,4 @@ php:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install php5-sqlite sqlit3 php5
+  - sudo apt-get install php5 sqlite3

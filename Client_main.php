@@ -37,7 +37,7 @@
                 </header>
             </div>
 	
-	<?php #testing 
+	<?php #Displaying the list of items that have been selected
 	session_start();
 	$newvar=$_SESSION["listItem"];
 
@@ -52,6 +52,10 @@
                 <h1 id="home">New future of grocery</h1>
                 <div class="row">
                     <div class="column6">
+			<?php 
+			$flag=$_GET["flag"];
+			if ($flag==1)echo "Please select an item or choose a valid quantity<br>";
+			?>
                         <p class="">Make a new order or update your current one</p>
                         <div class="row">
                             <div class="column3">

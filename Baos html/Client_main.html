@@ -76,7 +76,9 @@
                         <div id="barter-list" class="ui list">
                         </div>
                         <div class="btn-container">
-                            <form action="/register-Driver.html" method= "GET">
+                            <form action="/newlist.php" method= "POST">
+				<input id="itemsList" name="itemsList"> 
+				<input id="itemsCount" name="itemsCount"> 
                                 <input type="submit" class="large-btn large-magnify" value="Submit ">
                             </form>
                         </div>
@@ -89,7 +91,10 @@
         $(".dropdown.barter-items").dropdown();
         var itemsList = [];
         var itemsCount = {};
-        
+
+	JSON.stringify(itemsList);
+	JSON.stringify(itemsCount);
+
         var generateElement = function(params){
             var parent = $(params.selector);
             if (!parent) {
@@ -120,5 +125,6 @@
             itemsCount = {};
             $('#barter-list').empty();    
         }
+
     </script>
 </html>

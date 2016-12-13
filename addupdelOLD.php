@@ -13,23 +13,25 @@ $newItem=$_POST["item"];
 $newItem=(string)$newItem;
 
 
-$flag=$_POST["flag"];
-$flag=(int)$flag;
+//$flag=$_POST["flag"];
+//$flag=(int)$flag;
 
-echo $flag;
 //getting the new items that is going to be added
 //if($flag==1){ //adding items
-//	$pos = strpos($items,$newItem);
-//	$pos=(int)$pos;
-//	echo "$newItem<br>";
-//	echo "$items<br>";
-//	echo $pos;
-	if(strpos($items,$newItem)!== false){//found in string, send flag back
+	//$pos = strpos($items,$newItem);
+	//$pos=(int)$pos;
+	//echo "$newItem<br>";
+	//echo "$items<br>";
+	//echo $pos;
+	/*
+	if($pos!=0){//found in string, send flag back
 
 		header("Location: Client_main.php?flag=3"); //ask them to delete first
 	}
+	*/
+
 	//$concat="$items"
-	elseif ($items == "" && $newItem != "" && $quan > 0){// checking  1. empty list so correct concatanation  2. newItem is selected 3. quantity is not zero or negative
+	if ($items == "" && $newItem != "" && $quan > 0){// checking  1. empty list so correct concatanation  2. newItem is selected 3. quantity is not zero or negative
 		$items .= "$newItem  $quan";
 	}
 	elseif ($newItem != "" && $quan > 0){
@@ -49,7 +51,7 @@ echo $flag;
 	$newvar=$_SESSION["listItem"];
 
 	//echo "the session variable is now: $newvar";
-	if ($newItem != "" && $quan > 0)//header("Location:./Client_main.php");
+	if ($newItem != "" && $quan > 0)header("Location:./Client_main.php");
 //}
 
 //elseif($flag==2){ //delete

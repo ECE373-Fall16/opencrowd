@@ -9,7 +9,7 @@
 //	echo $newstuff;
 	
 	$my = "haha thats funny";
-	$sub = substr($my, 5);
+	$sub = strpos($my,"haha" );
 	echo $sub;
 
 ?>

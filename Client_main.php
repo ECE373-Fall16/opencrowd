@@ -27,7 +27,7 @@
                         </div>
                         <div class = "column5">
 
-              		<li><a href = "<?php echo "Driver_main.php";?>">Home</a></button><li>
+              		<li><a href = "<?php echo "Client_main.php";?>">Home</a></button><li>
               		<li><a href = "<?php echo "/Register/register-Client.php?update=2";?>">Update Profile</a></button><li>
                             <ul>
             		  <li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
@@ -46,8 +46,9 @@
 
 	echo "Your List: $newvar";
 
-	#displaying  address info
-	/*
+	//displaying  address info--------------------------------------------
+
+	
 	class MyDB extends SQLite3
 	   {
 		function __construct()
@@ -62,10 +63,20 @@
 	   } else {
 		//echo "Opened database for login check for clients!!!<br>";
 	   }
-	   $returned_set = $db->query("SELECT * FROM list WHERE USERNAME='$uname';");
+
+	    $uname=$_SESSION['name_ID'];
+	    $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
+ 	    $listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
+            $check = $listnum['CURRENTLIST'];
+	    $check = (int)$check; //have int form of current list
+
+
+	   $returned_set = $db->query("SELECT * FROM list WHERE ID='$check';");
 	   $entry = $returned_set->fetcharray();
 	   $addres = $entry['ADDRESS'];
-		*/
+	   echo "The store address is : $check";
+		//----------------------------------------------------------------
+
 	?>
 
 
@@ -77,10 +88,12 @@
 			<?php 
 			$flag=$_GET["flag"];
 			$flag=(int)$flag;
-			if ($flag==1){?>
+			if ($flag==1){
+			?>
 				<p class=""><font color="red">Please select an item or choose a valid quantity</font></p>
-			<?php}
-			elseif($flag==3){?>
+			<?php
+			}elseif($flag==3){
+			?>
 				<p class=""><font color="red">The item already exists in your current list, please delete and update again</font></p>
 			<?php
 			}
@@ -89,13 +102,13 @@
                         <p class="">Make a new order or update your current one</p>
 
 			<form action="addupdel.php" method= "POST">
+                        <input type="hidden" name="flag" value="1">
 
 			<div class="row">
                             <div class="column3">
                                 <div class="barter-container">
                                         <div class="ui fluid search selection dropdown barter-items">
                                           <input type="hidden" name="item">
-                                          <input type="hidden" name="flag" value=1>
                                           <i class="dropdown icon"></i>
                                           <div class="default text">Items</div>
                                           <div class="menu">

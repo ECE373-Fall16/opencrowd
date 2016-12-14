@@ -98,7 +98,7 @@ EOF;
 
 
 			       // $returned_num = $db->query("SELECT * FROM drivers WHERE USERNAME='$uname';");
-				echo "You selected list with ID:$data<br>";
+				echo "You selected list with ID: $data<br>";
 				echo "Here are the details:-<br>";	
 				$returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
 				while ($entry = $returned_set->fetcharray()) {
@@ -173,6 +173,9 @@ EOF;
 
   //      ?>
 			</h3> 
+		<?php 
+			if($status!="completed"){
+		?>
                         </div> 
                                 <h3 id="topping">Update order current status</h3>  
                                 <div class="btn-container"> <!--Maybe you need to write 1 type of bottum php that change the status of the order then copy and modify it a bit for each buttom -->
@@ -189,6 +192,9 @@ EOF;
                                 </div>
                             </form>
                         </div>
+		<?php 
+		}
+		?>
                 </div>
                
             </div>

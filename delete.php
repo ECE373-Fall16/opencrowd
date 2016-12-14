@@ -26,7 +26,7 @@ $uname=$_SESSION["name_ID"];
    $reset=-1; //temp for holding -1
 
    $sqldel =<<<EOF
-	DELETE from list WHERE ID=$check 
+	DELETE from list WHERE ID=$check; 
 EOF;
   
    $ret = $db->exec($sqldel);
@@ -35,7 +35,7 @@ EOF;
     } 
 
    $listreset =<<<EOF
-	UPDATE clients SET CURRENTLIST=$reset
+	UPDATE clients SET CURRENTLIST=$reset;
 EOF;
    $ret = $db->exec($listreset);
     if(!$ret){

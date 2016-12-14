@@ -23,7 +23,7 @@ $listnum=$entry["CURRENTLIST"];
 $listnum=(int)$listnum;
 
     $updatestat=<<<EOF
-	UPDATE list SET status="$status" WHERE ID=$listnum	
+	UPDATE list SET status="$status" WHERE ID=$listnum;	
 
 EOF;
 

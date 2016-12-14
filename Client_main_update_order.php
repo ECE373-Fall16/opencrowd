@@ -75,8 +75,13 @@ session_start();
 				$entry = $entry->fetcharray();
 				$data = $entry['CURRENTLIST'];
 				$data = (int)$data;
-				echo "$data";//good
+				//echo "$data";//good
 
+				if($update==15){
+					$recentcart=$db->query("SELECT items FROM list WHERE ID=$data;");
+					$getting = $recentcart->fetcharray();
+					$_SESSION["listItem"]=$getting["items"];
+				}
 
 				//checking if list has been fetched or not
 				 $stat = $db->query("SELECT status FROM list WHERE ID=$data;");//NEED TO CHECK FOR INCOMPLETE ONES?
@@ -93,7 +98,7 @@ session_start();
 				if($update==1)echo "Your list has been successfully updated<br>";
 				elseif($update==2)echo "Your list has been fetched by a driver, please call them if any changes need to be made to your list.<br>";
 
-				if($update==0 || $update==1){ //either coming from login or after updating list
+				if($update==0 || $update==1 || $update==15){ //either coming from login or after updating list
 					echo "Your list is available to all drivers<br>";
 					echo "Here are the details of your list:-<br>";	
 					echo '<html><br></html>';
@@ -106,15 +111,20 @@ session_start();
 
 				$returned_set = $db->query("SELECT address FROM list WHERE ID=$data;");
 				$entry = $returned_set->fetcharray();
-				$returned_ID = $db->query("SELECT CURRENLIST FROM clients WHERE USERNAME=$uname;");
+				$returned_ID = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
 				$listID = $returned_ID->fetcharray();
 				    echo "ID: " . $listID["CURRENTLIST"];
 				    echo '<html><br></html>';
 				    echo "Items: " . "$newvar";
 				    echo '<html><br></html>';
-				   if($entry['address']==""){echo "Address/Name of Store: None";echo '<html><br></html>';}
-				    else{echo 'Address/Name of Store: ' . $entry['address'];
-				    echo '<html><br></html>';}
+				   if($entry['address']==""){
+					echo "Address/Name of Store: None";
+					echo '<html><br></html>';
+				    }
+				    else{
+				    echo 'Address/Name of Store: ' . $entry['address'];
+				    echo '<html><br></html>';
+					}
 				//}
 				//----------------------------------------------------------------------------------
 
@@ -152,7 +162,8 @@ session_start();
            		//echo "$status";
 
 			//when driver presses confirm button:
-			if ($status == "completed"){?>
+			if ($status == "completed"){
+			?>
 				<font color='blue'><h2>Your groceries have arrived! Please confirm below: </font><br></h2>
 				<form action="Client_main_done.php">
 				<input type="submit" value="My groceries have arrived"/>
@@ -162,9 +173,7 @@ session_start();
 
 
 			//$flag="incomplete";#FLAG IS WORKING
-			$flag="$status";
-			echo "the flag is: $flag";
-			if ($flag=="incomplete"){
+			if ($status=="incomplete"){
 		/*
 			//flags for errors 
 
@@ -263,7 +272,7 @@ session_start();
 
                    <div class="column3">
                         <div class="barter-container" >
-                            <h1 id="topping">Current Status of your Order:</h1>
+                            <h1 id="topping">Current Status of your Order:<?php echo "$status";?></h1>
                             <!-- status php -->
 	<h3>	
 	<?php
@@ -282,7 +291,7 @@ session_start();
            $entry = $returned_set->fetcharray();
            $status = $entry['status'];
 */
-           echo "$status";
+//           echo "$status";
 	   //---------------------------------------------------
 	
 

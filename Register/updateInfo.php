@@ -62,6 +62,7 @@ else{ //we found an username
               $sql =<<<EOF
                 UPDATE clients SET FIRSTNAME = "$firstname" WHERE USERNAME = "$olduname"
 EOF;
+		$_SESSION["firstname"]=$firstname;
         }
         
         if(!empty($lastname)){
@@ -69,6 +70,8 @@ EOF;
               $sql2 =<<<EOF
                 UPDATE clients SET LASTNAME = "$lastname" WHERE USERNAME = "$olduname"      
 EOF;
+		//update session varaible:
+		$_SESSION["lastname"]=$lastname;
         }
         /*
         if(!empty($pass)){//password gets checked with confirm

@@ -45,7 +45,18 @@ session_start();
 		
        	    <div class= "nav">
             <ul id="menu2">
-                <li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
+				<?php 		
+			if($newflag==2){
+			?>
+                	<li><a href = "<?php echo "../Driver_main_new.php";?>"> Go Back</a></li>
+			<?php
+			}else{
+			?>
+                	<li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
+			<?php
+			}
+				?>
+
             </ul>
 	    </div>         
 	    </div>

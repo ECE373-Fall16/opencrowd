@@ -19,7 +19,6 @@ $uname=$_SESSION["name_ID"];
 $items=$_SESSION["listItem"];
 $address=$_POST["address"];
 $button=$_POST["button"];//Add to Order || Delete Order
-echo "$button";
 
 //here we have items and number respectively
 //$stuff=var_dump($item[0]);
@@ -52,7 +51,7 @@ EOF;
 	  $rollid = $db->lastInsertRowID();
 
 	  $clientschange =<<<EOF
-	      UPDATE clients SET CURRENTLIST = $rollid WHERE USERNAME = "$uname"
+	      UPDATE clients SET CURRENTLIST = $rollid WHERE USERNAME = "$uname";
 EOF;
 
 		 $ret = $db->exec($clientschange);
@@ -79,7 +78,7 @@ elseif($button=="Add to Order"){
 	echo "$button";
 	
 	$clientschange =<<<EOF
-	      UPDATE list SET items="$items" WHERE ID=$num
+	      UPDATE list SET items="$items" WHERE ID=$num;
 EOF;
 	echo "$button";
 		 $ret = $db->exec($clientschange);

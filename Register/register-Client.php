@@ -41,7 +41,18 @@ session_start();
                     </div>
                     <div class = "column5">
                      <ul id="menu2">
+				<?php 		
+				if($newflag==2){
+				?>
                 		<li><a href = "<?php echo "../Client_main.php";?>"> Go Back</a></li>
+				<?php
+				}else{
+				?>
+                		<li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
+				<?php
+				}
+				?>
+				
             		</ul>
 			</div>
                 </div>
@@ -79,7 +90,10 @@ session_start();
 		      if($flag==3){echo "Please fill out all of the fields below";
 			     echo "<br>";}
 			
-		     else{
+		     elseif($newflag==2){
+				echo "Fill out the fields that you want to be updated";
+
+			}else{
 				  echo "*All fields are required";
 			       	  echo "<br>";
 			}
@@ -120,9 +134,10 @@ session_start();
 			       <h5><font color="red">
 				<?php $flag=$_GET["flag"];
 				      $flag=(int)$flag;
+				      $uname=$_GET["name_ID"];
 				      
 				      if($flag==4){	
-				        $uname=$_SESSION["name_ID"];
+				        $uname=$_GET["name_ID"];
 					     echo "Sorry '$uname' has been taken, try another one";
 				      }
 				?>
@@ -258,7 +273,7 @@ session_start();
                                 <div class = "para-input">
                                     <select  name="question" class="small-fld">
                                     <option value="0">Select a question from the following options.</option>
-                                    <option value="1">Who's your daddy?</option>
+                                    <option value="1">Who is your favorite movie's protagonist?</option>
                                     <option value="2">What is your favorite color?</option>
                                     <option value="3">What is your mother's favorite aunt's favorite color?</option>
                                     <option value="4">Where does the rain in Spain mainly fall?</option>

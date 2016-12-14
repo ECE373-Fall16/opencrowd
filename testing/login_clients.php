@@ -1,12 +1,12 @@
 <?php
-   class MyDB extends SQLite3
+/*   class MyDB extends SQLite3
    {
 	function __construct()
 	{
 	  $this->open('../databases/lettucebuy.db');//opened my database
 	}
    }
-	
+*/	
    $db = new MyDB();
    if(!$db){ //checking if doesn't exist
 	echo $db->lastErrorMsg();
@@ -33,7 +33,7 @@
 	}
 	else{
 		$db->close();
-		header("Location: forgot-password.php?error=Username found, please reset your password below&flag=1");
+		$result="Location: forgot-password.php?error=Username found, please reset your password below&flag=1";
 	}
 	
 }
@@ -49,19 +49,19 @@
       $check = (int)$check; //have int form of current list 
 
 	if($check==-1){ //does not have an active list
-		session_start();//start session
-		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
-		$_SESSION["logout"]=0;
+		//session_start();//start session
+	//	$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+	//	$_SESSION["logout"]=0;
 		$db->close();
-		header("Location:../Client_main.php?flag=0"); //user does not have a list
+		$result="Location:../Client_main.php?flag=0"; //user does not have a list
 	}
 	else{ //user has an active list
 
-		session_start();	
-		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
-		$_SESSION["logout"]=0;
+		//session_start();	
+	//	$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+	//	$_SESSION["logout"]=0;
 		$db->close();
-		header("Location:../Client_main_submitted.php?update=0");
+		$result="Location:../Client_main_submitted.php?update=0";
 	} 	
    }
    elseif($ret==0){ //if not a client
@@ -69,7 +69,7 @@
         $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
 	if($drivret==0){ //neither client nor driver
 		$db->close();
-		header('Location: ../Login-page.php?flag=1');//login_redirect.html
+		$result="Location: ../Login-page.php?flag=1";//login_redirect.html
 	}
         elseif ($drivret>0){ //driver
 		  $listnum = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME='$uname';");
@@ -78,18 +78,18 @@
  		  $check = (int)$check; //have int form of current list 
 
 	          if($check==-1){
-			session_start();	
-			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
-			$_SESSION["logout"]=0;
+	//		session_start();	
+	//		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+	//		$_SESSION["logout"]=0;
 			$db->close();
-			header("Location:../Driver_main.php?flag=0"); //user does not have a list
+			$result="Location:../Driver_main.php?flag=0"; //user does not have a list
 		  }
 		  else{
-			session_start();
-			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
-			$_SESSION["logout"]=0;
+	//		session_start();
+	//		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+	//		$_SESSION["logout"]=0;
 			$db->close();
-			header("Location:../Driver_main_fetched.php?update=0");
+			$result="Location:../Driver_main_fetched.php?update=0";
 		} //user has an active list
 
 	}

@@ -88,12 +88,10 @@ session_start();
 		<font color="red">
 		<?php //$flag=$_GET["flag"];
 		      if($flag==3){echo "Please fill out all of the fields below";
-			     echo "<br>";}
-			
-		     elseif($newflag==2){
-				echo "Fill out the fields that you want to be updated";
+			     echo "<br>";
+			}
 
-			}else{
+			else{
 				  echo "*All fields are required";
 			       	  echo "<br>";
 			}

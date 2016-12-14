@@ -107,7 +107,13 @@ EOF;
 				    echo '<html><br></html>';
 				    echo 'Items: ' . $entry['items'];
 				    echo '<html><br></html>';
+				    $address=$entry['address'];
+				    if($address==""){
+				    echo "Address of Store: " . "None";
+					}else{
 				    echo 'Address of Store: ' . $entry['address'];
+
+				    }
 				    echo '<html><br></html>';
 				}
 

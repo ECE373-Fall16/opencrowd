@@ -1,4 +1,5 @@
-<?php //flag=1-->quantity was negative
+<?php 
+      //flag=1-->quantity was negative
       //flag=2-->item did not exist in the cart to begin with
       //flag=3-->same item was added
       //flag=4-->Delete items
@@ -84,35 +85,49 @@ session_start();
 				}
 
 				//checking if list has been fetched or not
-				 $stat = $db->query("SELECT status FROM list WHERE ID=$data;");//NEED TO CHECK FOR INCOMPLETE ONES?
-				 $stat = $stat->fetcharray(); //getting the number of currentlist to be compared
+				 $statecheck = $db->query("SELECT status FROM list WHERE ID=$data;");//NEED TO CHECK FOR INCOMPLETE ONES?
+				 $stat = $statecheck->fetcharray(); //getting the number of currentlist to be compared
 				 $test = $stat['status'];
 				 
 				 $numcheck=strcmp($test,'fetched'); 
-					
+				$returned_list = $db->query("SELECT items FROM list WHERE ID=$data;");
+				$listdb = $returned_list->fetcharray();
+			        echo "Your List that driver sees: " . $listdb['items'] ."<br>";
+
 				if($numcheck==0){ //if the list has been fetched
 				   $update=2;
 				}
 
 
-				if($update==1)echo "Your list has been successfully updated<br>";
-				elseif($update==2)echo "Your list has been fetched by a driver, please call them if any changes need to be made to your list.<br>";
+				if($update==1)echo "Your list has been successfully updated.<br>";
+				//elseif($update==2){
+				elseif($test=="fetched"){
+						//if(strcmp("$listdb","$newvar")!=0){
+						if("$listdb"!="$newvar"){
+							echo "Your list was not modified, please call the driver to inform changes.";
+							echo '<html><br></html>';
+				    			echo '<html><br></html>';
+						}
+					echo "Your list has been fetched by a driver, please call them if any changes need to be made to your list.<br>";
+				    	echo '<html><br></html>';
+				}
 
 				if($update==0 || $update==1 || $update==15){ //either coming from login or after updating list
-					echo "Your list is available to all drivers<br>";
+					echo "Your list is available to all drivers.<br>";
 					echo "Here are the details of your list:-<br>";	
 					echo '<html><br></html>';
 				}
 				
 
 				//----------------------------------------- Text in the  CURRENT ORDER  box:
+				//$returned_list = $db->query("SELECT items FROM list WHERE ID=$data;");
+				//$listdb = $returned_list->fetcharray();
 				$newvar=$_SESSION["listItem"];
-			        echo "Your List: $newvar<br>";
-
 				$returned_set = $db->query("SELECT address FROM list WHERE ID=$data;");
 				$entry = $returned_set->fetcharray();
 				$returned_ID = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
 				$listID = $returned_ID->fetcharray();
+				    echo "Information of current list: <br>";
 				    echo "ID: " . $listID["CURRENTLIST"];
 				    echo '<html><br></html>';
 				    echo "Items in your cart: " . "$newvar";
@@ -130,10 +145,12 @@ session_start();
 
 
 				if($update==2){//list has been fetched, display driver info
+
 					$getinfo = $db->query("SELECT * FROM drivers WHERE CURRENTLIST=$data;"); //picking driver that has same ID
 					while ($info = $getinfo->fetcharray()){
 					 echo '<html><br></html>';
-					 echo 'Name: ' . $info['USERNAME'];
+					 echo 'Information of Driver: <br>';
+					 echo 'Name: ' . $info['FIRSTNAME']. " ". $info['LASTNAME'];
 					 echo '<html><br></html>';
 					 echo 'Phone Number: ' . $info['PHONE'];
 					 echo '<html><br></html>';

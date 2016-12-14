@@ -85,7 +85,7 @@ session_start();
 				      $flag=(int)$flag;
 				if($flag==3){echo "Please fill out all of the fields below";
 					echo "<br>";}
-				else{ 
+				elseif($newflag!=2){ 
 					echo "*All the fields are required";
 					echo "<br>";
 				}
@@ -119,6 +119,11 @@ session_start();
                                         </div>
                                      </div>        
                             </div>
+
+				<?php 
+                        if($newflag!=2){//updating and then dont show the choice to change the username, nor pass
+                         ?>
+
                             <p class="input-direction">Choose your username</p>
 			   <h5><font color="red">
 				<?php $flag=$_GET["flag"];
@@ -171,6 +176,11 @@ session_start();
                                     <div class="column1">
                                     </div>        
                                 </div> 
+
+				<?php
+                        }
+                        ?>
+
                              <p class="input-direction">Mobile phone</p>
                                 <div class="row">
                                     <div class="column6">
@@ -251,6 +261,11 @@ session_start();
                                         </div>
                                     </div>
                                 </div> 
+
+				<?php 
+                        if($newflag!=2){//updating and then dont show the choice to change  question
+                         ?>
+
                               <p class="input-direction">Select Your Security Questions:</p> 
                                 <div class = "para-input">
                                     <select  name="question" class="small-fld">
@@ -272,6 +287,10 @@ session_start();
                                     <div class="column1">
                                     </div>        
                                 </div> 
+
+				<?php
+                     }
+                         ?>
                             <div class="btn-container">
                             
                                  <?php #checking if it is a "update"	or "crate your account" button	

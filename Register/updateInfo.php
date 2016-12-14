@@ -154,6 +154,7 @@ EOF;
               $sql =<<<EOF
                 UPDATE drivers SET FIRSTNAME = "$firstname" WHERE USERNAME = "$olduname"
 EOF;
+		$_SESSION["firstname"]=$firstname;
         }
         
         if(!empty($lastname)){
@@ -161,6 +162,7 @@ EOF;
               $sql2 =<<<EOF
                 UPDATE drivers SET LASTNAME = "$lastname" WHERE USERNAME = "$olduname"      
 EOF;
+		$_SESSION["lastname"]=$lastname;
         }
         /*
         if(!empty($pass)){//password gets checked with confirm
@@ -226,7 +228,7 @@ EOF;
 	   //$db->close();
 	   //echo "Status should be completed! Here we can link to other file";
 	   $db->close();
-	   header("Location: ../Driver_main.php?flag=0");
+	   header("Location: ../Driver_main_new.php?flag=0");
     
    }
    

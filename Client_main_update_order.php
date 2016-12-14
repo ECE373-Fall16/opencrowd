@@ -1,4 +1,9 @@
-<?php
+<?php //flag=1-->quantity was negative
+      //flag=2-->item did not exist in the cart to begin with
+      //flag=3-->same item was added
+      //flag=4-->Delete items
+      //flag=5-->empty list entered
+
 session_start();
 ?>
 <!DOCTYPE  html>
@@ -8,6 +13,7 @@ session_start();
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="robots" content="index,follow">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="refresh" content="5">
 
         <title>Update Your Order</title>
         <script
@@ -146,12 +152,7 @@ session_start();
 			//$flag="incomplete";#FLAG IS WORKING
 			$flag="$status";
 			if ($flag=="incomplete"){
-			?>
-			<form action="addupdelOLD.php" method= "POST">
-                        <input type="hidden" name="adding" value="1">
-			<input type="hidden" name="listSubmited" value="1">
-
-			<?php
+		/*
 			//flags for errors 
 
                         $flag=$_GET["flag"];
@@ -167,11 +168,37 @@ session_start();
                         }elseif($flag==4){
                         ?>
                                 <p class=""><font color="red">The item has been deleted from your cart</font></p>
+*/			
+                        $flag=$_GET["flag"];
+                        $flag=(int)$flag;
+                        if ($flag==1){
+                        ?>
+                                <p class=""><font color="red">Please select an item or choose a valid quantity</font></p>
+                        <?php
+                         }elseif($flag==2){
+                        ?>
+                                <p class=""><font color="red">The item was not found in the cart</font></p>
+                        <?php
+                        }elseif($flag==3){
+                        ?>
+                                <p class=""><font color="red">The item already exists in your current list, please delete and update again</font></p>
+                        <?php
+                        }elseif($flag==4){
+                        ?>
+                                <p class=""><font color="red">The item has been deleted from your cart</font></p>
+                        <?php
+                        }elseif($flag==5){ //empty list was entered
+                        ?>
+                                <p class=""><font color="red">The item list was empty!</font></p>
                         <?php
                         }
+                        //endif
+?>
 
+			<form action="addupdel.php" method= "POST">
+                        <input type="hidden" name="adding" value="1">
+                        <input type="hidden" name="listSubmitted" value="1">
 
-                        //endif?>
                         <div class="column5">
                                 <h1 id="topping">Add more items to current order</h1>
                             <div class="row">
@@ -196,12 +223,12 @@ session_start();
                         <div class="row">
                             <div class="column2">
                                 <div class= btn-container>
-                                    <input onClick="addList()" type="submit" class="large-btn large-magnify" value="Add Item">
+                                    <input type="submit" class="large-btn large-magnify" name="button" value="Add Item">
                                 </div>
                             </div>
                              <div class="column2">
                                 <div class= btn-container>
-                                    <input onClick="deleteList()" type="submit" class="large-btn large-magnify" value="Delete Items">
+                                    <input onClick="deleteList()" type="submit" class="large-btn large-magnify" name="button" value="Delete Items">
                                 </div>
                             </div>
                         </div>  
@@ -249,14 +276,14 @@ session_start();
                         <div id="barter-list barter-container" class="ui list">
                         </div>
                         <div class="btn-container">
-                            <form action="/register-Driver.html" method= "GET">
-                                <input type="submit" class="large-btn large-magnify" value="Add to Order ">
-                            </form>
+			
+			    <form action="/newlist.php" method= "POST">
+                                <input type="submit" class="large-btn large-magnify" name="button" value="Add to Order">
                         </div>
 			 <div class="btn-container">
-                            <form action="" method= "GET">
-                                <input type="submit" class="large-btn large-magnify" value="Delete Order">
+                                <input type="submit" class="large-btn large-magnify" name="button" value="Delete Order">
                             </form>
+
                         </div>
                     </div>
                 </div>

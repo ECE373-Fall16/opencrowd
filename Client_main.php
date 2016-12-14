@@ -1,4 +1,13 @@
 <!DOCTYPE  html>
+
+
+<?php //flag=1-->quantity was negative
+      //flag=2-->item did not exist in the cart to begin with
+      //flag=3-->same item was added
+      //flag=4-->Delete items 
+      //flag=5-->empty list entered
+	?>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -29,26 +38,15 @@
 
               		<li><a href = "<?php echo "Client_main.php";?>">Home</a></button><li>
               		<li><a href = "<?php echo "/Register/register-Client.php?update=2";?>">Update Profile</a></button><li>
-                            <ul>
-            		  <li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
-                            </ul>
+            		<li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
                         </div>
                     </div>
                 </header>
-            </div>
+         
 
             <h3> Welcome to LettuceBuy <?php echo "$uname";?>! </h3> <br/>
-	    <h3> Please enter an item by using the drop down list </h3><br/>
-	
-	<?php #Displaying the list of items that have been selected
-	session_start();
-	$newvar=$_SESSION["listItem"];
-
-	echo "Your List: $newvar";
-
-	//displaying  address info--------------------------------------------
-
-	
+	    <!-- <h3> Please enter an item by using the drop down list </h3><br/> -->
+	<?php
 	class MyDB extends SQLite3
 	   {
 		function __construct()
@@ -78,13 +76,6 @@
 		//----------------------------------------------------------------
 
 	?>
-<?php //flag=1-->quantity was negative
-      //flag=2-->item did not exist in the cart to begin with
-      //flag=3-->same item was added
-      //flag=4-->Delete items 
-      //flag=5-->empty list entered
-	?>
-
         <div class="grey-background">
             <div class="container12">
                 <h1 id="home">New future of grocery</h1>
@@ -116,10 +107,9 @@
                         }
 			//endif?>
 
-                        <p class="">Make a new order or update your current one</p>
+                        <h3>Make a new order or update your current one</h3>
 
 			<form action="addupdel.php" method= "POST">
-                        <input type="hidden" name="adding" value="1">
                         <input type="hidden" name="listSubmitted" value="0">
 
 			<div class="row">
@@ -137,7 +127,7 @@
                                         </div>
                                 </div>
                             </div>
-                            <div class="column2">
+                            <div class="column1">
                                 <input type="number" id="item-number" class="small-fld" name="quantity" value="0" placeholder="Number">
                             </div>
                         </div>
@@ -145,34 +135,11 @@
 
                         <div class="row">
                             <div class="column2">
-                                <div class= btn-container>
-                                    <input onClick="addList()" type="submit" value="Add Items" class="large-btn large-magnify">
+                                <div class="btn-container">
+                                    <input type="submit" value="Add Items" name="button" class="large-btn large-magnify">
                                 </div>
-
-				</form>
-
-                            </div>
-				<form action="addupdel.php" method = "POST">
-                        	<input type="hidden" name="listSubmitted" value="0">
-				<input type="hidden" name="adding" value="2">
-
-				<div class="row">
-				    <div class="column3">
-					<div class="barter-container">
-						<div class="ui fluid search selection dropdown barter-items">
-						  <input type="hidden" name="item">
-						  <i class="dropdown icon"></i>
-						  <div class="default text">Items</div>
-						  <div class="menu">
-						  <div class="item">Apple</div>
-						  <div class="item">Banana</div>
-						  <div class="item">Cherry</div>
-						  </div>
-						</div>
-					</div>
-				<div class="column2">
-					<div class= btn-container>
-                                    <input onClick="deleteList()" type="submit" class="large-btn large-magnify" value="Delete Items">
+				<div class= "btn-container">
+                                    <input type="submit" value="Delete Items"  class="large-btn large-magnify" name"button">
                                 </div>
 			   </form>
 
@@ -184,11 +151,19 @@
                         <div id="barter-list" class="ui list">
                         </div>
                         <div class="btn-container">
+<?php #Displaying the list of items that have been selected
+        session_start();
+        $newvar=$_SESSION["listItem"];
+
+        echo "Your List: $newvar";
+
+        //displaying  address info--------------------------------------------
+?>
+
                             <form action="/newlist.php" method= "POST">
-			
-	                             Any Store Preference?
+	                        <h3> Any Store Preference?</h3>
 				<div class="barter-container">
-            	                <input type="text" id="item-address" class="small-fld" name="address" value=" " placeholder="Number">
+            	                <input type="text" id="item-address" class="small-fld" name="address" value=" " placeholder="Address of Store or Name of store">
 				</div>
 
 

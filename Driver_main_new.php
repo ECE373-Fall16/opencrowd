@@ -29,11 +29,14 @@
        }
        $db = new MyDB();
        $uname=$_SESSION["name_ID"];
+       $firstname=$_SESSION["firstname"];
+       $lastname=$_SESSION["lastname"];
+
     ?>
 	
         <div class= "nav">
             <ul id="menu1">
-              <li><a href = "<?php echo "Driver_main.php";?>">Home</a></button><li>
+              <li><a href = "<?php echo "Driver_main_new.php";?>">Home</a></button><li>
               <li><a href = "<?php echo "./Register/register-Driver.php?flag=2";?>">Update Credentials</a></button><li>
             </ul>
             
@@ -63,31 +66,39 @@
         </div>
         <div class="grey-background">
             <div class="container12">
-                <h1 id="home">Welcome to LettuceBuy <?php echo "$uname";?>! </h1><br/>
-            
+            <h1 id="home"> Welcome to LettuceBuy <?php echo "$firstname $lastname";?>! </h1><br/>
                 <div class="row">
                     <div class="column6" id="">
                         <h2>Available Orders:</h2>
 
 			<?php
+			$newflag=$_GET["flag"];
 			$newflag=(int)$newflag;
 			if($newflag==1)echo "Sorry invalid ID<br>";
 			echo "Please select an ID of available list from below:<br>";
 			$returned_set = $db->query("SELECT * FROM list WHERE status='incomplete';");
 			while ($entry = $returned_set->fetcharray()) {
 			    echo 'ID: ' . $entry['ID']; 
+			    $ID =  $entry['ID']; 
 			    echo '<html><br></html>';
 			    echo 'Items: ' . $entry['items'];
 			    echo '<html><br></html>';
 			    echo 'Address of Store: ' . $entry['address'];
 			    echo '<html><br></html>';
+			    $addressCqu = $db->query("SELECT street FROM clients WHERE CURRENTLIST=$ID");
+			    $street = $addressCqu->fetcharray();
+			    $addressCqu = $db->query("SELECT city FROM clients WHERE CURRENTLIST=$ID");
+			    $city = $addressCqu->fetcharray();
+			    $addressCqu = $db->query("SELECT state FROM clients WHERE CURRENTLIST=$ID");
+			    $state = $addressCqu->fetcharray();
+			    echo 'Address for delivery:' . $street["street"] . ',' . $city["city"] . ',' . $state["state"];
 			    echo '<html><br></html>';
+			    
+
 			}
+
 			?>
 
-                        <li>
-                    
-                        </li>
                     </div>
                     <div class="column6">
                         <div class="">

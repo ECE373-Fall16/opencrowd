@@ -18,10 +18,13 @@ $uname=$_SESSION["name_ID"];
 //could get items from session:
 $items=$_SESSION["listItem"];
 $address=$_POST["address"];
+$button=$_POST["button"];//Add to Order || Delete Order
+echo "$button";
+
 
 //here we have items and number respectively
-$stuff=var_dump($item[0]);
-echo "stuff is $stuff";
+//$stuff=var_dump($item[0]);
+//echo "stuff is $stuff";
 
 
  $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
@@ -35,10 +38,11 @@ if($items==""){
 //if items list is empty do not proceed and send  error to clientmain
 	header("Location: Client_main.php?flag=5");
 }
-else{ //items is not  empty then proceed to add to database---
-
-
-if($check == -1){ //user does not already has a list online
+else{ //items is not  empty then proceed to ADD or DELETE to database-----------------------------------------------
+//need to check if we are adding:
+if ($button=="Add to Order" || $button=="Submit List"){ //Submit List is coming from Client_main.php and Add to Order is coming from Client_main_update_order.php
+//0000000000000000000000000000000000000000000000000000000000000000
+if($check == -1){ //user does not already have a list online
 
 
  $sql =<<<EOF
@@ -69,9 +73,15 @@ EOF;
 else{ //user already had list which means $check was a number different than -1
    $db->close();
    header("Location: Client_main.php?flag=1");
+}//000000000000000000000000000000000000000000000000000000000000000000
+}elseif($button=="Delete Order"){
+
+
+
 }
 
-}//endif checking empty list  ---
+
+}//endif checking empty list  ------------------------------------------------------------------------------------
 ?>
 </body>
 </html>

@@ -50,9 +50,14 @@
 
 	if($check==-1){ //does not have an active list
 		session_start();//start session
-		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
-		$_SESSION["listItem"]="";
+		$info=$db->query("SELECT * FROM clients WHERE USERNAME='$uname';");		
+			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+			while($entry = $info->fetcharray()){
+				$_SESSION["firstname"]=$entry["FIRSTNAME"];
+				$_SESSION["lastname"]=$entry["LASTNAME"];
+			}
 		$_SESSION["logout"]=0;
+		$_SESSION["listItem"]="";
 		$db->close();
 		header("Location: ../Client_main.php"); //user does not have a list
 		//header("Location:../Client_main.php?flag=0"); //user does not have a list
@@ -60,13 +65,19 @@
 	else{ //user has an active list
 
 		session_start();	
-		$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
-		$_SESSION["listItem"]="";
+		$info=$db->query("SELECT * FROM clients WHERE USERNAME='$uname';");		
+			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+			while($entry = $info->fetcharray()){
+				$_SESSION["firstname"]=$entry["FIRSTNAME"];
+				$_SESSION["lastname"]=$entry["LASTNAME"];
+			}
 		$_SESSION["logout"]=0;
+		$_SESSION["listItem"]="";
 		$db->close();
 		header("Location: ../Client_main_update_order.php?update=0");
 	} 	
    }
+
    elseif($ret==0){ //if not a client
 	//checking if its a driver if not a client
         $drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
@@ -82,15 +93,25 @@
 
 	          if($check==-1){
 			session_start();	
+			$info=$db->query("SELECT FIRSTNAME,LASTNAME FROM drivers WHERE USERNAME='$uname';");		
 			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
+			while($entry = $info->fetcharray()){
+				$_SESSION["firstname"]=$entry['FIRSTNAME'];
+				$_SESSION["lastname"]=$entry['LASTNAME'];
+			}
 			$_SESSION["logout"]=0;
 			$db->close();
-			header("Location: ../Driver_main.php?flag=0"); //user does not have a list
+			header("Location: ../Driver_main_new.php?flag=0"); //user does not have a list
 		  }
 		  else{
 			session_start();
+			$info=$db->query("SELECT FIRSTNAME,LASTNAME FROM drivers WHERE USERNAME='$uname';");		
 			$_SESSION["name_ID"]="$uname";//session's global variable is the username of customer
-			$_SESSION["logout"]=0;
+			while($entry = $info->fetcharray()){
+				$_SESSION["firstname"]=$entry['FIRSTNAME'];
+				$_SESSION["lastname"]=$entry['LASTNAME'];
+			}
+			$_SESSION["logout"]=0;			
 			$db->close();
 			header("Location: ../Driver_main_fetched.php?update=0");
 		} //user has an active list

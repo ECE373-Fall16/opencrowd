@@ -12,6 +12,8 @@ $quan=(int)$quan;
 $newItem=$_POST["item"];
 $newItem=(string)$newItem;
 
+$submited=$_POST["listSubmited"];//it is 1 if  we are adding from Client_main_update_order.php
+
 
 //$flag=$_POST["flag"];
 //$flag=(int)$flag;
@@ -36,10 +38,15 @@ $newItem=(string)$newItem;
 	}
 	elseif ($newItem != "" && $quan > 0){
 		$items .= ","." $newItem  $quan";
+
 	}
 	else{
 	//can send a flag saying that  an incorrect value was entered
-		header("Location:./Client_main.php?flag=1");
+		//NEED TO CHECK WHERE WE NEED TO REDIRECT TO
+		if ($submited=="0")header("Location:./Client_main.php?flag=1");
+        	if ($submited=="1")header("Location:./Client_main_update_order.php?flag=1");
+
+		//header("Location:./Client_main.php?flag=1");
 	}
 	//echo "the concatenation is: $items <br>";
 	
@@ -51,7 +58,8 @@ $newItem=(string)$newItem;
 	$newvar=$_SESSION["listItem"];
 
 	//echo "the session variable is now: $newvar";
-	if ($newItem != "" && $quan > 0)header("Location:./Client_main.php");
+	if ($newItem != "" && $quan > 0 && $submited!="1")header("Location:./Client_main.php");
+	if ($newItem != "" && $quan > 0 && $submited=="1")header("Location:./Client_main_update_order.php");
 //}
 
 //elseif($flag==2){ //delete

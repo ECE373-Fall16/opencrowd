@@ -95,14 +95,22 @@ session_start();
 					echo '<html><br></html>';
 				}
 				
-				$returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
-				while ($entry = $returned_set->fetcharray()) {
-				    echo 'Items: ' . $entry['items'];
-				    echo '<html><br></html>';
-				    echo 'Address of Store: ' . $entry['address'];
-				    echo '<html><br></html>';
-				}
-				
+
+				//----------------------------------------- Text in the  CURRENT ORDER  box:
+				$newvar=$_SESSION["listItem"];
+			        //echo "Your List: $newvar";
+
+				//$returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
+				//while ($entry = $returned_set->fetcharray()) {
+				//$entry = $returned_set->fetcharray()
+				    echo "Items: " . "$newvar";
+				    //echo '<html><br></html>';
+				    //echo 'Address of Store: ' . $entry['ADDRESS'];
+				    //echo '<html><br></html>';
+				//}
+				//----------------------------------------------------------------------------------
+
+
 				if($update==2){//list has been fetched, display driver info
 					$getinfo = $db->query("SELECT * FROM drivers WHERE CURRENTLIST=$data;"); //picking driver that has same ID
 					while ($info = $getinfo->fetcharray()){
@@ -119,6 +127,51 @@ session_start();
 			?>
 				</div>
                         </div>
+
+			<?php  // THIS IF STATEMENT IS TO TAKE OUT THE MIDDLE PART (ADD AND DELETE FUNCTIONS) WHEN THE STATUS OF LIST IS NOT  INCOMPLETE
+			//-------------------------------------------------------------------------------------------------------------------------------
+			//getting status
+			$listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
+	                $listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
+            		$check = $listnum['CURRENTLIST'];
+            		$check = (int)$check; //have int form of current list
+
+
+           		$returned_set = $db->query("SELECT * FROM list WHERE ID='$check';");
+		        $entry = $returned_set->fetcharray();
+           		$status = $entry['status'];
+           		//echo "$status";
+
+
+			//$flag="incomplete";#FLAG IS WORKING
+			$flag="$status";
+			if ($flag=="incomplete"){
+			?>
+			<form action="addupdelOLD.php" method= "POST">
+                        <input type="hidden" name="adding" value="1">
+			<input type="hidden" name="listSubmited" value="1">
+
+			<?php
+			//flags for errors 
+
+                        $flag=$_GET["flag"];
+                        $flag=(int)$flag;
+                        if ($flag==1){
+                        ?>
+                                <p class=""><font color="red">Please select an item or choose a valid quantity</font></p>
+                        <?php
+                        }elseif($flag==3){
+                        ?>
+                                <p class=""><font color="red">The item already exists in your current list, please delete and update again</font></p>
+                        <?php
+                        }elseif($flag==4){
+                        ?>
+                                <p class=""><font color="red">The item has been deleted from your cart</font></p>
+                        <?php
+                        }
+
+
+                        //endif?>
                         <div class="column5">
                                 <h1 id="topping">Add more items to current order</h1>
                             <div class="row">
@@ -156,11 +209,42 @@ session_start();
                     </div>
                 </div>  
                     </div>
+		
+		</form>
+
+		<?php
+			}//IFEnd
+
+		//----------------------------------------------------------------------------------------------------------------------------
+			?>
+
                    <div class="column3">
                         <div class="barter-container" >
                             <h1 id="topping">Current Status :</h1>
                             <!-- status php -->
-				
+	
+	<?php
+		
+	    //displaying  status--------------------------------------------  THE STATUS IS FOUND IN PREVIOUS php PART
+
+            //uname=$_SESSION['name_ID'];
+/*
+            $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
+            $listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
+            $check = $listnum['CURRENTLIST'];
+            $check = (int)$check; //have int form of current list
+
+
+           $returned_set = $db->query("SELECT * FROM list WHERE ID='$check';");
+           $entry = $returned_set->fetcharray();
+           $status = $entry['status'];
+*/
+           echo "$status";
+	   //---------------------------------------------------
+	
+
+	?>
+
                         </div> 
                         <div id="barter-list barter-container" class="ui list">
                         </div>

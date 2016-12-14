@@ -31,7 +31,15 @@ echo "stuff is $stuff";
 
  $temp = -1; 
 
+if($items==""){
+//if items list is empty do not proceed and send  error to clientmain
+	header("Location: Client_main.php?flag=5");
+}
+else{ //items is not  empty then proceed to add to database---
+
+
 if($check == -1){ //user does not already has a list online
+
 
  $sql =<<<EOF
       INSERT INTO list (items,address,status)
@@ -54,13 +62,16 @@ EOF;
       echo $db->lastErrorMsg();
    } else {
         $db->close();
-	header("Location: Client_main_submitted.php");
+	//header("Location: Client_main_submitted.php");
+	header("Location: Client_main_update_order.php");
    }
 } 
 else{ //user already had list which means $check was a number different than -1
    $db->close();
    header("Location: Client_main.php?flag=1");
 }
+
+}//endif checking empty list  ---
 ?>
 </body>
 </html>

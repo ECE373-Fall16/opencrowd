@@ -78,6 +78,8 @@ EOF;
 }
 
 elseif($flag==1){ //user wants to delete list
+
+//TO DO: MAKE SURE THAT LIST HASNT BEEN FETCHED YET
    $reset=-1; //temp for holding -1
 
    $sqldel =<<<EOF
@@ -97,7 +99,7 @@ EOF;
     if(!$ret){
 	 echo $db->lastErrorMsg();
     } 
-
+   $_SESSION['listItem']="";
    header("Location: Client_main.php?flag=3");
 }
 

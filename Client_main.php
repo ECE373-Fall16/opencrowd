@@ -74,7 +74,7 @@
 	   $returned_set = $db->query("SELECT * FROM list WHERE ID='$check';");
 	   $entry = $returned_set->fetcharray();
 	   $addres = $entry['ADDRESS'];
-	   echo "The store address is : $check";
+	   //echo "The store address is : $check";
 		//----------------------------------------------------------------
 
 	?>
@@ -96,13 +96,21 @@
 			?>
 				<p class=""><font color="red">The item already exists in your current list, please delete and update again</font></p>
 			<?php
-			}
+			}elseif($flag==4){
 			?>
+				<p class=""><font color="red">The item has been deleted from your cart</font></p>
+			<?php
+			}elseif($flag==5){ //empty list was entered
+                        ?>
+                                <p class=""><font color="red">The item list was empty!</font></p>
+                        <?php
+                        }
+			//endif?>
 
                         <p class="">Make a new order or update your current one</p>
 
 			<form action="addupdel.php" method= "POST">
-                        <input type="hidden" name="flag" value="1">
+                        <input type="hidden" name="adding" value="1">
 
 			<div class="row">
                             <div class="column3">
@@ -135,13 +143,13 @@
 
                             </div>
 				<form action="addupdel.php" method = "POST">
+				<input type="hidden" name="flag" value="2">
 
 				<div class="row">
 				    <div class="column3">
 					<div class="barter-container">
 						<div class="ui fluid search selection dropdown barter-items">
 						  <input type="hidden" name="item">
-						  <input type="hidden" name="flag" value=2>
 						  <i class="dropdown icon"></i>
 						  <div class="default text">Items</div>
 						  <div class="menu">

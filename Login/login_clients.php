@@ -64,7 +64,7 @@
 		$_SESSION["listItem"]="";
 		$_SESSION["logout"]=0;
 		$db->close();
-		header("Location: ../Client_main_submitted.php?update=0");
+		header("Location: ../Client_main_update_order.php?update=0");
 	} 	
    }
    elseif($ret==0){ //if not a client

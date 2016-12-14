@@ -21,12 +21,12 @@ $returned_set = $db->querySingle("SELECT COUNT(*) FROM list WHERE ID=$listnum AN
 
 	if($returned_set==0){//checking if we did not found ID in list
 		$db->close();
-		header ("Location: Driver_main.php?flag=1"); //if wrong ID then go back to main
+		header ("Location: Driver_main_new.php?flag=1"); //if wrong ID then go back to main
 	}
 
   else{
   $sql =<<<EOF
-      UPDATE drivers SET CURRENTLIST = $listnum WHERE USERNAME = "$uname"
+      UPDATE drivers SET CURRENTLIST = $listnum WHERE USERNAME = "$uname";
 EOF;
    $ret = $db->exec($sql);
    if(!$ret){
@@ -34,7 +34,7 @@ EOF;
    } 
 
    $sqlstat =<<<EOF
-      UPDATE list SET status = 'fetched' WHERE ID =$listnum
+      UPDATE list SET status = 'fetched' WHERE ID =$listnum;
 EOF;
    $ret = $db->exec($sqlstat);
    if(!$ret){

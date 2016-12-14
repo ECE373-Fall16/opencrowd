@@ -1,4 +1,6 @@
 <?php
+/*----------------------------------------------------------*/
+//THIS FILE INCLUDES CODE FOR FORGOTTEN PASSWORD BUT OVERALL PROJECT WILL NOT IMPLEMENT THIS FUNCTION (NO TIME)
    class MyDB extends SQLite3
    {
 	function __construct()

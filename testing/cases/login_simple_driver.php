@@ -1,3 +1,4 @@
+
 <?php
 
 if(file_exists ('testing/lettucebuy.db')){
@@ -17,17 +18,25 @@ $_POST["state"]='Fc';
 $_POST["question"]=3;
 $_POST["answer"]='hi man you';
 
-include 'testing/client_register.php';
+include 'testing/driver_register.php';
 
 //some changes
-$db = new MyDB();
+$result;
+$correctresult='Location:../Driver_main.php?flag=0';
 
-$drivret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname' AND PASSWORD='$pass';");
-        if($drivret!=1){ //neither client nor driver
+include 'testing/login_clients.php';
+
+echo $result."\n";
+echo strcmp($result,$correctresult);
+        if(strcmp($result,$correctresult)!=0)
+	{
                 $db->close();
-                exit(1);
+		echo "exited with one\n";
+                exit(3);
+		}
+	else{
+	echo "we are gocci with test 3 login_simple_driver.php\n";
+		}
 
-}
 $db->close();
-echo "passed clients register test"
 ?>

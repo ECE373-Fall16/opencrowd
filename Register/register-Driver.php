@@ -255,7 +255,7 @@ session_start();
                                 <div class = "para-input">
                                     <select  name="question" class="small-fld">
                                     <option value="0">Select a question from the following options.</option>
-                                    <option value="1">Who's your daddy?</option>
+                                    <option value="1">Who is your favorite movie's protagonist?</option>
                                     <option value="2">What is your favorite color?</option>
                                     <option value="3">What is your mother's favorite aunt's favorite color?</option>
                                     <option value="4">Where does the rain in Spain mainly fall?</option>

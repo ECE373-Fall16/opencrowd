@@ -107,7 +107,7 @@ session_start();
 
 				//----------------------------------------- Text in the  CURRENT ORDER  box:
 				$newvar=$_SESSION["listItem"];
-			        echo "Your List: $newvar";
+			        echo "Your List: $newvar<br>";
 
 				$returned_set = $db->query("SELECT address FROM list WHERE ID=$data;");
 				$entry = $returned_set->fetcharray();
@@ -115,7 +115,7 @@ session_start();
 				$listID = $returned_ID->fetcharray();
 				    echo "ID: " . $listID["CURRENTLIST"];
 				    echo '<html><br></html>';
-				    echo "Items: " . "$newvar";
+				    echo "Items in your cart: " . "$newvar";
 				    echo '<html><br></html>';
 				   if($entry['address']==""){
 					echo "Address/Name of Store: None";
@@ -154,7 +154,7 @@ session_start();
 	                $listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
             		$check = $listnum['CURRENTLIST'];
             		$check = (int)$check; //have int form of current list
-			echo "$check <br>";
+			//echo "$check <br>";
 
            		$returned_set = $db->query("SELECT * FROM list WHERE ID='$check';");
 		        $entry = $returned_set->fetcharray();
@@ -272,7 +272,7 @@ session_start();
 
                    <div class="column3">
                         <div class="barter-container" >
-                            <h1 id="topping">Current Status of your Order:<?php echo "$status";?></h1>
+                            <h2 id="topping">Current Status of your Order:<?php echo " $status";?></h2>
                             <!-- status php -->
 	<h3>	
 	<?php

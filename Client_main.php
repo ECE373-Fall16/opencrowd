@@ -78,7 +78,12 @@
 		//----------------------------------------------------------------
 
 	?>
-
+<?php //flag=1-->quantity was negative
+      //flag=2-->item did not exist in the cart to begin with
+      //flag=3-->same item was added
+      //flag=4-->Delete items 
+      //flag=5-->empty list entered
+	?>
 
         <div class="grey-background">
             <div class="container12">
@@ -91,6 +96,10 @@
 			if ($flag==1){
 			?>
 				<p class=""><font color="red">Please select an item or choose a valid quantity</font></p>
+			<?php
+			 }elseif($flag==2){
+			?>
+				<p class=""><font color="red">The item was not found in the cart</font></p>
 			<?php
 			}elseif($flag==3){
 			?>
@@ -111,6 +120,7 @@
 
 			<form action="addupdel.php" method= "POST">
                         <input type="hidden" name="adding" value="1">
+                        <input type="hidden" name="listSubmitted" value="0">
 
 			<div class="row">
                             <div class="column3">
@@ -143,7 +153,8 @@
 
                             </div>
 				<form action="addupdel.php" method = "POST">
-				<input type="hidden" name="flag" value="2">
+                        	<input type="hidden" name="listSubmitted" value="0">
+				<input type="hidden" name="adding" value="2">
 
 				<div class="row">
 				    <div class="column3">

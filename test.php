@@ -8,8 +8,8 @@
 //	echo "pos is : $pos<br>";
 //	echo $newstuff;
 	
-	$my = "haha thats funny";
-	$sub = strpos($my,"haha" );
-	echo $sub;
+	$my = "haha 2, to 3";
+	$to = str_word_count($my);
+	echo $to;
 
 ?>

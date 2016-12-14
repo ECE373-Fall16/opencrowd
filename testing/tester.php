@@ -34,25 +34,15 @@ $_POST["question"]=3;
 $_POST["answer"]='hi man i fuk you';
 
 include 'client_register.php';
+//some changes
+ $db = new MyDB();
 
-$returned_set = $db->querySingle("SELECT * FROM client WHERE USERNAME='cat';");
-$entry = $returned_set->fetcharray();
+$drivret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname' AND PASSWORD='$pass';");
+        if($drivret!=1){ //neither client nor driver
+                $db->close();
+                exit(1);
 
-
-
-
-
-
-
-/*
-$db = new MyDB1();
- $sqldisplay =<<<EOF
-      select * from clients;
-EOF;
-
-$ret = $db->exec($sqldisplay);
-echo $ret;
+}
 $db->close();
-*/
-
+?>
 ?>

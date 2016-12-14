@@ -45,6 +45,20 @@ h1#home {
 .large-btn:hover {
      background-color: #f8c471;
 }
+.cancel-btn {
+	padding:10px;
+	border-radius:9px;
+	-moz- border-radius:9px;
+	font-size:1.8em;
+	width:100%;
+    background-color: #FFC300;
+     border: none;
+     color:#fff;
+     cursor: pointer;
+}
+.cancel-btn:hover {
+     background-color: #E74C3C;
+}
 .barter-container, .sign-in-container{
     border: 1px solid:#d0d0d0;
     background: #fff;

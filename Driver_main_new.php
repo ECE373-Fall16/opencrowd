@@ -40,7 +40,6 @@
 	
         <div class= "nav">
             <ul id="menu1">
-              <li><a href = "<?php echo "Driver_main_new.php";?>">Home</a></button><li>
               <li><a href = "<?php echo "./Register/register-Driver.php?flag=2";?>">Update Credentials</a></button><li>
             </ul>
             
@@ -68,15 +67,15 @@
             <h1 id="home"> Welcome to LettuceBuy <?php echo "$firstname $lastname";?>! </h1><br/>
                 <div class="row">
                     <div class="column6" id="">
-                        <h2>Available Orders:</h2>
 
 			<?php
 			$newflag=$_GET["flag"];
 			$newflag=(int)$newflag;
 			if($newflag==1)echo "Sorry invalid ID<br>";
-			if($newFlah==2)echo "Client has confirmed the delivery.<br>";
+			elseif($newflag==2)echo "Client has confirmed the delivery.<br>";
+		        elseif($newflag==4)echo "You may now pick another list below:<br>";	
 
-			echo "Please select an ID of available list from below:<br>";
+			else{echo "Please select an ID of all available lists from below:<br>";}
 			$returned_set = $db->query("SELECT * FROM list WHERE status='incomplete';");
 			while ($entry = $returned_set->fetcharray()) {
 			    echo 'ID: ' . $entry['ID']; 
@@ -86,13 +85,13 @@
 			    echo '<html><br></html>';
 			    echo 'Address/Name of Store: ' . $entry['address'];
 			    echo '<html><br></html>';
-			    $addressCqu = $db->query("SELECT street FROM clients WHERE CURRENTLIST=$ID");
+			    $addressCqu = $db->query("SELECT STREET FROM clients WHERE CURRENTLIST=$ID;");
 			    $street = $addressCqu->fetcharray();
-			    $addressCqu = $db->query("SELECT city FROM clients WHERE CURRENTLIST=$ID");
-			    $city = $addressCqu->fetcharray();
-			    $addressCqu = $db->query("SELECT state FROM clients WHERE CURRENTLIST=$ID");
-			    $state = $addressCqu->fetcharray();
-			    echo 'Address for delivery:' . $street["street"] . ',' . $city["city"] . ',' . $state["state"];
+			    $addressCqu1 = $db->query("SELECT CITY FROM clients WHERE CURRENTLIST=$ID;");
+			    $city = $addressCqu1->fetcharray();
+			    $addressCqu2 = $db->query("SELECT STATE FROM clients WHERE CURRENTLIST=$ID;");
+			    $state = $addressCqu2->fetcharray();
+			    echo 'Address for delivery: ' . $street["STREET"] . ', ' . $city["CITY"] . ', ' . $state["STATE"];
 			    echo '<html><br></html>';
 			    
 

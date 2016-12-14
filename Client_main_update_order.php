@@ -37,9 +37,6 @@ session_start();
                         <div class = "column5">
                             <div class = "column5">
                         <div class="nav-option menu-nav">
-			    <ul>
-              		<li><a href = "<?php echo "Client_main_update_order.php";?>">Home</a></button><li>
-			</ul>
                             <ul >
               			<li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
                             </ul>
@@ -51,7 +48,7 @@ session_start();
             </div>
         <div class="grey-background">
             <div class="container12">
-                <h1 id="home">New future of grocery shopping</h1>
+                <h1 id="home">Future of grocery shopping</h1>
                 <div class="row">
                      <div class="column9">
                         <div class="row">    
@@ -72,16 +69,23 @@ session_start();
 				$uname=$_SESSION["name_ID"];
 				$update=$_GET["update"]; //this flag gets information where it was redirected from
 				$update=(int)$update;
+				
 
 				//obtaining list number of client
 				$entry = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
 				$entry = $entry->fetcharray();
 				$data = $entry['CURRENTLIST'];
 				$data = (int)$data;
+				//echo "$data";good
+				if($update==15){
+					$entry=$db->query("SELECT items FROM list WHERE ID=$data;");	
+					$entry = $entry->fetcharray();
+					$_SESSION["listItem"] = $entry['items'];
+				}
 
 
 				//checking if list has been fetched or not
-				 $stat = $db->query("SELECT status FROM list WHERE ID=$data;");
+				 $stat = $db->query("SELECT status FROM list WHERE ID=$data;");//NEED TO CHECK FOR INCOMPLETE ONES?
 				 $stat = $stat->fetcharray(); //getting the number of currentlist to be compared
 				 $test = $stat['status'];
 				 
@@ -95,7 +99,7 @@ session_start();
 				if($update==1)echo "Your list has been successfully updated<br>";
 				elseif($update==2)echo "Your list has been fetched by a driver, please call them if any changes need to be made to your list.<br>";
 
-				if($update==0 || $update==1){ //either coming from login or after updating list
+				if($update==0 || $update==1 || $update==15){ //either coming from login or after updating list
 					echo "Your list is available to all drivers<br>";
 					echo "Here are the details of your list:-<br>";	
 					echo '<html><br></html>';
@@ -104,10 +108,14 @@ session_start();
 
 				//----------------------------------------- Text in the  CURRENT ORDER  box:
 				$newvar=$_SESSION["listItem"];
-			        //echo "Your List: $newvar";
+			        echo "Your List: $newvar";
 
 				$returned_set = $db->query("SELECT address FROM list WHERE ID=$data;");
 				$entry = $returned_set->fetcharray();
+				$returned_ID = $db->query("SELECT CURRENLIST FROM clients WHERE USERNAME=$uname;");
+				$listID = $returned_ID->fetcharray();
+				    echo "ID: " . $listID["CURRENTLIST"];
+				    echo '<html><br></html>';
 				    echo "Items: " . "$newvar";
 				    echo '<html><br></html>';
 				   if($entry['address']==""){echo "Address/Name of Store: None";echo '<html><br></html>';}
@@ -161,6 +169,7 @@ session_start();
 
 			//$flag="incomplete";#FLAG IS WORKING
 			$flag="$status";
+			echo "the flag is: $flag";
 			if ($flag=="incomplete"){
 		/*
 			//flags for errors 

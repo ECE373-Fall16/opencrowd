@@ -41,7 +41,7 @@ session_start();
                     </div>
                     <div class = "column5">
                      <ul id="menu2">
-                		<li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
+                		<li><a href = "<?php echo "../Client_main.php";?>"> Go Back</a></li>
             		</ul>
 			</div>
                 </div>
@@ -86,7 +86,7 @@ session_start();
 		     
 		?>
 		</font>
-        <?php #checking where to send the info when pressing either "update info" or "create new account"
+        <?php //checking where to send the info when pressing either "update info" or "create new account"
                         if($newflag==2){//updating send to updateInfo.php and send the username as oldName_ID
                          ?>
                         <form action="./updateInfo.php" method="POST">
@@ -109,8 +109,13 @@ session_start();
                                         <div class = "para-input">
                                             <input type="text" class="small-fld" name="lastname"  placeholder="Last name">
                                         </div>
-                                     </div>        
+                	                     </div>        
                             </div>
+				
+		<?php 
+                        if($newflag!=2){//updating and then dont show the choice to change the username, nor pass
+                         ?>	
+	
                             <p class="input-direction">Choose your username</p>
 			       <h5><font color="red">
 				<?php $flag=$_GET["flag"];
@@ -160,6 +165,10 @@ session_start();
                                     <div class="column1">
                                     </div>        
                                 </div> 
+
+				<?php
+                        }
+                        ?>
                              <p class="input-direction">Mobile phone</p>
                                 <div class="row">
                                     <div class="column6">
@@ -240,6 +249,11 @@ session_start();
                                         </div>
                                     </div>
                                 </div> 
+
+				<?php 
+                        if($newflag!=2){//updating and then dont show the choice to change  question
+                         ?>
+
                             <p class="input-direction">Select Your Security Questions:</p> 
                                 <div class = "para-input">
                                     <select  name="question" class="small-fld">
@@ -261,8 +275,14 @@ session_start();
                                     <div class="column1">
                                     </div>        
                                 </div> 
+				
+				<?php
+                     }
+
+                         ?>
+
                             <div class="btn-container">
-                                <?php #checking if it is a "update"	or "crate your account" button	
+                                <?php //checking if it is a "update"	or "crate your account" button	
                                 if($newflag==2){//updating
                                  ?>
                                 <input type="submit" class="large-btn large-magnify" value="Update Your Account">

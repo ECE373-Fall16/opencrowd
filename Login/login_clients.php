@@ -74,7 +74,7 @@
 		$_SESSION["logout"]=0;
 		$_SESSION["listItem"]="";
 		$db->close();
-		header("Location: ../Client_main_update_order.php?update=0");
+		header("Location: ../Client_main_update_order.php?update=15");
 	} 	
    }
 
@@ -113,7 +113,7 @@
 			}
 			$_SESSION["logout"]=0;			
 			$db->close();
-			header("Location: ../Driver_main_fetched_new.php?update=0");
+			header("Location: ../Driver_main_fetched_new.php");
 		} //user has an active list
 
 	}

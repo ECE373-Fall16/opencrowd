@@ -49,7 +49,7 @@
                 </header>
          
 
-            <h3> Welcome to LettuceBuy <?php echo "$firstname $lastname";?>! </h3> <br/>
+            <h3> Welcome to LettuceBuy <?php echo "$firstname $lastname";?>!  </h3> <br/>
 	    <!-- <h3> Please enter an item by using the drop down list </h3><br/> -->
 	<?php
 	class MyDB extends SQLite3

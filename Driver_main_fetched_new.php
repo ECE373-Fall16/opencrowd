@@ -26,7 +26,6 @@ session_start();
                     <div class = "column5">
                         <div class="nav-option menu-nav">
                             <ul >
-              			<li><a href = "<?php echo "Driver_main_fetched_new.php";?>">Home</a></button><li>
             			<li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
                             </ul>
                         </div>
@@ -46,7 +45,6 @@ session_start();
 			<h4>
 			<?php
 				   $uname=$_SESSION['name_ID'];
-				   echo "$uname <br>";
 				   class MyDB extends SQLite3
 				     {
 				       function __construct()
@@ -65,7 +63,6 @@ session_start();
 				    $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
 				    $entry = $returned_set->fetcharray();
 					$status = $entry['status'];
-					echo "the status is $status";
 				    if ($status == "completed"){
 					//then it got redirected from Driver_main_done.php
 					
@@ -132,8 +129,10 @@ EOF;
 				echo 'Please confirm once you are done';
 				?>
 				<form action="Driver_main_done.php" method="POST">
-					<input type="hidden" name="list_ID" value="<?php echo $data;?>">
 					<input type="submit" class="large-btn large-magnify" value="Confirm ">
+				</form>
+				<form action="droplist.php" method="POST">
+					<input type="submit" class="cancel-btn cancel-magnify" value="Decline service">
 				</form>
 			    <?php
 			    
@@ -141,7 +140,6 @@ EOF;
 
 			    ?>   
 			</h4> 
-
 
                     </div>
                     <div class="column6">

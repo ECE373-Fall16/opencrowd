@@ -52,7 +52,7 @@
 		<div class="row">
                     <div class="column6">
                         <div class="barter-container">
-                            <p id="ad-txt">Don't want to waste your time on grocery shopping!</p>
+                            <p id="ad-txt">Don't waste your time on grocery shopping!</p>
 
                         </div>
                         <div class= btn-container>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="column6">
                         <div class="barter-container">
-                            <p id="ad-txt">Want to earn money on spare time by doing everyday grocery shoping</p>
+                            <p id="ad-txt">Want to earn money on your spare time instead?</p>
                         </div>
                         <div class="btn-container">
                             <form action="/Register/register-Driver.php">

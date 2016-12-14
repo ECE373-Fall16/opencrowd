@@ -42,6 +42,7 @@ if($button=="Submit List"){
 	      INSERT INTO list (items,address,status)
 	      VALUES ("$items","$address", "incomplete");
 EOF;
+	if($address=="")$address="None";
 
 	   $ret = $db->exec($sql);
 	   if(!$ret){

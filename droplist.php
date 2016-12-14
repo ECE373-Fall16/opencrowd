@@ -13,26 +13,32 @@ $db = new MyDB();
 	echo $db->lastErrorMsg();
    }
 
-
-$uname=$_SESSION["name_ID"];
-$status=$_POST["button"];
-
+   $uname=$_SESSION["name_ID"];
+   
 $list=$db->query("SELECT CURRENTLIST from drivers where USERNAME='$uname';");
 $entry=$list->fetcharray();
 $listnum=$entry["CURRENTLIST"];
 $listnum=(int)$listnum;
 
-    $updatestat<<<EOF
-	UPDATE list SET status="$status" WHERE ID=$listnum	
-
+  $changestatus<<<EOF
+	UPDATE list SET status="incomplete" WHERE ID=$listnum	
 EOF;
 
-$ret = $db->exec($updatestat);
+$ret = $db->exec($changestatus);
     if(!$ret){
 	 echo $db->lastErrorMsg();
     } 
 
-$db->close();
-header("Location: Driver_main_fetched_new.php");
-?>
+   $changedrivernumlist<<<EOF
+	UPDATE drivers SET CURRENTLIST=-1 WHERE USERNAME=$uname
+EOF;
 
+$ret = $db->exec($changedrivernumlist);
+    if(!$ret){
+	 echo $db->lastErrorMsg();
+    } 
+
+  $db->close();
+  header("Location: Driver_main_new.php?flag=4");
+
+?>

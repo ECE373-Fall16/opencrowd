@@ -21,7 +21,7 @@ $flag=$_POST["adding"];
 $flag=(int)$flag;
 
 //getting the new items that is going to be added
-if($button=="Add Item"){ //adding items  deleted $flag ==1
+if($button=="Add Items"){ //adding items  deleted $flag ==1
 	//$pos = strpos($items,$newItem);
 	//$pos=(int)$pos;
 	//echo "$newItem<br>";

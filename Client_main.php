@@ -6,6 +6,13 @@
       //flag=3-->same item was added
       //flag=4-->Delete items 
       //flag=5-->empty list entered
+      //flag=6 --> client has pressed confirmed  and items arrived
+      //flag=7 --> client has deleted his/her list
+
+	session_start();
+       $uname=$_SESSION['name_ID'];
+       $firstname=$_SESSION["firstname"];
+       $lastname=$_SESSION["lastname"];
 	?>
 
 <html lang="en">
@@ -44,7 +51,7 @@
                 </header>
          
 
-            <h3> Welcome to LettuceBuy <?php echo "$uname";?>! </h3> <br/>
+            <h3> Welcome to LettuceBuy <?php echo "$firstname $lastname";?>! </h3> <br/>
 	    <!-- <h3> Please enter an item by using the drop down list </h3><br/> -->
 	<?php
 	class MyDB extends SQLite3
@@ -62,7 +69,6 @@
 		//echo "Opened database for login check for clients!!!<br>";
 	   }
 
-	    $uname=$_SESSION['name_ID'];
 	    $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
  	    $listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
             $check = $listnum['CURRENTLIST'];
@@ -104,8 +110,16 @@
                         ?>
                                 <p class=""><font color="red">The item list was empty!</font></p>
                         <?php
-                        }
-			//endif?>
+                        }elseif($flag==6){ //empty list was entered
+                        ?>
+                                <p class=""><font color="green">Thank you for using our service!</font></p>
+                        <?php
+                        }elseif($flag==7){
+			?>
+                                <p class=""><font color="red">Your list has been deleted, feel free to add a new one</font></p>
+			<?php
+			}
+			?>
 
                         <h3>Make a new order or update your current one</h3>
 
@@ -134,40 +148,39 @@
 
 
                         <div class="row">
-                            <div class="column2">
-                                <div class="btn-container">
+                            <div class="column5">
+                                <div class="column2 btn-container">
                                     <input type="submit" value="Add Items" name="button" class="large-btn large-magnify">
                                 </div>
-				<div class= "btn-container">
-                                    <input type="submit" value="Delete Items"  class="large-btn large-magnify" name"button">
+				<div class= "column2 btn-container">
+                                    <input type="submit" value="Delete Items"  class="large-btn large-magnify" name="button">
                                 </div>
-			   </form>
-
                             </div>
                         </div>  
-
+			</form>
                     </div>
-                    <div class="column6">
-                        <div id="barter-list" class="ui list">
-                        </div>
+                     <div class="column5">
+                        <div class="barter-container">
+				<h3>Your List: </h3>
+			<h3><font color="red">
+                        <?php #Displaying the list of items that have been selected
+			session_start();
+			$newvar=$_SESSION["listItem"];
+
+			echo "$newvar";
+				?>
+			</h3></font>
+			</div>
+                            <!--    <div id="barter-list" class="ui list">
+                                </div> -->
                         <div class="btn-container">
-<?php #Displaying the list of items that have been selected
-        session_start();
-        $newvar=$_SESSION["listItem"];
+                                <h3> Any Store Preference?</h3>
+                            <form action="./newlist.php" method= "POST">
+                                <div class="barter-container">
+                                <input type="text" id="item-address" class="large-fld" name="address" placeholder="Address/Name of store">
+                                </div>
 
-        echo "Your List: $newvar";
-
-        //displaying  address info--------------------------------------------
-?>
-
-                            <form action="/newlist.php" method= "POST">
-	                        <h3> Any Store Preference?</h3>
-				<div class="barter-container">
-            	                <input type="text" id="item-address" class="small-fld" name="address" value=" " placeholder="Address of Store or Name of store">
-				</div>
-
-
-                                <input type="submit" class="large-btn large-magnify" value="Submit List">
+                                <input type="submit" class="large-btn large-magnify" name="button"value="Submit List">
                             </form>
                         </div>
                     </div>
@@ -175,6 +188,7 @@
             </div> 
         </div>
     </body>
+
     <script language="javascript">
         $(".dropdown.barter-items").dropdown();
         var itemsList = [];

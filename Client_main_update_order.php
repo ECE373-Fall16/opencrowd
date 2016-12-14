@@ -148,6 +148,15 @@ session_start();
            		$status = $entry['status'];
            		//echo "$status";
 
+			//when driver presses confirm button:
+			if ($status == "completed"){?>
+				<font color='blue'><h2>Your groceries have arrived! Please confirm below: </font><br></h2>
+				<form action="Client_main_done.php">
+				<input type="submit" value="My groceries have arrived"/>
+				</form>
+			        <?php
+			}
+
 
 			//$flag="incomplete";#FLAG IS WORKING
 			$flag="$status";
@@ -275,16 +284,18 @@ session_start();
                         </div> 
                         <div id="barter-list barter-container" class="ui list">
                         </div>
+
+			<?php if ($status=="incomplete"){?>
                         <div class="btn-container">
-			
-			    <form action="/newlist.php" method= "POST">
+			    <form action="./newlist.php" method= "POST">
                                 <input type="submit" class="large-btn large-magnify" name="button" value="Add to Order">
                         </div>
 			 <div class="btn-container">
                                 <input type="submit" class="large-btn large-magnify" name="button" value="Delete Order">
-                            </form>
 
+                            </form>
                         </div>
+			<?php } ?>
                     </div>
                 </div>
                    

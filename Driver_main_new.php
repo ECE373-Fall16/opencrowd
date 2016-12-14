@@ -1,5 +1,7 @@
 <?php
   session_start();
+
+//   FLAG = 1 MEANS INVALID ID when list is picked
 ?>
 
 <!DOCTYPE  html>
@@ -45,11 +47,6 @@
             </ul> 
         </div>
         <div class = "bodyformat">
-            <h3> Welcome to LettuceBuy <?php echo "$uname";?>! </h3> <br/>
-        
-        <h4>
-	        </h4> 
-
         <div class="container12">
            <header>
                 <div class = "row">
@@ -83,7 +80,7 @@
 			    echo '<html><br></html>';
 			    echo 'Items: ' . $entry['items'];
 			    echo '<html><br></html>';
-			    echo 'Address of Store: ' . $entry['address'];
+			    echo 'Address/Name of Store: ' . $entry['address'];
 			    echo '<html><br></html>';
 			    $addressCqu = $db->query("SELECT street FROM clients WHERE CURRENTLIST=$ID");
 			    $street = $addressCqu->fetcharray();
@@ -103,7 +100,7 @@
                     <div class="column6">
                         <div class="">
 
-                            <form action="driver_fetch.php" method="POST">
+                            <form action="Driver_main_fetched_new.php" method="POST">
                                 <h2>Choose a list </h2>
                                     <div class="row">
                                         <div class="column6">

@@ -1,1 +1,2 @@
-php testing/tester.php
+php testing/noduplicateusername.php
+

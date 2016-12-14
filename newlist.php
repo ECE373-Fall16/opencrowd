@@ -34,54 +34,66 @@ echo "$button";
 
  $temp = -1; 
 
-if($items==""){
-//if items list is empty do not proceed and send  error to clientmain
-	header("Location: Client_main.php?flag=5");
+if($button=="Submit List"){
+	if($items==""){
+		$db->close();
+		header("Location: Client_main.php?flag=5");
+	}
+	 $sql =<<<EOF
+	      INSERT INTO list (items,address,status)
+	      VALUES ("$items","$address", "incomplete");
+EOF;
+
+	   $ret = $db->exec($sql);
+	   if(!$ret){
+	      echo $db->lastErrorMsg();
+	   } 
+	  //taking ID of row where we inserted into database and giving it to parameter in CLIENTS table
+	  $rollid = $db->lastInsertRowID();
+
+	  $clientschange =<<<EOF
+	      UPDATE clients SET CURRENTLIST = $rollid WHERE USERNAME = "$uname"
+EOF;
+
+		 $ret = $db->exec($clientschange);
+		 if(!$ret){
+		 echo $db->lastErrorMsg();
+			} 
+	   $db->close();
+	   header("Location: Client_main_update_order.php");
 }
-else{ //items is not  empty then proceed to ADD or DELETE to database-----------------------------------------------
-//need to check if we are adding:
-if ($button=="Add to Order" || $button=="Submit List"){ //Submit List is coming from Client_main.php and Add to Order is coming from Client_main_update_order.php
-//0000000000000000000000000000000000000000000000000000000000000000
-if($check == -1){ //user does not already have a list online
 
 
- $sql =<<<EOF
-      INSERT INTO list (items,address,status)
-      VALUES ("$items","$address", "incomplete");
+elseif($button=="Add to List"){
+	if($items==""){
+		$db->close();
+		header("Location: Client_main_update_order.php?flag=5");
+	}
+
+	$listnum=query("SELECT CURRENTLIST FROM clients where USERNAME='$uname'");
+	$num = $listnum["CURRENTLIST"];
+	$num=(int)$num;
+	
+	$clientschange =<<<EOF
+	      UPDATE list SET items="$items" WHERE ID=$num
 EOF;
+		 $ret = $db->exec($clientschange);
+		 if(!$ret){
+		 echo $db->lastErrorMsg();
+		}
 
-   $ret = $db->exec($sql);
-   if(!$ret){
-      echo $db->lastErrorMsg();
-   } 
-  //taking ID of row where we inserted into database and giving it to parameter in CLIENTS table
-  $rollid = $db->lastInsertRowID();
+		$db->close();
+	   header("Location: Client_main_update_order.php");
+	
+}
 
-  $clientschange =<<<EOF
-      UPDATE clients SET CURRENTLIST = $rollid WHERE USERNAME = "$uname"
-EOF;
+elseif($button=="Delete Order"){
 
-   $ret = $db->exec($clientschange);
-   if(!$ret){
-      echo $db->lastErrorMsg();
-   } else {
-        $db->close();
-	//header("Location: Client_main_submitted.php");
-	header("Location: Client_main_update_order.php");
-   }
-} 
-else{ //user already had list which means $check was a number different than -1
+	//user wants to delete list
    $db->close();
-   header("Location: Client_main.php?flag=1");
-}//000000000000000000000000000000000000000000000000000000000000000000
-}elseif($button=="Delete Order"){
-
-
-
+   header("Location: delete.php");
 }
 
-
-}//endif checking empty list  ------------------------------------------------------------------------------------
 ?>
 </body>
 </html>

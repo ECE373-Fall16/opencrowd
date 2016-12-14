@@ -1,5 +1,8 @@
 <html><body>
 <?php
+//initialize session
+session_start();
+
 //CHANGE STATUS OF list TO BE  confirmed
 
    class MyDB extends SQLite3
@@ -14,7 +17,9 @@
 
 //====================================================================================add list to db
 
-$uname=$_GET["name_ID"];
+//$uname=$_GET["name_ID"];
+$uname=$_SESSION['name_ID'];
+
 //echo "$uname thank you for your service! You are done!<br>";
 
 //need to get CURRENTLIST from table clients which is the list ID

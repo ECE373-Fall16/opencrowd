@@ -40,14 +40,11 @@ session_start();
                         <a href="<?php echo "../img/";?>" ><img src ="logo%20LettuceBuy.png"></a>
                     </div>
                     <div class = "column5">
-                    </div>
+                     <ul id="menu2">
+                		<li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
+            		</ul>
+			</div>
                 </div>
-       	    <div class= "nav">
-            
-            <ul id="menu2">
-                <li><a href = "<?php echo "../index.php";?>"> Go Back</a></li>
-            </ul>
-	    </div>         
 	    </div>
 
             </header>
@@ -70,11 +67,11 @@ session_start();
 
 
             <div class="row">
-                <div class="column5" id="register-pic">
-                        <a href="<?php echo "../img/";?>" ><img src ="groceries1.jpg"></a>
+                <div class="column4" id="register-pic">
+                        <a href="<?php echo "../img/";?>" ><img src ="groceries1.jpg" hight="500" width="500"></a>
                 </div>
                 
-                <div class="column7">
+                <div class="column6">
                     <div class="signup-container">
 		<font color="red">
 		<?php //$flag=$_GET["flag"];

@@ -37,21 +37,11 @@ include 'client_register.php';
 //some changes
  $db = new MyDB();
 
-<<<<<<< HEAD
 $drivret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname' AND PASSWORD='$pass';");
         if($drivret!=1){ //neither client nor driver
                 $db->close();
                 exit(1);
 
-=======
- $db = new MyDB();
-
-$drivret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname' AND PASSWORD='$pass';");
-        if($drivret!=1){ //neither client nor driver
-                $db->close();
-                exit(1);
-
->>>>>>> 207de5d6a74de1309b7afa3f2d3813df2a66977c
 }
 $db->close();
 ?>

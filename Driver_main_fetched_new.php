@@ -78,7 +78,7 @@ session_start();
 
 					//set value of currentlist to -1 again
 					$sql =<<<EOF
-						UPDATE drivers SET CURRENTLIST = "-1" WHERE USERNAME = "$uname"
+						UPDATE drivers SET CURRENTLIST = -1 WHERE USERNAME = "$uname";
 EOF;
 					$ret = $db->exec($sql);
    					if(!$ret){

@@ -2,7 +2,7 @@
   session_start();
 
 //   FLAG = 1 MEANS INVALID ID when list is picked
-//   flag=2 meansthe status is confirmed
+//   flag=2 means that the status is confirmed
 ?>
 
 <!DOCTYPE  html>
@@ -72,7 +72,10 @@
 			$newflag=$_GET["flag"];
 			$newflag=(int)$newflag;
 			if($newflag==1)echo "Sorry invalid ID<br>";
-			elseif($newflag==2)echo "Client has confirmed the delivery.<br>";
+			elseif($newflag==2){
+				echo "Client has confirmed the delivery.<br>";
+		                echo "You may now pick another list below:<br>";	
+			}
 		        elseif($newflag==4)echo "You may now pick another list below:<br>";	
 
 			else{echo "Please select an ID of all available lists from below:<br>";}

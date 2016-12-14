@@ -30,9 +30,11 @@ if($returned_set==0){//checking if we did not found ID in list
 		header ("Location: Driver_main_new.php?flag=1"); //if wrong ID then go back to main
 }
 else{
+
    $sql =<<<EOF
-      UPDATE list SET status = "completed" WHERE ID = "$listnum"
+      UPDATE list SET status = "completed" WHERE ID = $listnum;
 EOF;
+
    $ret = $db->exec($sql);
    if(!$ret){
         //echo "there was an error";

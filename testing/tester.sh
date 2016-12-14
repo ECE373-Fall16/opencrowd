@@ -1,3 +1,3 @@
-php testing/registertest.php
-php testing/noduplicateusername.php
+php testing/cases/registertest.php
+php testing/cases/noduplicateusername.php
 

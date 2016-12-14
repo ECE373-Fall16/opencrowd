@@ -27,7 +27,7 @@ $entry = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
 $entry = $entry->fetcharray();
 $data = $entry['CURRENTLIST'];
 $list_ID = (int)$data; //list id
-$listnum=(int)$list_ID; //parse into int
+$listnum=$list_ID; //parse into int
 //echo "$list_ID was the number ID of your list!!!<br>";
 
 //update database
@@ -35,18 +35,20 @@ $returned_set = $db->querySingle("SELECT COUNT(*) FROM list WHERE ID=$listnum;")
 
 if($returned_set==0){//checking if we did not found ID in list
 		$db->close();
-		//echo "returned_set=0 <br>";
+		echo "returned_set=0 <br>";
 		#header ("Location: Driver_main.php?flag=1&name_ID=$uname"); //if wrong ID then go back to main
 }
 else{//The client has confirmed that hte groceries have arrived and then the status of the list changes to "confirmed" and the CURRENTLIST needs to be updated to the default value (-1)for the client
    $sql =<<<EOF
-      UPDATE list SET status = "confirmed" WHERE ID = "$listnum"
+      UPDATE list SET status = "confirmed" WHERE ID = $listnum;
 EOF;
+
    $ret = $db->exec($sql);
    
    $sql2 =<<<EOF
-      UPDATE clients SET CURRENTLIST = "-1" WHERE CURRENTLIST = "$listnum"
+      UPDATE clients SET CURRENTLIST = -1 WHERE CURRENTLIST = $listnum;
 EOF;
+
     $ret2 = $db->exec($sql2);
          
    if(!$ret or !$ret2){

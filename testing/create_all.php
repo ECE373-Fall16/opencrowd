@@ -1,5 +1,3 @@
-<html><body>
-    
 <?php
 //===================================================open/create db
 
@@ -7,7 +5,7 @@
    {
       function __construct()
       {
-         $this->open('lettucebuy.db');
+         $this->open('testing/lettucebuy.db');
       }
    }
    //===============open db
@@ -86,6 +84,3 @@ EOF;
    $db->close();
    //==================end create table
 ?>
-
-</body>
-</html>

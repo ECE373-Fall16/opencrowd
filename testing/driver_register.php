@@ -1,7 +1,5 @@
-<html><body>
-    
 <?php
-   class MyDB extends SQLite3
+/*   class MyDB extends SQLite3
    {
       function __construct()
       {
@@ -9,7 +7,7 @@
       }
    }
    //===============open db
-
+*/
    $db = new MyDB();
 
 //======================add user to db
@@ -29,7 +27,7 @@ $question=(int)$question;
 
 if(empty($firstname) || (empty($lastname)) || empty($uname) ||  empty($pass)  || empty($phone) || empty($street) || empty($city) || empty($state) || ($question==0) || empty($answer)){
 	$db->close();
-	 header("Location: register-Driver.php?flag=3");
+//	 header("Location: register-Driver.php?flag=3");
 }
 
  $sqlinsert =<<<EOF
@@ -42,7 +40,7 @@ $check=strcmp("$pass","$confirm");
 $place=0;
 if($check!=$place){
 	$db->close();
-	header ("Location: register-Driver.php?flag=1");
+//	header ("Location: register-Driver.php?flag=1");
 } //if not the same then confirm is wrong, go back
 
 // $ret = $db->exec($sql); //we will search here to see if username exists
@@ -50,7 +48,7 @@ if($check!=$place){
   $dret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname';");
  if ($cret > 0 || $dret > 0){ //found it in the db therefore username taken 
     $db->close();
-    header ("Location: register-Driver.php?flag=2&name_ID=$uname");
+ //   header ("Location: register-Driver.php?flag=2&name_ID=$uname");
    }	
  else{ //can insert into the db
     $ret = $db->exec($sqlinsert);
@@ -58,12 +56,9 @@ if($check!=$place){
           echo $db->lastErrorMsg();
        } else { //added successfully
           $db->close();
-	  header("Location: ../Login-page.php?flag=3");
+//	  header("Location: ../Login-page.php?flag=3");
        }
  }
    $db->close();
 
 ?>
-
-</body>
-</html>

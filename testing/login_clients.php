@@ -11,7 +11,7 @@
    if(!$db){ //checking if doesn't exist
 	echo $db->lastErrorMsg();
    } else {
-	echo "Opened database for login check for clients<br>";
+//	echo "Opened database for login check for clients<br>";
    }
 
 //USERS LIST WILL NEVER BE DELETED. COULD BE A DEAD LIST. MAYBE CAN FIX IF WE HAVE TIME
@@ -95,11 +95,3 @@
 	}
    }
 ?>
-
-
-
-
-
-
-
-

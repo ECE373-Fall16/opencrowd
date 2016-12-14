@@ -17,17 +17,18 @@ $_POST["state"]='Fc';
 $_POST["question"]=3;
 $_POST["answer"]='hi man you';
 
-include 'testing/client_register.php';
+include 'testing/driver_register.php';
 
 //some changes
 $db = new MyDB();
 
-$drivret = $db->querySingle("SELECT COUNT(*) FROM clients WHERE USERNAME='$uname' AND PASSWORD='$pass';");
+$drivret = $db->querySingle("SELECT COUNT(*) FROM drivers WHERE USERNAME='$uname' AND PASSWORD='$pass';");
         if($drivret!=1){ //neither client nor driver
-                $db->close();
+                echo "exited with 1 failed driver\n";
+		$db->close();
                 exit(1);
 
 }
 $db->close();
-?>
+echo "passed driver register test\n";
 ?>

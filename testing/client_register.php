@@ -1,5 +1,3 @@
-<html><body>
-    
 <?php
 /*   class MyDB1 extends SQLite3
    {
@@ -64,6 +62,3 @@ if($pass!=$confirm){
    $db->close();
 
 ?>
-
-</body>
-</html>

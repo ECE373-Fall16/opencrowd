@@ -17,7 +17,7 @@ class MyDB extends SQLite3
 
 //echo "$uname thank you for your service! You are done!<br>";
 $uname=$_SESSION['name_ID'];
-$list_ID=$_POST["list_ID"];
+$list_ID=$_POST["listID"];
 $listnum=(int)$list_ID; //parse into int
 //echo "$list_ID was the number ID of your list!!!<br>";
 

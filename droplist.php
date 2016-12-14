@@ -9,18 +9,19 @@ class MyDB extends SQLite3
    }
 
 $db = new MyDB();
+
    if(!$db){ //checking if doesn't exist
 	echo $db->lastErrorMsg();
    }
 
    $uname=$_SESSION["name_ID"];
-   
+
 $list=$db->query("SELECT CURRENTLIST from drivers where USERNAME='$uname';");
 $entry=$list->fetcharray();
 $listnum=$entry["CURRENTLIST"];
 $listnum=(int)$listnum;
 
-  $changestatus<<<EOF
+  $changestatus=<<<EOF
 	UPDATE list SET status="incomplete" WHERE ID=$listnum	
 EOF;
 
@@ -29,8 +30,8 @@ $ret = $db->exec($changestatus);
 	 echo $db->lastErrorMsg();
     } 
 
-   $changedrivernumlist<<<EOF
-	UPDATE drivers SET CURRENTLIST=-1 WHERE USERNAME=$uname
+   $changedrivernumlist=<<<EOF
+	UPDATE drivers SET CURRENTLIST=-1 WHERE USERNAME="$uname"
 EOF;
 
 $ret = $db->exec($changedrivernumlist);

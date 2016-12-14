@@ -22,7 +22,7 @@ $entry=$list->fetcharray();
 $listnum=$entry["CURRENTLIST"];
 $listnum=(int)$listnum;
 
-    $updatestat<<<EOF
+    $updatestat=<<<EOF
 	UPDATE list SET status="$status" WHERE ID=$listnum	
 
 EOF;

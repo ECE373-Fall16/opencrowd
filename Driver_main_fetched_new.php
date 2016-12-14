@@ -100,7 +100,7 @@ EOF;
 			       // $returned_num = $db->query("SELECT * FROM drivers WHERE USERNAME='$uname';");
 				echo "You selected list with ID:$data<br>";
 				echo "Here are the details:-<br>";	
-				$returned_set = $db->query("SELECT * FROM list WHERE ID=$data AND status='fetched';");
+				$returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
 				while ($entry = $returned_set->fetcharray()) {
 				    echo 'ID: ' . $entry['ID']; 
 				    echo '<html><br></html>';
@@ -110,14 +110,14 @@ EOF;
 				    echo '<html><br></html>';
 				}
 
-				echo "Client info:<br>";
-				$returned_set = $db->query("SELECT * FROM clients WHERE CURRENTLIST=$data;");
-				while ($entry = $returned_set->fetcharray()) {
-				    echo 'Name: ' . $entry['FIRSTNAME']. $entry['LASTNAME'];
+				echo "Client info:-<br>";
+				$returned_set2 = $db->query("SELECT * FROM clients WHERE CURRENTLIST=$data;");
+				while ($entry2 = $returned_set2->fetcharray()) {
+				    echo 'Name: ' . $entry2['FIRSTNAME'] . $entry2['LASTNAME'];
 				    echo '<html><br></html>';
-				    echo 'Address for delivery: ' . $entry['street'] . ',' . $entry['city'] . ',' . $entry['state'];
+				    echo 'Address for delivery: ' . $entry2['STREET'] . ', ' . $entry2['CITY'] . ', ' . $entry2['STATE'];
 				    echo '<html><br></html>';
-				    echo 'Phone Number: ' . $entry['PHONE'];
+				    echo 'Phone Number: ' . $entry2['PHONE'];
 				    echo '<html><br></html>';
 				}
 
@@ -129,6 +129,7 @@ EOF;
 				echo 'Please confirm once you are done';
 				?>
 				<form action="Driver_main_done.php" method="POST">
+					<input type="hidden" name="listID" value="<?php echo $data;?>">
 					<input type="submit" class="large-btn large-magnify" value="Confirm ">
 				</form>
 				<form action="droplist.php" method="POST">
@@ -147,8 +148,8 @@ EOF;
                             <form action="status.php" method="POST">
                                 <h1 id="topping">Status of current order</h1>  
                            <div class="barter-container status" >
-                            <h1  id="topping">Current Status :</h1>
-                            <h1 >	<!-- status php -->
+                            <h2  id="topping">Current Status: <?php echo "$status";?></h2>
+                            <h3 >	<!-- status php -->
         
         <?php
                 
@@ -166,14 +167,14 @@ EOF;
            $entry = $returned_set->fetcharray();
            $status = $entry['status'];
 */
-           echo "$status";
+//           echo "$status";
            //---------------------------------------------------
         
 
-        ?>
-			</h1> 
+  //      ?>
+			</h3> 
                         </div> 
-                                <h1 id="topping">Update order current status</h1>  
+                                <h3 id="topping">Update order current status</h3>  
                                 <div class="btn-container"> <!--Maybe you need to write 1 type of bottum php that change the status of the order then copy and modify it a bit for each buttom -->
                                     <input type="submit" class="large-btn large-magnify" name="button" value="On the way to the store!">
                                 </div>

@@ -34,7 +34,7 @@
             </div>
         <div class="grey-background">
             <div class="container12">
-                <h1 id="home">New future of grocery shopping</h1>
+                <h1 id="home">Future of grocery shopping</h1>
                                           <h4><font color="red">
 
                             <?php 
@@ -57,7 +57,7 @@
                         </div>
                         <div class= btn-container>
                             <form action="/Register/register-Client.php">
-                                <input type="submit" class="large-btn large-magnify" value="Sign-up free as Customer">
+                                <input type="submit" class="large-btn large-magnify" value="Sign-up as Customer">
                             </form>
                         </div>  
 
@@ -68,7 +68,7 @@
                         </div>
                         <div class="btn-container">
                             <form action="/Register/register-Driver.php">
-                                <input type="submit" class="large-btn large-magnify" value="Sign-up free as Driver">
+                                <input type="submit" class="large-btn large-magnify" value="Sign-up as Driver">
                             </form>
                         </div>
                     </div>

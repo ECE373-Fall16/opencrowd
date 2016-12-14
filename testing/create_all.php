@@ -13,7 +13,7 @@
    if(!$db){
       echo $db->lastErrorMsg();
    } else {
-      echo "Opened database successfully\n";
+ //     echo "Opened database successfully\n";
    }
 //========================================================table for drivers
 
@@ -38,7 +38,7 @@ EOF;
    if(!$ret){
       echo $db->lastErrorMsg();
    } else {
-      echo "Table for drivers created successfully\n";
+//      echo "Table for drivers created successfully\n";
    }
 //===================================================table for clients db
 
@@ -64,7 +64,7 @@ EOF;
    if(!$ret){
       echo $db->lastErrorMsg();
    } else {
-      echo "Table for clients created successfully\n";
+//      echo "Table for clients created successfully\n";
    }
 //===================================================table for lists db
     $sql =<<<EOF
@@ -79,8 +79,9 @@ EOF;
    if(!$ret){
       echo $db->lastErrorMsg();
    } else {
-      echo "Table for lists created successfully\n";
+//      echo "Table for lists created successfully\n";
    }
    $db->close();
    //==================end create table
+	echo "reseted db\n";
 ?>

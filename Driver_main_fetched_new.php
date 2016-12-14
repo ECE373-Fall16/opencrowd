@@ -101,6 +101,7 @@ EOF;
 			       // $returned_num = $db->query("SELECT * FROM drivers WHERE USERNAME='$uname';");
 				echo "You selected list with ID: $data<br>";
 				echo "Here are the details:-<br>";	
+				echo "<html><br></html>";
 				$returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
 				while ($entry = $returned_set->fetcharray()) {
 				    echo 'ID: ' . $entry['ID']; 

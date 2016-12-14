@@ -1,4 +1,3 @@
-
 <?php
 
 if(file_exists ('testing/lettucebuy.db')){
@@ -22,20 +21,20 @@ include 'testing/client_register.php';
 
 //some changes
 $result;
-$correctresult='Location:../Client_main.php?flag=0';
+$correctresult='Location: ../Login-page.php?flag=1';
+
+$_POST["password"]='654321';
 
 include 'testing/login_clients.php';
-
 echo $result."\n";
-echo strcmp($result,$correctresult);
-        if(strcmp($result,$correctresult)!=0)
-	{
+
+        if(strcmp($result,$correctresult)!=0){
                 $db->close();
-		echo "exited with one\n";
-                exit(3);
+		echo "exited with four/n";
+                exit(4);
 		}
 	else{
-	echo "we are gocci with test 3 login_simple\n";
+	echo "we are gocci with test 4 wrongpass\n";
 		}
 
 $db->close();

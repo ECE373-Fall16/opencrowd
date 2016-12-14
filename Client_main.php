@@ -42,10 +42,8 @@
                             <a href= "" ><img src ="logo%20LettuceBuy.png"></a>
                         </div>
                         <div class = "column5">
-
-              		<li><a href = "<?php echo "Client_main.php";?>">Home</a></button><li>
+			<li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
               		<li><a href = "<?php echo "/Register/register-Client.php?update=2";?>">Update Profile</a></button><li>
-            		<li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
                         </div>
                     </div>
                 </header>
@@ -65,8 +63,6 @@
    	$db = new MyDB();
 	   if(!$db){ //checking if doesn't exist
 		echo $db->lastErrorMsg();
-	   } else {
-		//echo "Opened database for login check for clients!!!<br>";
 	   }
 
 	    $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
@@ -118,7 +114,11 @@
 			?>
                                 <p class=""><font color="red">Your list has been deleted, feel free to add a new one</font></p>
 			<?php
-			}
+			}elseif($flag==8){
+			?>
+                                <p class=""><font color="red">Thank you for using LettuceBuy!</font></p>
+			<?php 
+			}	
 			?>
 
                         <h3>Make a new order or update your current one</h3>
@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                             <div class="column1">
-                                <input type="number" id="item-number" class="small-fld" name="quantity" value="0" placeholder="Number">
+                                <input type="number" id="item-number" class="small-fld" name="quantity" value="0" placeholder="Quantity">
                             </div>
                         </div>
 

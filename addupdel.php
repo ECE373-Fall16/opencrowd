@@ -43,7 +43,7 @@ if($button=="Add Items"){ //adding items  deleted $flag ==1
 		$_SESSION["listItem"]=$items;
 		$newvar=$_SESSION["listItem"];
 		if ($newItem != "" && $quan > 0 && $submitted=="0")header("Location:./Client_main.php");
-		elseif ($newItem != "" && $quan > 0 && $submitted=="1")header("Location:./Client_main_update_order.php");
+		elseif ($newItem != "" && $quan > 0 && $submitted=="1")header("Location:./Client_main_update_order.php?update=1");
 
 	}
 	elseif ($newItem != "" && $quan > 0){
@@ -51,7 +51,7 @@ if($button=="Add Items"){ //adding items  deleted $flag ==1
 		$_SESSION["listItem"]=$items;
 		$newvar=$_SESSION["listItem"];
 		if ($newItem != "" && $quan > 0 && $submitted!="1")header("Location:./Client_main.php");
-		elseif ($newItem != "" && $quan > 0 && $submitted=="1")header("Location:./Client_main_update_order.php");
+		elseif ($newItem != "" && $quan > 0 && $submitted=="1")header("Location:./Client_main_update_order.php?update=1");
 
 
 	}
@@ -60,7 +60,7 @@ if($button=="Add Items"){ //adding items  deleted $flag ==1
 		//NEED TO CHECK WHERE WE NEED TO REDIRECT TO
 		header("Location:./Client_main.php?flag=1");
 	}
-        elseif ($quan<=0 && $submitted=="1"){header("Location:./Client_main_update_order.php?flag=1");}
+        elseif ($quan<=0 && $submitted=="1"){header("Location:./Client_main_update_order.php?flag=1&update=1");}
 
 		//header("Location:./Client_main.php?flag=1");
 	//echo "the concatenation is: $items <br>";
@@ -88,7 +88,7 @@ elseif($button=="Delete Items"){ //delete    $flag==2
 		if(str_word_count($item) == 1 && $pos==0){ 
 			$_SESSION["listItem"] = ""; //put empty string if only one item left
 			if($submitted=="0")header("Location: ./Client_main.php?flag=4");
-			elseif($submitted=="1")header("Location: ./Client_main_update_order.php?flag=4");
+			elseif($submitted=="1")header("Location: ./Client_main_update_order.php?flag=4&update=1");
 		}
 		else{
 			$len = strlen($newItem); //length of item
@@ -97,14 +97,14 @@ elseif($button=="Delete Items"){ //delete    $flag==2
 			$_SESSION["listItem"] = str_replace($remove,"",$items);
 
 			if($submitted=="0")header("Location: ./Client_main.php?flag=4");
-			elseif($submitted=="1")header("Location: ./Client_main_update_order.php?flag=4");
+			elseif($submitted=="1")header("Location: ./Client_main_update_order.php?flag=4&update=1");
 
 		}
 		
 	}else{ //could not find the item
 				
 		if($submitted=="0")header("Location: ./Client_main.php?flag=2");
-		elseif($submitted=="1")header("Location: ./Client_main_update_order.php?flag=2");
+		elseif($submitted=="1")header("Location: ./Client_main_update_order.php?flag=2&update=1");
 	}
 	
 }

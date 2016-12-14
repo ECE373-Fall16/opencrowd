@@ -27,7 +27,7 @@ session_start();
                         <div class="nav-option menu-nav">
                             <ul >
               			<li><a href = "<?php echo "Driver_main_fetched_new.php";?>">Home</a></button><li>
-               			<button><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button>
+            			<li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
                             </ul>
                         </div>
                     </div>
@@ -45,6 +45,8 @@ session_start();
                         <h1 id="topping"></h1>
 			<h4>
 			<?php
+				   $uname=$_SESSION['name_ID'];
+				   echo "$uname <br>";
 				   class MyDB extends SQLite3
 				     {
 				       function __construct()
@@ -52,6 +54,7 @@ session_start();
 					      $this->open('databases/lettucebuy.db');
 					   }
 					 }
+
 				   $db = new MyDB();
 					$entry = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME='$uname';");
 					$entry = $entry->fetcharray();
@@ -62,7 +65,7 @@ session_start();
 				    $returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
 				    $entry = $returned_set->fetcharray();
 					$status = $entry['status'];
-					//echo "the status is $status";
+					echo "the status is $status";
 				    if ($status == "completed"){
 					//then it got redirected from Driver_main_done.php
 					
@@ -74,8 +77,25 @@ session_start();
 				//Client confirmed that grocries arrived
 				    if ($status == "confirmed"){
 					//Client pressed "My groceries have arrived" in Client_main_submitted.php
-					$db->close();
-					header("Location: Driver_main.php?flag=0&name_ID=$uname");       
+
+					//set value of currentlist to -1 again
+					$sql =<<<EOF
+						UPDATE drivers SET CURRENTLIST = "-1" WHERE USERNAME = "$uname"
+EOF;
+					$ret = $db->exec($sql);
+   					if(!$ret){
+				        //echo "there was an error";
+				        echo $db->lastErrorMsg();		
+				        } else {
+				       //echo "Got into last else";
+	       				   $db->close();
+				           //echo "Status should be completed! Here we can link to other file";
+					   header("Location: Driver_main_new.php?flag=2");       
+				    }
+
+					
+					//$db->close();
+					//header("Location: Driver_main_new.php?flag=2");       
 					
 				    }
 
@@ -113,7 +133,7 @@ session_start();
 				?>
 				<form action="Driver_main_done.php" method="POST">
 					<input type="hidden" name="list_ID" value="<?php echo $data;?>">
-					<input type="submit" value="Confirm"/>
+					<input type="submit" class="large-btn large-magnify" value="Confirm ">
 				</form>
 			    <?php
 			    
@@ -128,19 +148,45 @@ session_start();
                         <div class="">
                             <form action="status.php" method="POST">
                                 <h1 id="topping">Status of current order</h1>  
-                                <h2> I leave some space here to use php to display status of the order</h2>
+                           <div class="barter-container status" >
+                            <h1  id="topping">Current Status :</h1>
+                            <h1 >	<!-- status php -->
+        
+        <?php
+                
+            //displaying  status--------------------------------------------  THE STATUS IS FOUND IN PREVIOUS php PART
+
+            //uname=$_SESSION['name_ID'];
+/*
+            $listnum = $db->query("SELECT CURRENTLIST FROM clients WHERE USERNAME='$uname';");
+            $listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
+            $check = $listnum['CURRENTLIST'];
+            $check = (int)$check; //have int form of current list
+
+
+           $returned_set = $db->query("SELECT * FROM list WHERE ID='$check';");
+           $entry = $returned_set->fetcharray();
+           $status = $entry['status'];
+*/
+           echo "$status";
+           //---------------------------------------------------
+        
+
+        ?>
+			</h1> 
+                        </div> 
                                 <h1 id="topping">Update order current status</h1>  
                                 <div class="btn-container"> <!--Maybe you need to write 1 type of bottum php that change the status of the order then copy and modify it a bit for each buttom -->
-                                    <input type="submit" class="large-btn large-magnify" value="On the way to the store!">
+                                    <input type="submit" class="large-btn large-magnify" name="button" value="On the way to the store!">
                                 </div>
                                 <div class="btn-container"> <!--Maybe you need to write 1 type of bottum php that change the status of the order then copy and modify it a bit for each buttom -->
-                                    <input type="submit" class="large-btn large-magnify" value="Shopping ^-^">
+                                    <input type="submit" class="large-btn large-magnify" name="button" value="Shopping">
                                 </div>
                                 <div class="btn-container"> <!--Maybe you need to write 1 type of bottum php that change the status of the order then copy and modify it a bit for each buttom -->
-                                    <input type="submit" class="large-btn large-magnify" value="Check Out $$$">
+                                    <input type="submit" class="large-btn large-magnify" name="button" value="Checking Out">
                                 </div>
                                 <div class="btn-container"> <!--Maybe you need to write 1 type of bottum php that change the status of the order then copy and modify it a bit for each buttom -->
-                                    <input type="submit" class="large-btn large-magnify" value="On the way delivering ^0^">
+                                    <input type="submit" class="large-btn large-magnify" name="button" value="On the way to Client">
                                 </div>
                             </form>
                         </div>

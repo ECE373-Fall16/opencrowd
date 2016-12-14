@@ -21,7 +21,6 @@ $address=$_POST["address"];
 $button=$_POST["button"];//Add to Order || Delete Order
 echo "$button";
 
-
 //here we have items and number respectively
 //$stuff=var_dump($item[0]);
 //echo "stuff is $stuff";
@@ -64,26 +63,31 @@ EOF;
 }
 
 
-elseif($button=="Add to List"){
+elseif($button=="Add to Order"){
+	echo "$button";
 	if($items==""){
 		$db->close();
 		header("Location: Client_main_update_order.php?flag=5");
 	}
 
-	$listnum=query("SELECT CURRENTLIST FROM clients where USERNAME='$uname'");
+	echo "$button";
+	$listnum= $db->query("SELECT CURRENTLIST FROM clients where USERNAME='$uname';");
+ 	$listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
 	$num = $listnum["CURRENTLIST"];
 	$num=(int)$num;
+	echo "$button";
 	
 	$clientschange =<<<EOF
 	      UPDATE list SET items="$items" WHERE ID=$num
 EOF;
+	echo "$button";
 		 $ret = $db->exec($clientschange);
 		 if(!$ret){
 		 echo $db->lastErrorMsg();
 		}
 
-		$db->close();
-	   header("Location: Client_main_update_order.php");
+	   $db->close();
+	   header("Location: Client_main_update_order.php?flag=6");
 	
 }
 

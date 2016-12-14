@@ -27,14 +27,13 @@ $returned_set = $db->querySingle("SELECT COUNT(*) FROM list WHERE ID=$listnum;")
 if($returned_set==0){//checking if we did not found ID in list
 		$db->close();
 		//echo "returned_set=0 <br>";
-		header ("Location: Driver_main.php?flag=1"); //if wrong ID then go back to main
+		header ("Location: Driver_main_new.php?flag=1"); //if wrong ID then go back to main
 }
 else{
    $sql =<<<EOF
       UPDATE list SET status = "completed" WHERE ID = "$listnum"
 EOF;
    $ret = $db->exec($sql);
-   
    if(!$ret){
         //echo "there was an error";
         echo $db->lastErrorMsg();

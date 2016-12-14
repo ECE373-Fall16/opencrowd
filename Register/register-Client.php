@@ -11,7 +11,7 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
 <?php #Adding the correct title at the label for updating or for creating a new account
-       		 $newflag=$_GET["flag"]; 
+       		 $newflag=$_GET["update"]; 
 		$uname=$_SESSION["name_ID"];
 		$newflag=(int)$newflag;
 		//bruteforcing it to update
@@ -48,6 +48,7 @@ session_start();
 	    </div>
 
             </header>
+	</div>
 
 <?php //flag=1 --> confirm pw was wrong, flag=2-->username been taken, flag=3 --> empty field 
 ?>
@@ -65,13 +66,13 @@ session_start();
 		?>
 		
 
-
+	<div class="container12">
             <div class="row">
-                <div class="column4" id="register-pic">
-                        <a href="<?php echo "../img/";?>" ><img src ="groceries1.jpg" hight="500" width="500"></a>
+                <div class="column5" id="register-pic">
+                        <a href="<?php echo "../img/";?>" ><img src ="groceries1.jpg"></a>
                 </div>
                 
-                <div class="column6">
+                <div class="column7">
                     <div class="signup-container">
 		<font color="red">
 		<?php //$flag=$_GET["flag"];

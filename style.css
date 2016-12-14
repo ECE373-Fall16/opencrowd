@@ -142,3 +142,6 @@ h1#topping{
     font-family: serif;
     font-size: 1.8em;
 }
+status h1{
+display: inline;
+}

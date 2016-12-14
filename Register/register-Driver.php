@@ -64,12 +64,11 @@ session_start();
 		?>
             
             <div class="row">
-                <div class="column5" id="register-pic">
-                        <a<img src ="../img/groceries2.jpg"></a>
-                </div>
+		<div class="column5" id="register-pic">
+                        <a href="<?php echo "../img/";?>" ><img src ="groceries2.jpg"></a>
+		</div>
                 <div class="column7">
                     <div class="signup-container">
-
 			<font color="red">
 				<?php $flag=$_GET["flag"];
 				      $flag=(int)$flag;
@@ -148,7 +147,7 @@ session_start();
 					echo "Both passwords did not match";
 				      }
 				?>                         
-			        </div> 
+			       
 				</h4></font>
 
                              <p class="input-direction">Confirm your password</p>

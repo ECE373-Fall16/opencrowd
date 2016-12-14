@@ -38,7 +38,7 @@ session_start();
                             <div class = "column5">
                         <div class="nav-option menu-nav">
 			    <ul>
-              		<li><a href = "<?php echo "Client_main_submitted.php";?>">Home</a></button><li>
+              		<li><a href = "<?php echo "Client_main_update_order.php";?>">Home</a></button><li>
 			</ul>
                             <ul >
               			<li><a href = "<?php echo "index.php?logout=-1";?>">Log Out</a></button><li>
@@ -58,6 +58,7 @@ session_start();
                         <div class="column3">
                             <h1 id="topping">Current Order</h1>
 				<div class="barter-container">
+					<h3>
 			<?php
 				       class MyDB extends SQLite3
 					 {
@@ -92,11 +93,10 @@ session_start();
 
 
 				if($update==1)echo "Your list has been successfully updated<br>";
-				elseif($update==2)echo "Your list has been fetched by a driver, please call them instead<br>";
+				elseif($update==2)echo "Your list has been fetched by a driver, please call them if any changes need to be made to your list.<br>";
 
 				if($update==0 || $update==1){ //either coming from login or after updating list
 					echo "Your list is available to all drivers<br>";
-					echo "Your list ID is:$data<br>";
 					echo "Here are the details of your list:-<br>";	
 					echo '<html><br></html>';
 				}
@@ -106,13 +106,13 @@ session_start();
 				$newvar=$_SESSION["listItem"];
 			        //echo "Your List: $newvar";
 
-				//$returned_set = $db->query("SELECT * FROM list WHERE ID=$data;");
-				//while ($entry = $returned_set->fetcharray()) {
-				//$entry = $returned_set->fetcharray()
+				$returned_set = $db->query("SELECT address FROM list WHERE ID=$data;");
+				$entry = $returned_set->fetcharray();
 				    echo "Items: " . "$newvar";
-				    //echo '<html><br></html>';
-				    //echo 'Address of Store: ' . $entry['ADDRESS'];
-				    //echo '<html><br></html>';
+				    echo '<html><br></html>';
+				   if($entry['address']==""){echo "Address/Name of Store: None";echo '<html><br></html>';}
+				    else{echo 'Address/Name of Store: ' . $entry['address'];
+				    echo '<html><br></html>';}
 				//}
 				//----------------------------------------------------------------------------------
 
@@ -125,12 +125,13 @@ session_start();
 					 echo '<html><br></html>';
 					 echo 'Phone Number: ' . $info['PHONE'];
 					 echo '<html><br></html>';
-					 echo 'Address: ' . $info['ADDRESS'];
-					 echo '<html><br></html>';
+					 //echo 'Address: ' . $info['ADDRESS'];
+					 //echo '<html><br></html>';
 					}
 				}
 
 			?>
+					</h3>
 				</div>
                         </div>
 
@@ -141,7 +142,7 @@ session_start();
 	                $listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
             		$check = $listnum['CURRENTLIST'];
             		$check = (int)$check; //have int form of current list
-
+			echo "$check <br>";
 
            		$returned_set = $db->query("SELECT * FROM list WHERE ID='$check';");
 		        $entry = $returned_set->fetcharray();
@@ -200,12 +201,15 @@ session_start();
                         ?>
                                 <p class=""><font color="red">The item list was empty!</font></p>
                         <?php
-                        }
-                        //endif
-?>
+                        }elseif($flag==6){
+			?>
+                                <p class=""><font color="red">Your list was successfully updated</font></p>
+			<?php 
+			}
+			?>
+			
 
 			<form action="addupdel.php" method= "POST">
-                        <input type="hidden" name="adding" value="1">
                         <input type="hidden" name="listSubmitted" value="1">
 
                         <div class="column5">
@@ -226,18 +230,18 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="column1">
-                                    <input type="number" id="item-number" class="small-fld" name="quantity" value="0" placeholder="Number ">    
+                                    <input type="number" id="item-number" class="small-fld" name="quantity" value="0" placeholder="Quantity">    
                                 </div>
                             </div>
                         <div class="row">
                             <div class="column2">
                                 <div class= btn-container>
-                                    <input type="submit" class="large-btn large-magnify" name="button" value="Add Item">
+                                    <input type="submit" class="large-btn large-magnify" name="button" value="Add Items">
                                 </div>
                             </div>
                              <div class="column2">
                                 <div class= btn-container>
-                                    <input onClick="deleteList()" type="submit" class="large-btn large-magnify" name="button" value="Delete Items">
+                                    <input type="submit" class="large-btn large-magnify" name="button" value="Delete Items">
                                 </div>
                             </div>
                         </div>  
@@ -256,9 +260,9 @@ session_start();
 
                    <div class="column3">
                         <div class="barter-container" >
-                            <h1 id="topping">Current Status :</h1>
+                            <h1 id="topping">Current Status of your Order:</h1>
                             <!-- status php -->
-	
+	<h3>	
 	<?php
 		
 	    //displaying  status--------------------------------------------  THE STATUS IS FOUND IN PREVIOUS php PART
@@ -280,6 +284,7 @@ session_start();
 	
 
 	?>
+	</h3>
 
                         </div> 
                         <div id="barter-list barter-container" class="ui list">

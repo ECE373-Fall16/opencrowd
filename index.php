@@ -35,23 +35,24 @@
         <div class="grey-background">
             <div class="container12">
                 <h1 id="home">New future of grocery shopping</h1>
-                <div class="row">
+                                          <h4><font color="red">
+
+                            <?php 
+                                $loggedout=$_GET["logout"];
+                                $loggedout=(int)$loggedout;
+                                if($loggedout==-1){
+                                        session_unset();
+                                        session_destroy();
+                                        echo "You are logged out, have a good day";
+                                }
+                            ?>
+
+                           <h4></font>
+
+		<div class="row">
                     <div class="column6">
-			   <h4><font color="red">
-
-			    <?php 
-				$loggedout=$_GET["logout"];
-				$loggedout=(int)$loggedout;
-				if($loggedout==-1){
-					session_unset();
-					session_destroy();
-					echo "You are logged out, have a good day";
-				}
-			    ?>
-
-	        	   <h4></font>
                         <div class="barter-container">
-                            <p class="ad-txt">Don't want to waste your time on grocery shopping!</p>
+                            <p id="ad-txt">Don't want to waste your time on grocery shopping!</p>
 
                         </div>
                         <div class= btn-container>
@@ -63,7 +64,7 @@
                     </div>
                     <div class="column6">
                         <div class="barter-container">
-                            <p class="ad-txt">Want to earn money on spare time by doing everyday grocery shoping</p>
+                            <p id="ad-txt">Want to earn money on spare time by doing everyday grocery shoping</p>
                         </div>
                         <div class="btn-container">
                             <form action="/Register/register-Driver.php">

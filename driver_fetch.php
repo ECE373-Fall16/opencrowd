@@ -16,7 +16,7 @@
 $uname=$_SESSION["name_ID"];
 $listnum=$_POST["listID"];
 $listnum=(int)$listnum; //parse into int
-
+//echo "$listnum";
 $returned_set = $db->querySingle("SELECT COUNT(*) FROM list WHERE ID=$listnum AND status='incomplete';");
 
 	if($returned_set==0){//checking if we did not found ID in list
@@ -33,15 +33,23 @@ EOF;
       echo $db->lastErrorMsg();
    } 
 
-   $sql =<<<EOF
-      UPDATE list SET status = 'fetched' WHERE ID = "$listnum"
+   $sqlstat =<<<EOF
+      UPDATE list SET status = 'fetched' WHERE ID =$listnum
 EOF;
-   $ret = $db->exec($sql);
+   $ret = $db->exec($sqlstat);
    if(!$ret){
       echo $db->lastErrorMsg();
    } else {
+	//echo "got here";
+	// $entry = $db->query("SELECT CURRENTLIST FROM drivers WHERE USERNAME='$uname';");
+        //                                $entry = $entry->fetcharray();
+        //                                $data = $entry['CURRENTLIST'];
+        //                                $data = (int)$data;
+	//				echo "$data";
+
   	$db->close();
- 	 header("Location: Driver_main_fetched.php");
+	//echo "$listnum";//correct id
+ 	header("Location: Driver_main_fetched_new.php");
    }
 }
 

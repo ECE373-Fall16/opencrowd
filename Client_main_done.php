@@ -60,9 +60,10 @@ EOF;
 	   $data = $entry['status'];
 	   //echo "The status of list is: $data <br>";
 	   
-	   //$db->close();
+	   $db->close();
 	   //echo "Status should be completed! Here we can link to other file";
-	   header("Location: Client_main.php?flag=4&name_ID=$uname");
+	   $_SESSION["listItem"]="";
+	   header("Location: Client_main.php?flag=8");
     }
 }
 

@@ -2,6 +2,7 @@
   session_start();
 
 //   FLAG = 1 MEANS INVALID ID when list is picked
+//   flag=2 meansthe status is confirmed
 ?>
 
 <!DOCTYPE  html>
@@ -12,6 +13,7 @@
         <meta name="robots" content="index,follow">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="refresh" content="10">
 
         <title>Driver Main</title>
 
@@ -72,6 +74,8 @@
 			$newflag=$_GET["flag"];
 			$newflag=(int)$newflag;
 			if($newflag==1)echo "Sorry invalid ID<br>";
+			if($newFlah==2)echo "Client has confirmed the delivery.<br>";
+
 			echo "Please select an ID of available list from below:<br>";
 			$returned_set = $db->query("SELECT * FROM list WHERE status='incomplete';");
 			while ($entry = $returned_set->fetcharray()) {
@@ -100,7 +104,7 @@
                     <div class="column6">
                         <div class="">
 
-                            <form action="Driver_main_fetched_new.php" method="POST">
+                            <form action="driver_fetch.php" method="POST">
                                 <h2>Choose a list </h2>
                                     <div class="row">
                                         <div class="column6">

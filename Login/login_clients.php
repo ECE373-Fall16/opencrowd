@@ -113,7 +113,7 @@
 			}
 			$_SESSION["logout"]=0;			
 			$db->close();
-			header("Location: ../Driver_main_fetched.php?update=0");
+			header("Location: ../Driver_main_fetched_new.php?update=0");
 		} //user has an active list
 
 	}

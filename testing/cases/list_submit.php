@@ -27,20 +27,26 @@ include 'testing/client_register.php';
 //some changes
 $result;
 $correctresult='Location: Client_main_update_order.php';
+$listItem='Apple 3,Orange 3,peaches 4';
 
 include 'testing/newlist.php';
 
 echo $result."\n";
 //echo strcmp($result,$correctresult);
-        if(strcmp($result,$correctresult)!=0)// if strings are different
+if(strcmp($result,$correctresult)!=0)// if strings are different
 	{
-                $db->close();
+                //$db->close();
 		echo "exited with five failed new list simple submit test\n";
                 exit(5);
 		}
-	else{
-	echo "we are gocci with test five: new list simple submit test\n";
-		}
+$db = new MyDB();
 
+$drivret = $db->querySingle("SELECT COUNT(*) FROM list WHERE items='$listItem';");
+if($drivret!=1){ //neither client nor driver
+                $db->close();
+		echo "exited with 5 listed did not get added into database\n";
+               exit(5);
+}
 $db->close();
+        echo "we are gocci with test five: new list simple submit test\n";
 ?>

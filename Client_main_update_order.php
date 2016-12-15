@@ -144,7 +144,7 @@ session_start();
 				//----------------------------------------------------------------------------------
 
 
-				if($update==2){//list has been fetched, display driver info
+				if($test!='incomplete'){//list has been fetched, display driver info
 
 					$getinfo = $db->query("SELECT * FROM drivers WHERE CURRENTLIST=$data;"); //picking driver that has same ID
 					while ($info = $getinfo->fetcharray()){

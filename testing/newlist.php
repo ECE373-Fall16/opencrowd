@@ -35,6 +35,7 @@ if($button=="Submit List"){
 		$db->close();
 		$result=("Location: Client_main.php?flag=5");
 	}
+	else{
 	 $sql =<<<EOF
 	      INSERT INTO list (items,address,status)
 	      VALUES ("$items","$address", "incomplete");
@@ -58,6 +59,7 @@ EOF;
 			} 
 	   $db->close();
 	   $result="Location: Client_main_update_order.php";
+	}
 }
 
 
@@ -67,7 +69,7 @@ elseif($button=="Add to Order"){
 		$db->close();
 		$result="Location: Client_main_update_order.php?flag=5";
 	}
-
+	else{
 	echo "$button";
 	$listnum= $db->query("SELECT CURRENTLIST FROM clients where USERNAME='$uname';");
  	$listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
@@ -86,6 +88,7 @@ EOF;
 
 	   $db->close();
 	   $result="Location: Client_main_update_order.php?flag=6";
+	}
 	
 }
 

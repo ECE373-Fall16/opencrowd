@@ -180,7 +180,7 @@
                                 <input type="text" id="item-address" class="large-fld" name="address" placeholder="Address/Name of store">
                                 </div>
 
-                                <input type="submit" class="large-btn large-magnify" name="button"value="Submit List">
+                                <input type="submit" class="large-btn large-magnify" name="button" value="Submit List">
                             </form>
                         </div>
                     </div>

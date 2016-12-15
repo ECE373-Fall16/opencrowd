@@ -33,33 +33,35 @@ $button=$_POST["button"];//Add to Order || Delete Order
  $temp = -1; 
 
 if($button=="Submit List"){
-	if($items==""){
+	if(strcmp($items,"")==0){
 		$db->close();
 		header("Location: Client_main.php?flag=5");
 	}
-	 $sql =<<<EOF
-	      INSERT INTO list (items,address,status)
-	      VALUES ("$items","$address", "incomplete");
+		else{
+		 $sql =<<<EOF
+		      INSERT INTO list (items,address,status)
+		      VALUES ("$items","$address", "incomplete");
 EOF;
-	if($address=="")$address="None";
+		if($address=="")$address="None";
 
-	   $ret = $db->exec($sql);
-	   if(!$ret){
-	      echo $db->lastErrorMsg();
-	   } 
-	  //taking ID of row where we inserted into database and giving it to parameter in CLIENTS table
-	  $rollid = $db->lastInsertRowID();
+		   $ret = $db->exec($sql);
+		   if(!$ret){
+		      echo $db->lastErrorMsg();
+		   } 
+		  //taking ID of row where we inserted into database and giving it to parameter in CLIENTS table
+		  $rollid = $db->lastInsertRowID();
 
-	  $clientschange =<<<EOF
-	      UPDATE clients SET CURRENTLIST = $rollid WHERE USERNAME = "$uname";
+		  $clientschange =<<<EOF
+		      UPDATE clients SET CURRENTLIST = $rollid WHERE USERNAME = "$uname";
 EOF;
 
-		 $ret = $db->exec($clientschange);
-		 if(!$ret){
-		 echo $db->lastErrorMsg();
-			} 
-	   $db->close();
-	   header("Location: Client_main_update_order.php");
+			 $ret = $db->exec($clientschange);
+			 if(!$ret){
+			 echo $db->lastErrorMsg();
+				} 
+		   $db->close();
+		   header("Location: Client_main_update_order.php");
+	}
 }
 
 
@@ -69,25 +71,26 @@ elseif($button=="Add to Order"){
 		$db->close();
 		header("Location: Client_main_update_order.php?flag=5");
 	}
-
-	echo "$button";
-	$listnum= $db->query("SELECT CURRENTLIST FROM clients where USERNAME='$uname';");
- 	$listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
-	$num = $listnum["CURRENTLIST"];
-	$num=(int)$num;
-	echo "$button";
-	
-	$clientschange =<<<EOF
-	      UPDATE list SET items="$items" WHERE ID=$num;
+	else{
+		echo "$button";
+		$listnum= $db->query("SELECT CURRENTLIST FROM clients where USERNAME='$uname';");
+		$listnum = $listnum->fetcharray(); //getting the number of currentlist to be compared
+		$num = $listnum["CURRENTLIST"];
+		$num=(int)$num;
+		echo "$button";
+		
+		$clientschange =<<<EOF
+		      UPDATE list SET items="$items" WHERE ID=$num;	
 EOF;
-	echo "$button";
-		 $ret = $db->exec($clientschange);
-		 if(!$ret){
-		 echo $db->lastErrorMsg();
-		}
+		echo "$button";
+			 $ret = $db->exec($clientschange);
+			 if(!$ret){
+			 echo $db->lastErrorMsg();
+			}
 
-	   $db->close();
-	   header("Location: Client_main_update_order.php?flag=6");
+		   $db->close();
+		   header("Location: Client_main_update_order.php?flag=6");
+	}
 	
 }
 

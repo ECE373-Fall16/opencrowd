@@ -75,7 +75,6 @@
                             </div>  
                            </form>    
 
-                            <li class= "forgot-password"><a href="<?php echo "forgot-password.php?flag=0";?>">Forgot password?</a></li>
                     </div>
                 </div>
             </div> 
